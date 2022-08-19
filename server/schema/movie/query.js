@@ -1,5 +1,8 @@
 export const MovieQuery = {
-    getMovie: async (parent, { id }, { dataSources }) => {
+    movie: async (parent, { id }, { dataSources }) => {
         return await dataSources.movieAPI.getMovie(id);
+    },
+    upcomingMovies: async (parent, args, { dataSources }) => {
+        return await dataSources.movieAPI.getUpcoming();
     },
 };

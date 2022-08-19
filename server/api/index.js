@@ -15,13 +15,18 @@ export class MovieAPI extends RESTDataSource {
     }
 
     async getCasts(id) {
-        return this.get(`casts/${id}?api_key=${API_KEY}`);
+        return this.get(`/casts/${id}?api_key=${API_KEY}`);
     }
     async getReviews(id) {
-        return this.get(`reviews/${id}?api_key=${API_KEY}`);
+        return this.get(`/reviews/${id}?api_key=${API_KEY}`);
     }
     async getRecommendations(id) {
-        return this.get(`recommendations/${id}?api_key=${API_KEY}`);
+        return this.get(`/recommendations/${id}?api_key=${API_KEY}`);
+    }
+    async getUpcoming() {
+        const data = await this.get(`/movie/upcoming?api_key=${API_KEY}`);
+
+        return data.results;
     }
 }
 

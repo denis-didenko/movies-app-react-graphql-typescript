@@ -1,6 +1,7 @@
 export const MovieTypes = `
     extend type Query {
-        getMovie(id: ID!): Movie
+        movie(id: ID!): Movie
+        upcomingMovies: [Movie!]!
     }
 
     extend type Mutation {
@@ -13,6 +14,7 @@ export const MovieTypes = `
         overview: String!
         release_date: String!
         poster_path: String!
+        backdrop_path: String!
         casts: [Cast]!
         reviews: [Review]!
         recommendations: [Movie]!
