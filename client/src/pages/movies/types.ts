@@ -4,6 +4,7 @@ export interface IMovie {
     overview: string;
     release_date: string;
     poster_path: string;
+    backdrop_path: string;
     casts: [ICast];
     reviews: [IReview];
     recommendations: [IMovie];

@@ -15,15 +15,15 @@ const App: FC = () => {
         <Routes>
             <Route element={<Layout />}>
                 <Route path='/' element={<HomePage />} />
-                <Route path='movies'>
+                <Route path='movie'>
                     <Route index element={<MoviesPage />} />
                     <Route path=':id' element={<MovieDetails />} />
-                    <Route path='categories'>
-                        <Route index element={<CategoriesPage />} />
-                        <Route path=':category' element={<CategoryDetails />} />
-                    </Route>
-                    <Route path='search' element={<SearchPage />} />
                 </Route>
+                <Route path='categories'>
+                    <Route index element={<CategoriesPage />} />
+                    <Route path=':category' element={<CategoryDetails />} />
+                </Route>
+                <Route path='search' element={<SearchPage />} />
             </Route>
 
             <Route path='*' element={<Navigate to='/' />} />

@@ -95,16 +95,20 @@ button:hover,
 
 h1 {
     font-size: 24px;
-    letter-spacing: 0.2px;
+    letter-spacing: 1px;
     line-height: 1.2;
     margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: normal;
-    letter-spacing: 0.2px;
+    letter-spacing: 1px;
     margin-bottom: 10px;
+}
+
+.page-title {
+    text-align: center;
 }
 
 .wrapper {
@@ -117,7 +121,7 @@ h2 {
 }
 
 main {
-    padding: 10px;
+    padding: 10px 10px 75px;
 }
 
 nav {

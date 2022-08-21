@@ -2,6 +2,7 @@ export const MovieTypes = `
     extend type Query {
         movie(id: ID!): Movie
         upcomingMovies: [Movie!]!
+        nowPlayingMovies: [Movie!]!
     }
 
     extend type Mutation {

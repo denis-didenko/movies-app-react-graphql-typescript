@@ -1,8 +1,9 @@
-export interface UpcomingMoviesQuery {
-    upcomingMovies: UpcomingMovie[];
+import { IMovie } from '../movies/types';
+
+export interface IUpcomingMoviesQuery {
+    upcomingMovies: IMovie[];
 }
 
-export interface UpcomingMovie {
-    title: string;
-    backdrop_path: string;
+export interface INowPlayingMoviesQuery {
+    nowPlayingMovies: IMovie[];
 }

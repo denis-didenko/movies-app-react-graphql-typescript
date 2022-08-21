@@ -28,6 +28,9 @@ export class MovieAPI extends RESTDataSource {
 
         return data.results;
     }
-}
+    async getNowPlaying() {
+        const data = await this.get(`/movie/now_playing?api_key=${API_KEY}`);
 
-new MovieAPI();
+        return data.results;
+    }
+}
