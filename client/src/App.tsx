@@ -6,7 +6,7 @@ import MoviesPage from './pages/movies';
 import MovieDetails from './pages/movies/components/MovieDetails';
 import CategoriesPage from './pages/categories';
 import CategoryDetails from './pages/categories/components/CategoryDetails';
-import SearchPage from './pages/movies/search';
+import SearchPage from './pages/search';
 
 import './App.css';
 

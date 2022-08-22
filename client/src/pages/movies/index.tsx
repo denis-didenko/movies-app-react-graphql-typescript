@@ -1,9 +1,19 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import Genres from './components/Genres';
+import Sort from './components/Sort';
+import './movies.css';
 
-interface IProps {}
+const MoviesPage: FC = () => {
+    const [genre, setGenre] = useState(0);
+    const [sortType, setSortType] = useState('');
+    const [sortAscending, setSortAscending] = useState(false);
 
-const MoviesPage: FC<IProps> = props => {
-    return <div>MoviesPage</div>;
+    return (
+        <>
+            <Genres setGenre={setGenre} />
+            <Sort sortType={sortType} setSortType={setSortType} sortAscending={sortAscending} setSortAscending={setSortAscending} />
+        </>
+    );
 };
 
 export default MoviesPage;

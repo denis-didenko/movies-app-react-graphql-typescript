@@ -3,6 +3,8 @@ export const MovieTypes = `
         movie(id: ID!): Movie
         upcomingMovies: [Movie!]!
         nowPlayingMovies: [Movie!]!
+        genres: [Genre!]!
+        discoverMovies(input: DiscoverInput): [Movie!]!
     }
 
     extend type Mutation {
@@ -46,5 +48,25 @@ export const MovieTypes = `
     type ReviewAuthor {
         username: String!
         avatar_path: String!
+    }
+
+    type Genre {
+        id: ID!
+        name: String!
+    }
+
+    input DiscoverInput {
+        sortBy: MovieSortBy
+        withGenres: [ID!]
+    }
+    enum MovieSortBy {
+        POPULARITY_ASC
+        POPULARITY_DESC
+        RELEASE_DATE_ASC
+        RELEASE_DATE_DESC
+        ORIGINAL_TITLE_ASC
+        ORIGINAL_TITLE_DESC
+        VOTE_AVERAGE_ASC
+        VOTE_AVERAGE_DESC
     }
 `;

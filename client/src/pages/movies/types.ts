@@ -29,3 +29,12 @@ interface ReviewAuthor {
     username: string;
     avatar_path: string;
 }
+
+export interface IGenreQuery {
+    genres: [IGenre];
+}
+
+export interface IGenre {
+    id: number;
+    name: string;
+}

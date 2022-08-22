@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { MdHome, MdSearch, MdCategory, MdCalendarToday, MdStars } from 'react-icons/md';
+import { MdHome, MdSearch, MdOutlineOndemandVideo, MdCalendarToday, MdStars } from 'react-icons/md';
 
 const Nav: FC = () => {
     return (
@@ -13,15 +13,15 @@ const Nav: FC = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to='/search'>
-                        <MdSearch />
-                        <span>Search</span>
+                    <Link to='/movie'>
+                        <MdOutlineOndemandVideo />
+                        <span>Movies</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to='/categories'>
-                        <MdCategory />
-                        <span>Categories</span>
+                    <Link to='/search'>
+                        <MdSearch />
+                        <span>Search</span>
                     </Link>
                 </li>
                 <li>

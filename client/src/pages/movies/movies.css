@@ -23,8 +23,47 @@
     display: block !important;
 }
 
-.search-form {
-    margin-bottom: 20px;
+.genres-list {
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.genre {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--text-color-muted);
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.genre.is-active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.sort-nav {
+    display: flex;
+    gap: 5px;
+    overflow-x: scroll;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.sort-btn {
+    background: transparent;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px 12px;
+    border-color: var(--text-color-muted);
+}
+
+.sort-btn.is-selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--surface);
 }
 
 @media (min-width: 768px) {

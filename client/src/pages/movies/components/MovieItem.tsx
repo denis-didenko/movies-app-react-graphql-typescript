@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-
 import { IMovie } from '../types';
 import { useApiImg } from '../../../hooks/useApiImg';
 import 'react-lazy-load-image-component/src/effects/blur.css';

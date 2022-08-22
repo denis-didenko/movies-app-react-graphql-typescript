@@ -18,3 +18,12 @@ export const GET_NOW_PLAYING_MOVIES = gql`
         }
     }
 `;
+
+export const GET_GENRES = gql`
+    query GetGenres {
+        genres {
+            id
+            name
+        }
+    }
+`;

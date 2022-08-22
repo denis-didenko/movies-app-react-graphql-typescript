@@ -33,4 +33,14 @@ export class MovieAPI extends RESTDataSource {
 
         return data.results;
     }
+    async getGenres() {
+        const data = await this.get(`/genre/movie/list?api_key=${API_KEY}`);
+
+        return data.genres;
+    }
+    async getDiscoverMovies({ sortBy, withGenres }) {
+        const data = await this.get(`/discover/movie?api_key=${API_KEY}&sort_by=${sortBy}&with_genres=${withGenres}`);
+
+        return data.results;
+    }
 }

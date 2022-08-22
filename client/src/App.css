@@ -12,7 +12,7 @@
     --success: #0acf83;
     --text-color: #ebe7fd;
     --text-color-muted: #605c71;
-    --radius: 10px;
+    --radius: 15px;
 }
 
 * {
@@ -72,13 +72,13 @@ textarea:focus {
 button,
 .btn {
     background: var(--primary);
-    display: inline-block;
-    padding: 15px;
+    display: flex;
+    padding: 10px;
     border: 1px solid var(--primary);
     border-radius: var(--radius);
     color: #fff;
     font-family: var(--font);
-    font-size: 16px;
+    font-size: var(--font-size);
     line-height: 1.125;
     font-weight: 700;
     text-align: center;

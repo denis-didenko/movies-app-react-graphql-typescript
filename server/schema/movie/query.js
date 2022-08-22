@@ -8,4 +8,10 @@ export const MovieQuery = {
     nowPlayingMovies: async (parent, args, { dataSources }) => {
         return await dataSources.movieAPI.getNowPlaying();
     },
+    genres: async (parent, args, { dataSources }) => {
+        return await dataSources.movieAPI.getGenres();
+    },
+    discoverMovies: async (parent, { input }, { dataSources }) => {
+        return await dataSources.movieAPI.getDiscoverMovies(input);
+    },
 };
