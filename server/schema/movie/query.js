@@ -11,7 +11,7 @@ export const MovieQuery = {
     genres: async (parent, args, { dataSources }) => {
         return await dataSources.movieAPI.getGenres();
     },
-    discoverMovies: async (parent, { sortBy, genreId }, { dataSources }) => {
-        return await dataSources.movieAPI.getDiscoverMovies({ sortBy, genreId });
+    discoverMovies: async (parent, { sortBy, genreId, page }, { dataSources }) => {
+        return await dataSources.movieAPI.getDiscoverMovies({ sortBy, genreId, page });
     },
 };

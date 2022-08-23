@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_GENRES } from '../../../graphql/queries';
 import { IGenreData } from '../types';
-import GenreItem from './GenreItem';
 import Loading from '../../../components/Loading';
 import ErrorMessage from '../../../components/ErrorMessage';
 
@@ -17,11 +16,27 @@ const Genres: FC<IProps> = ({ genreId, setGenreId }) => {
     if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
 
+    const addGenreHandler = (id: string) => {
+        if (genreId.includes(id)) {
+            setGenreId(genreId.filter(genreId => genreId !== id));
+            return;
+        }
+
+        setGenreId([...genreId, id]);
+    };
+
     return (
         <>
             <div className='genres-list'>
                 {data?.genres.map(genre => (
-                    <GenreItem key={genre.id} genre={genre} genreId={genreId} setGenreId={setGenreId} />
+                    <div
+                        key={genre.id}
+                        data-genre-id={genre.id}
+                        className={genreId.includes(genre.id) ? 'genre is-active' : 'genre'}
+                        onClick={() => addGenreHandler(genre.id)}
+                    >
+                        {genre.name}
+                    </div>
                 ))}
             </div>
         </>

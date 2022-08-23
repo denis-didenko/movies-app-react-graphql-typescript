@@ -38,6 +38,12 @@
     color: var(--text-color-muted);
     padding: 5px 0;
     border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.genre:hover {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--text-color);
 }
 
 .genre.is-active {
@@ -59,6 +65,11 @@
     font-weight: normal;
     padding: 5px 12px;
     border-color: var(--text-color-muted);
+    cursor: pointer;
+}
+
+.sort-btn:hover {
+    border-color: var(--text-color);
 }
 
 .sort-btn.is-selected {
@@ -68,4 +79,25 @@
 }
 
 @media (min-width: 768px) {
+    .genres-list {
+        overflow-x: inherit;
+        flex-wrap: wrap;
+        gap: 3px 20px;
+        margin-bottom: 20px;
+    }
+    .sort-nav {
+        overflow-x: inherit;
+        flex-wrap: wrap;
+        gap: 3px 20px;
+        margin-bottom: 20px;
+    }
+    .sort-btn {
+        padding: 10px 20px;
+    }
+    .movies-list {
+        gap: 20px;
+    }
+    .movie-item {
+        width: 18%;
+    }
 }

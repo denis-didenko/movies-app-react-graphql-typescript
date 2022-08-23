@@ -13,6 +13,7 @@ const MoviesPage: FC = () => {
     const [genreId, setGenreId] = useState<string[]>(['28']);
     const [sortBy, setSortBy] = useState('popularity');
     const [sortAscending, setSortAscending] = useState(false);
+    const [page, setPage] = useState(10);
 
     const [getMovies, { loading, error, data }] = useLazyQuery<IDiscoverData>(GET_DISCOVER_MOVIES);
 
@@ -24,11 +25,11 @@ const MoviesPage: FC = () => {
             variables: {
                 genreId: genreId.join(','),
                 sortBy: sortType,
+                page,
             },
         });
     }, [genreId, sortBy, sortAscending]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
 
     console.log('error: ', error);
@@ -38,7 +39,7 @@ const MoviesPage: FC = () => {
         <>
             <Genres genreId={genreId} setGenreId={setGenreId} />
             <Sort sortBy={sortBy} setSortBy={setSortBy} sortAscending={sortAscending} setSortAscending={setSortAscending} />
-            <MoviesList movies={data?.discoverMovies} />
+            {loading ? <Loading /> : <MoviesList movies={data?.discoverMovies} />}
         </>
     );
 };

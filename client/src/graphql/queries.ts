@@ -29,8 +29,8 @@ export const GET_GENRES = gql`
 `;
 
 export const GET_DISCOVER_MOVIES = gql`
-    query GetDiscoverMovies($sortBy: String!, $genreId: ID!) {
-        discoverMovies(genreId: $genreId, sortBy: $sortBy) {
+    query GetDiscoverMovies($sortBy: String!, $genreId: ID!, $page: Int!) {
+        discoverMovies(genreId: $genreId, sortBy: $sortBy, page: $page) {
             id
             title
             poster_path

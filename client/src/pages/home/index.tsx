@@ -21,16 +21,16 @@ const HomePage: FC = () => {
         data: nowPlayingData,
     } = useQuery<INowPlayingMoviesQuery>(GET_NOW_PLAYING_MOVIES);
 
-    if (upcomingLoading || nowPlayingLoading || !upcomingData || !nowPlayingData) return <Loading />;
+    if (upcomingLoading || nowPlayingLoading) return <Loading />;
     if (upcomingErrorMessage) return <ErrorMessage error={upcomingErrorMessage} />;
     if (nowPlayingErrorMessage) return <ErrorMessage error={nowPlayingErrorMessage} />;
 
     return (
         <>
             <h2 className='page-title'>Upcoming movies</h2>
-            <HomeSlider slides={upcomingData.upcomingMovies.slice(3, 13)} />
+            <HomeSlider slides={upcomingData?.upcomingMovies.slice(3, 13)} />
             <h2>Now playing:</h2>
-            <MoviesList movies={nowPlayingData.nowPlayingMovies.slice(4, 16)} />
+            <MoviesList movies={nowPlayingData?.nowPlayingMovies.slice(4, 16)} />
         </>
     );
 };

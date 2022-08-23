@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 interface IProps {
-    slides: IMovie[];
+    slides: IMovie[] | undefined;
 }
 
 const HomeSlider: FC<IProps> = ({ slides }) => {
@@ -15,7 +15,7 @@ const HomeSlider: FC<IProps> = ({ slides }) => {
 
     return (
         <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1}>
-            {slides.map(({ id, title, backdrop_path }) => {
+            {slides?.map(({ id, title, backdrop_path }) => {
                 return (
                     <SwiperSlide key={id}>
                         <img src={getFullImgPath(backdrop_path)} alt={title} />

@@ -4,7 +4,7 @@ export const MovieTypes = `
         upcomingMovies: [Movie!]!
         nowPlayingMovies: [Movie!]!
         genres: [Genre!]!
-        discoverMovies(sortBy: String!, genreId: ID!): [Movie!]!
+        discoverMovies(sortBy: String!, genreId: ID!, page: Int!): [Movie!]!
     }
 
     extend type Mutation {
@@ -53,16 +53,5 @@ export const MovieTypes = `
     type Genre {
         id: ID!
         name: String!
-    }
-
-    enum MovieSortBy {
-        POPULARITY_ASC
-        POPULARITY_DESC
-        RELEASE_DATE_ASC
-        RELEASE_DATE_DESC
-        ORIGINAL_TITLE_ASC
-        ORIGINAL_TITLE_DESC
-        VOTE_AVERAGE_ASC
-        VOTE_AVERAGE_DESC
     }
 `;

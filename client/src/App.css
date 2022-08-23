@@ -168,3 +168,15 @@ nav ul li a svg {
 nav ul li a:hover {
     color: var(--text-color);
 }
+
+@media (min-width: 768px) {
+    :root {
+        --font-size: 16px;
+    }
+    main {
+        padding-bottom: 90px;
+    }
+    .swiper-slide {
+        height: 450px;
+    }
+}
