@@ -4,7 +4,7 @@ export const MovieTypes = `
         upcomingMovies: [Movie!]!
         nowPlayingMovies: [Movie!]!
         genres: [Genre!]!
-        discoverMovies(input: DiscoverInput): [Movie!]!
+        discoverMovies(sortBy: String!, genreId: ID!): [Movie!]!
     }
 
     extend type Mutation {
@@ -16,7 +16,7 @@ export const MovieTypes = `
         title: String!
         overview: String!
         release_date: String!
-        poster_path: String!
+        poster_path: String
         backdrop_path: String!
         casts: [Cast]!
         reviews: [Review]!
@@ -55,10 +55,6 @@ export const MovieTypes = `
         name: String!
     }
 
-    input DiscoverInput {
-        sortBy: MovieSortBy
-        withGenres: [ID!]
-    }
     enum MovieSortBy {
         POPULARITY_ASC
         POPULARITY_DESC

@@ -4,11 +4,11 @@ import MovieItem from './MovieItem';
 import '../movies.css';
 
 interface IProps {
-    movies: IMovie[];
+    movies: IMovie[] | undefined;
 }
 
 const MoviesList: FC<IProps> = ({ movies }) => {
-    if (!movies) return <p>Movies not found</p>;
+    if (!movies?.length) return <p>Movies not found</p>;
 
     return (
         <>

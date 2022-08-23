@@ -7,6 +7,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const MovieItem: FC<IMovie> = ({ poster_path, title, id }) => {
     const { getFullImgPath } = useApiImg();
+    if (!poster_path) return null;
 
     return (
         <div className='movie-item'>

@@ -30,11 +30,15 @@ interface ReviewAuthor {
     avatar_path: string;
 }
 
-export interface IGenreQuery {
+export interface IGenreData {
     genres: [IGenre];
 }
 
 export interface IGenre {
-    id: number;
+    id: string;
     name: string;
+}
+
+export interface IDiscoverData {
+    discoverMovies: [IMovie];
 }

@@ -3,21 +3,21 @@ import { SORT_TYPES } from '../model';
 import SortItem from './SortItem';
 
 interface IProps {
-    sortType: string;
-    setSortType: (sortType: string) => void;
+    sortBy: string;
+    setSortBy: (sortBy: string) => void;
     sortAscending: boolean;
     setSortAscending: (sortAscending: boolean) => void;
 }
 
-const Sort: FC<IProps> = ({ sortType, setSortType, sortAscending, setSortAscending }) => {
+const Sort: FC<IProps> = ({ sortBy, setSortBy, sortAscending, setSortAscending }) => {
     return (
         <div className='sort-nav'>
             {SORT_TYPES.map(sort => (
                 <SortItem
                     key={sort}
                     sort={sort}
-                    sortType={sortType}
-                    setSortType={setSortType}
+                    sortBy={sortBy}
+                    setSortBy={setSortBy}
                     sortAscending={sortAscending}
                     setSortAscending={setSortAscending}
                 />

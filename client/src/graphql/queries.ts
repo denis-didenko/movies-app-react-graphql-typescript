@@ -27,3 +27,13 @@ export const GET_GENRES = gql`
         }
     }
 `;
+
+export const GET_DISCOVER_MOVIES = gql`
+    query GetDiscoverMovies($sortBy: String!, $genreId: ID!) {
+        discoverMovies(genreId: $genreId, sortBy: $sortBy) {
+            id
+            title
+            poster_path
+        }
+    }
+`;
