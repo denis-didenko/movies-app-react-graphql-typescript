@@ -1,14 +1,17 @@
-import { MovieMutation, MovieQuery, MovieResolvers, CastResolvers, PersonResolvers } from './movie/index.js';
+import { MovieQuery, MovieMutation, MovieResolvers } from './movie/index.js';
+import { PersonQuery, PersonResolvers } from './person/index.js';
+import { CastResolvers } from './cast/index.js';
+import { GenreQuery } from './genre/index.js';
 
 export const resolvers = {
     Query: {
         ...MovieQuery,
-        // ...ReviewQuery,
+        ...PersonQuery,
+        ...GenreQuery,
     },
 
     Mutation: {
         ...MovieMutation,
-        // ...ReviewMutation,
     },
 
     Movie: MovieResolvers,

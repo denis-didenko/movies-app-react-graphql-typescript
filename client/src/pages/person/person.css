@@ -31,3 +31,12 @@
 .person-details .movies-list {
     margin-top: 10px;
 }
+
+@media (min-width: 768px) {
+    .person-details__poster {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+}
