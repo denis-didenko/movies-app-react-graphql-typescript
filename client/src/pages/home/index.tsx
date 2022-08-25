@@ -28,7 +28,7 @@ const HomePage: FC = () => {
     return (
         <>
             <h2 className='page-title'>Upcoming movies</h2>
-            <HomeSlider slides={upcomingData?.upcomingMovies.slice(3, 13)} />
+            <HomeSlider slides={upcomingData?.upcomingMovies.slice(0, 10)} />
             <h2>Now playing:</h2>
             <MoviesList movies={nowPlayingData?.nowPlayingMovies.slice(4, 16)} />
         </>

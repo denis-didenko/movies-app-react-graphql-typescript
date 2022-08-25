@@ -4,9 +4,8 @@ import Layout from './components/Layout';
 import HomePage from './pages/home';
 import MoviesPage from './pages/movies';
 import MovieDetails from './pages/movies/components/MovieDetails';
-import CategoriesPage from './pages/categories';
-import CategoryDetails from './pages/categories/components/CategoryDetails';
 import SearchPage from './pages/search';
+import PersonDetails from './pages/person';
 
 import './App.css';
 
@@ -19,10 +18,7 @@ const App: FC = () => {
                     <Route index element={<MoviesPage />} />
                     <Route path=':id' element={<MovieDetails />} />
                 </Route>
-                <Route path='categories'>
-                    <Route index element={<CategoriesPage />} />
-                    <Route path=':category' element={<CategoryDetails />} />
-                </Route>
+                <Route path='person/:id' element={<PersonDetails />} />
                 <Route path='search' element={<SearchPage />} />
             </Route>
 

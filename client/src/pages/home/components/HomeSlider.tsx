@@ -1,6 +1,8 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useApiImg } from '../../../hooks/useApiImg';
 import { IMovie } from '../../movies/types';
 import 'swiper/css';
@@ -18,10 +20,12 @@ const HomeSlider: FC<IProps> = ({ slides }) => {
             {slides?.map(({ id, title, backdrop_path }) => {
                 return (
                     <SwiperSlide key={id}>
-                        <img src={getFullImgPath(backdrop_path)} alt={title} />
-                        <div className='slide-info'>
-                            <p>{title}</p>
-                        </div>
+                        <Link to={`/movie/${id}`}>
+                            <LazyLoadImage width={'100%'} height={'100%'} alt={title} src={getFullImgPath(backdrop_path)} effect='blur' />
+                            <div className='slide-info'>
+                                <p>{title}</p>
+                            </div>
+                        </Link>
                     </SwiperSlide>
                 );
             })}

@@ -5,17 +5,41 @@ export interface IMovie {
     release_date: string;
     poster_path: string;
     backdrop_path: string;
+    vote_average: number;
+    runtime: number;
+    homepage: string;
+    genres: IGenre[];
     casts: [ICast];
     reviews: [IReview];
     recommendations: [IMovie];
 }
 
-interface ICast {
+export interface IMovieData {
+    movie: IMovie;
+}
+
+export interface ICast {
     id: number;
     name: string;
     character: string;
     profile_path: string;
     known_for_department: string;
+    person: IPerson;
+}
+
+export interface IPerson {
+    id: number;
+    name: string;
+    profile_path: string;
+    biography: string;
+    birthday: string;
+    deathday: string;
+    place_of_birth: string;
+    cast: IMovie[];
+}
+
+export interface IPersonData {
+    person: IPerson;
 }
 
 interface IReview {

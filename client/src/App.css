@@ -73,6 +73,8 @@ button,
 .btn {
     background: var(--primary);
     display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     border: 1px solid var(--primary);
     border-radius: var(--radius);
@@ -80,7 +82,6 @@ button,
     font-family: var(--font);
     font-size: var(--font-size);
     line-height: 1.125;
-    font-weight: 700;
     text-align: center;
     text-decoration: none;
     user-select: none;
@@ -93,11 +94,17 @@ button:hover,
     opacity: 0.9;
 }
 
+button svg,
+.btn svg {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
 h1 {
     font-size: 24px;
     letter-spacing: 1px;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 h2 {
@@ -167,6 +174,35 @@ nav ul li a svg {
 
 nav ul li a:hover {
     color: var(--text-color);
+}
+
+.react-tabs {
+    margin-bottom: 20px;
+}
+
+.react-tabs__tab-list {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.react-tabs__tab {
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--text-color-muted);
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.react-tabs__tab:hover {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--text-color);
+}
+
+.react-tabs__tab.react-tabs__tab--selected {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 
 @media (min-width: 768px) {

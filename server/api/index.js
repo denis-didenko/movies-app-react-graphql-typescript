@@ -11,17 +11,23 @@ export class MovieAPI extends RESTDataSource {
     }
 
     async getMovie(id) {
-        return this.get(`/movie/${id}?api_key=${API_KEY}`);
+        return this.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
     }
 
     async getCasts(id) {
-        return this.get(`/casts/${id}?api_key=${API_KEY}`);
+        const data = await this.get(`/movie/${id}/credits?api_key=${API_KEY}`);
+
+        return data.cast;
     }
     async getReviews(id) {
-        return this.get(`/reviews/${id}?api_key=${API_KEY}`);
+        const data = await this.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
+
+        return data.results;
     }
     async getRecommendations(id) {
-        return this.get(`/recommendations/${id}?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`);
+
+        return data.results;
     }
     async getUpcoming() {
         const data = await this.get(`/movie/upcoming?api_key=${API_KEY}&language=en-US`);
@@ -44,5 +50,17 @@ export class MovieAPI extends RESTDataSource {
         );
 
         return data.results;
+    }
+
+    async getPerson(id) {
+        const data = await this.get(`/person/${id}?api_key=${API_KEY}&language=en-US`);
+
+        return data;
+    }
+
+    async getCombinedCredits(personId) {
+        const data = await this.get(`/person/${personId}/combined_credits?api_key=${API_KEY}&language=en-US`);
+
+        return data.cast;
     }
 }
