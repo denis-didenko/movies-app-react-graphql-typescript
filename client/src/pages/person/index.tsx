@@ -6,13 +6,13 @@ import { GET_PERSON } from '../../graphql/queries';
 import { IPersonData } from '../movies/types';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
-import { useApiImg } from '../../hooks/useApiImg';
+import { useApi } from '../../hooks/useApi';
 import './person.css';
 import MoviesList from '../movies/components/MoviesList';
 
 const PersonDetails: FC = () => {
     const { id } = useParams();
-    const { getFullImgPath } = useApiImg();
+    const { getFullImgPath, sortMoviesByReleaseDate } = useApi();
     const { loading, error, data } = useQuery<IPersonData>(GET_PERSON, {
         variables: { id },
     });
@@ -24,20 +24,26 @@ const PersonDetails: FC = () => {
 
     const { name, birthday, biography, profile_path, place_of_birth, cast } = data.person;
 
+    const birthdayDate = new Intl.DateTimeFormat('uk-UA', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    }).format(new Date(birthday));
+
     return (
         <div className='person-details'>
             <div className='person-details__poster'>
                 <LazyLoadImage width={'100%'} height={'auto'} alt={name} src={getFullImgPath(profile_path)} effect='blur' />
             </div>
             <h1 className='person-details__title'>{name}</h1>
-            <h3>Birthday:</h3>
-            <p>{birthday}</p>
-            <h3>Place of birth:</h3>
+            <h3>Дата народження:</h3>
+            <p>{birthdayDate}</p>
+            <h3>Місце народження:</h3>
             <p>{place_of_birth}</p>
-            <h3>Biography:</h3>
-            <p>{biography}</p>
-            <h3>Works:</h3>
-            <MoviesList movies={cast.slice(0, 9)} />
+            <h3>Біографія:</h3>
+            <p>{biography ? biography : 'Немає перекладу'}</p>
+            <h3>Роботи:</h3>
+            <MoviesList movies={sortMoviesByReleaseDate(cast).slice(0, 10)} />
         </div>
     );
 };

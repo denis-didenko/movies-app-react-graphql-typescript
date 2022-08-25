@@ -9,19 +9,19 @@ const Nav: FC = () => {
                 <li>
                     <Link to='/'>
                         <MdHome />
-                        <span>Home</span>
+                        <span>Головна</span>
                     </Link>
                 </li>
                 <li>
                     <Link to='/movie'>
                         <MdOutlineOndemandVideo />
-                        <span>Movies</span>
+                        <span>Фiльми</span>
                     </Link>
                 </li>
                 <li>
                     <Link to='/search'>
                         <MdSearch />
-                        <span>Search</span>
+                        <span>Пошук</span>
                     </Link>
                 </li>
                 <li>

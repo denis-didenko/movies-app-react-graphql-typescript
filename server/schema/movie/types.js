@@ -14,17 +14,27 @@ export const MovieTypes = `
     type Movie {
         id: ID!
         title: String
-        overview: String!
+        overview: String
         release_date: String
         poster_path: String
         backdrop_path: String
-        vote_average: Float!
+        vote_average: Float
         runtime: Int
         homepage: String
+        popularity: Float
         genres: [Genre!]
-        casts: [Cast]!
+        credits: Credits
         reviews: [Review]!
         recommendations: [Movie]!
+        videos: [Video]!
+    }
+
+    type Video {
+        id: ID!
+        key: String
+        name: String
+        site: String
+        type: String
     }
 
     input MovieCreateInput {

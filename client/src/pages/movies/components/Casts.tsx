@@ -1,29 +1,31 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useApiImg } from '../../../hooks/useApiImg';
-import { ICast } from '../types';
+import { useApi } from '../../../hooks/useApi';
+import { ICast, ICrew } from '../types';
 
 interface IProps {
-    casts: ICast[];
+    casts: ICast[] | ICrew[];
 }
 
 const Casts: FC<IProps> = ({ casts }) => {
-    const { getFullImgPath } = useApiImg();
-    if (!casts.length) return <p>Casts not found</p>;
+    const { getFullImgPath } = useApi();
+
+    if (!casts.length) return <p>Не знайдено</p>;
 
     return (
         <div className='cast-list'>
             {casts.map(({ id, name, profile_path }) => {
-                if (!profile_path) return null;
+                //if (!profile_path) return null;
 
                 return (
-                    <div key={name} className='cast-list__item'>
-                        <Link to={`/person/${id}`}>
-                            <LazyLoadImage width={'100%'} height={'auto'} alt={name} src={getFullImgPath(profile_path)} effect='blur' />
-                        </Link>
+                    <Link to={`/person/${id}`} key={id} className='cast-list__item'>
+                        <div className='cast-list__item-img'>
+                            <LazyLoadImage width={'100%'} height={'100%'} alt={name} src={getFullImgPath(profile_path)} effect='blur' />
+                        </div>
+
                         <p>{name}</p>
-                    </div>
+                    </Link>
                 );
             })}
         </div>

@@ -11,55 +11,65 @@ export class MovieAPI extends RESTDataSource {
     }
 
     async getMovie(id) {
-        return this.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
+        return this.get(`/movie/${id}?api_key=${API_KEY}&language=uk-UA`);
     }
 
-    async getCasts(id) {
-        const data = await this.get(`/movie/${id}/credits?api_key=${API_KEY}`);
-
-        return data.cast;
+    async getCredits(id) {
+        return this.get(`/movie/${id}/credits?api_key=${API_KEY}&language=uk-UA`);
     }
+
+    async getVideos(id) {
+        const data = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.results;
+    }
+
     async getReviews(id) {
-        const data = await this.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=uk-UA`);
 
         return data.results;
     }
+
     async getRecommendations(id) {
-        const data = await this.get(`/movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/movie/${id}/recommendations?api_key=${API_KEY}&language=uk-UA`);
 
         return data.results;
     }
+
     async getUpcoming() {
-        const data = await this.get(`/movie/upcoming?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/movie/upcoming?api_key=${API_KEY}&language=uk-UA`);
 
         return data.results;
     }
+
     async getNowPlaying() {
-        const data = await this.get(`/movie/now_playing?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/movie/now_playing?api_key=${API_KEY}&language=uk-UA`);
 
         return data.results;
     }
+
     async getGenres() {
-        const data = await this.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/genre/movie/list?api_key=${API_KEY}&language=uk-UA`);
 
         return data.genres;
     }
+
     async getDiscoverMovies({ sortBy, genreId, page }) {
         const data = await this.get(
-            `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=${sortBy}&with_genres=${genreId}&page=${page}`
+            `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&language=uk-UA`
         );
 
         return data.results;
     }
 
     async getPerson(id) {
-        const data = await this.get(`/person/${id}?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/person/${id}?api_key=${API_KEY}&language=uk-UA`);
 
         return data;
     }
 
     async getCombinedCredits(personId) {
-        const data = await this.get(`/person/${personId}/combined_credits?api_key=${API_KEY}&language=en-US`);
+        const data = await this.get(`/person/${personId}/combined_credits?api_key=${API_KEY}&language=uk-UA`);
 
         return data.cast;
     }

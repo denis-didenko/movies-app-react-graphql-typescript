@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_UPCOMING_MOVIES, GET_NOW_PLAYING_MOVIES } from '../../graphql/queries';
 import { IUpcomingMoviesQuery, INowPlayingMoviesQuery } from './types';
+import { useApi } from '../../hooks/useApi';
 import HomeSlider from './components/HomeSlider';
 import MoviesList from '../movies/components/MoviesList';
 import Loading from '../../components/Loading';
@@ -9,6 +10,8 @@ import ErrorMessage from '../../components/ErrorMessage';
 import './home.css';
 
 const HomePage: FC = () => {
+    const { sortMoviesByReleaseDate } = useApi();
+
     const {
         loading: upcomingLoading,
         error: upcomingErrorMessage,
@@ -24,13 +27,14 @@ const HomePage: FC = () => {
     if (upcomingLoading || nowPlayingLoading) return <Loading />;
     if (upcomingErrorMessage) return <ErrorMessage error={upcomingErrorMessage} />;
     if (nowPlayingErrorMessage) return <ErrorMessage error={nowPlayingErrorMessage} />;
+    if (!upcomingData || !nowPlayingData) return null;
 
     return (
         <>
-            <h2 className='page-title'>Upcoming movies</h2>
-            <HomeSlider slides={upcomingData?.upcomingMovies.slice(0, 10)} />
-            <h2>Now playing:</h2>
-            <MoviesList movies={nowPlayingData?.nowPlayingMovies.slice(4, 16)} />
+            <h2 className='page-title'>Незабаром:</h2>
+            <HomeSlider slides={sortMoviesByReleaseDate(upcomingData.upcomingMovies).slice(0, 10)} />
+            <h2>Дивляться зараз:</h2>
+            <MoviesList movies={sortMoviesByReleaseDate(nowPlayingData.nowPlayingMovies).slice(4, 16)} />
         </>
     );
 };

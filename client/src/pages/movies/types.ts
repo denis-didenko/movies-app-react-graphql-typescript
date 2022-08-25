@@ -8,14 +8,30 @@ export interface IMovie {
     vote_average: number;
     runtime: number;
     homepage: string;
+    popularity: number;
     genres: IGenre[];
-    casts: [ICast];
+    credits: ICredits;
     reviews: [IReview];
     recommendations: [IMovie];
+    videos: [IVideo];
 }
 
 export interface IMovieData {
     movie: IMovie;
+}
+
+export interface IVideo {
+    id: string;
+    key: string;
+    name: string;
+    site: string;
+    type: string;
+}
+
+export interface ICredits {
+    id: number;
+    cast: [ICast];
+    crew: [ICrew];
 }
 
 export interface ICast {
@@ -24,7 +40,17 @@ export interface ICast {
     character: string;
     profile_path: string;
     known_for_department: string;
+    job: string;
+    department: string;
     person: IPerson;
+}
+
+export interface ICrew {
+    id: number;
+    name: string;
+    department: string;
+    job: string;
+    profile_path: string;
 }
 
 export interface IPerson {

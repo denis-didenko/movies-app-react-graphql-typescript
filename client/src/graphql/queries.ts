@@ -12,24 +12,36 @@ export const GET_MOVIE = gql`
             vote_average
             runtime
             homepage
+            popularity
             genres {
                 id
                 name
             }
-            casts {
-                id
-                name
-                character
-                profile_path
-                known_for_department
-                person {
+            credits {
+                cast {
                     id
                     name
+                    character
                     profile_path
-                    biography
-                    birthday
-                    deathday
-                    place_of_birth
+                    known_for_department
+                    job
+                    department
+                    person {
+                        id
+                        name
+                        profile_path
+                        biography
+                        birthday
+                        deathday
+                        place_of_birth
+                    }
+                }
+                crew {
+                    id
+                    name
+                    department
+                    job
+                    profile_path
                 }
             }
             reviews {
@@ -48,6 +60,14 @@ export const GET_MOVIE = gql`
                 release_date
                 poster_path
                 backdrop_path
+                popularity
+            }
+            videos {
+                id
+                key
+                name
+                site
+                type
             }
         }
     }
@@ -88,6 +108,8 @@ export const GET_UPCOMING_MOVIES = gql`
             id
             title
             backdrop_path
+            popularity
+            release_date
         }
     }
 `;
@@ -97,6 +119,8 @@ export const GET_NOW_PLAYING_MOVIES = gql`
         nowPlayingMovies {
             id
             poster_path
+            popularity
+            release_date
         }
     }
 `;

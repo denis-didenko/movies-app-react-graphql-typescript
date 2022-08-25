@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useApiImg } from '../../../hooks/useApiImg';
+import { useApi } from '../../../hooks/useApi';
 import { IMovie } from '../../movies/types';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const HomeSlider: FC<IProps> = ({ slides }) => {
-    const { getFullImgPath } = useApiImg();
+    const { getFullImgPath } = useApi();
 
     return (
         <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1}>
