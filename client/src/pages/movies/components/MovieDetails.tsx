@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { GET_MOVIE } from '../../../graphql/queries';
-import { IMovieData } from '../types';
+import { GET_MOVIE } from '../queries';
+import { IMovie } from '../types';
 import MoviesList from './MoviesList';
 import Casts from './Casts';
 import Loading from '../../../components/Loading';
@@ -11,6 +11,10 @@ import ErrorMessage from '../../../components/ErrorMessage';
 import { useApi } from '../../../hooks/useApi';
 import { MdOutlinePlayCircleOutline, MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+interface IMovieData {
+    movie: IMovie;
+}
 
 const MovieDetails: FC = () => {
     const { id } = useParams();
@@ -35,7 +39,8 @@ const MovieDetails: FC = () => {
     const writers = credits.crew.filter(crew => crew.department === 'Writing');
     const soundEditors = credits.crew.filter(crew => crew.job === 'Music Editor');
 
-    const videoHash = videos.find(video => video.type === 'Trailer')?.key;
+    const trailerHash = videos.find(video => video.type === 'Trailer')?.key;
+    const teaserHash = videos.find(video => video.type === 'Teaser')?.key;
 
     return (
         <div className='movie-details'>
@@ -46,23 +51,33 @@ const MovieDetails: FC = () => {
             <p className='movie-details__rating'>TMDB: {vote_average.toFixed(1)}</p>
             <p className='movie-details__release-date'> {`${year} · ${runtime} хв · ${genresList.join(', ')}`} </p>
 
-            {videoHash ? (
-                <>
-                    <a
-                        href={`https://www.youtube.com/watch?v=${videoHash}`}
-                        className='movie-details__homepage btn'
-                        target='_blank'
-                        rel='noreferrer'
-                    >
-                        <MdOutlinePlayCircleOutline />
-                        <span>Трейлер</span>
-                    </a>
-                    <button className='add-to-watchlist-btn'>
-                        <MdFavoriteBorder />
-                        <span>Додати до Улюбленного</span>
-                    </button>
-                </>
+            {trailerHash ? (
+                <a
+                    href={`https://www.youtube.com/watch?v=${trailerHash}`}
+                    className='movie-details__homepage btn'
+                    target='_blank'
+                    rel='noreferrer'
+                >
+                    <MdOutlinePlayCircleOutline />
+                    <span>Трейлер</span>
+                </a>
             ) : null}
+            {teaserHash ? (
+                <a
+                    href={`https://www.youtube.com/watch?v=${teaserHash}`}
+                    className='movie-details__homepage btn'
+                    target='_blank'
+                    rel='noreferrer'
+                >
+                    <MdOutlinePlayCircleOutline />
+                    <span>Тизер</span>
+                </a>
+            ) : null}
+
+            <button className='add-to-watchlist-btn'>
+                <MdFavoriteBorder />
+                <span>Додати до Улюбленного</span>
+            </button>
 
             <p className='movie-overview'>{overview}</p>
             <Tabs>

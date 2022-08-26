@@ -1,14 +1,37 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import './pagination.css';
 
 interface IPaginationProps {
+    total: number;
     activePage: number;
     setActivePage: (active: number) => void;
 }
 
-const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const preparePages = (total: number, activePage: number) => {
+    let pages = Array.from({ length: total }, (v, k) => k + 1);
 
-const Pagination: FC<IPaginationProps> = ({ activePage, setActivePage }) => {
+    if (pages.length > 10) {
+        pages = pages.filter((page, index) => {
+            // always visible last 2 pages
+            if (index >= total - 2) {
+                return true;
+            }
+
+            // visible 10 pages if active page greater than 5
+            if (activePage > 5) {
+                return index >= activePage - 5 && index <= activePage + 3;
+            } else {
+                return index <= 9;
+            }
+        });
+    }
+
+    return pages;
+};
+
+const Pagination: FC<IPaginationProps> = ({ total, activePage, setActivePage }) => {
+    const pages = useMemo(() => preparePages(total, activePage), [total, activePage]);
+
     return (
         <div className='pagination'>
             {pages.map(page => (

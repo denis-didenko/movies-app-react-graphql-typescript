@@ -73,58 +73,6 @@ export const GET_MOVIE = gql`
     }
 `;
 
-export const GET_PERSON = gql`
-    query GetPerson($id: ID!) {
-        person(id: $id) {
-            id
-            name
-            profile_path
-            biography
-            birthday
-            deathday
-            place_of_birth
-            cast {
-                id
-                title
-                overview
-                release_date
-                poster_path
-                backdrop_path
-                vote_average
-                runtime
-                homepage
-                genres {
-                    id
-                    name
-                }
-            }
-        }
-    }
-`;
-
-export const GET_UPCOMING_MOVIES = gql`
-    query GetUpcomingMovies {
-        upcomingMovies {
-            id
-            title
-            backdrop_path
-            popularity
-            release_date
-        }
-    }
-`;
-
-export const GET_NOW_PLAYING_MOVIES = gql`
-    query GetNowPlayingMovies {
-        nowPlayingMovies {
-            id
-            poster_path
-            popularity
-            release_date
-        }
-    }
-`;
-
 export const GET_GENRES = gql`
     query GetGenres {
         genres {
@@ -137,9 +85,14 @@ export const GET_GENRES = gql`
 export const GET_DISCOVER_MOVIES = gql`
     query GetDiscoverMovies($sortBy: String!, $genreId: ID!, $page: Int!) {
         discoverMovies(genreId: $genreId, sortBy: $sortBy, page: $page) {
-            id
-            title
-            poster_path
+            page
+            total_results
+            total_pages
+            results {
+                id
+                title
+                poster_path
+            }
         }
     }
 `;

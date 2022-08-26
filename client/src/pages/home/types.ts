@@ -1,9 +1,9 @@
-import { IMovie } from '../movies/types';
+import { IMoviesData } from '../movies/types';
 
-export interface IUpcomingMoviesQuery {
-    upcomingMovies: IMovie[];
+export interface IUpcomingMoviesData {
+    upcomingMovies: IMoviesData;
 }
 
-export interface INowPlayingMoviesQuery {
-    nowPlayingMovies: IMovie[];
+export interface INowPlayingMoviesData {
+    nowPlayingMovies: IMoviesData;
 }

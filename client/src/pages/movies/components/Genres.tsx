@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_GENRES } from '../../../graphql/queries';
+import { GET_GENRES } from '../queries';
 import { IGenreData } from '../types';
 import Loading from '../../../components/Loading';
 import ErrorMessage from '../../../components/ErrorMessage';

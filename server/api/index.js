@@ -24,6 +24,12 @@ export class MovieAPI extends RESTDataSource {
         return data.results;
     }
 
+    async getGenres() {
+        const data = await this.get(`/genre/movie/list?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.genres;
+    }
+
     async getReviews(id) {
         const data = await this.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=uk-UA`);
 
@@ -36,30 +42,18 @@ export class MovieAPI extends RESTDataSource {
         return data.results;
     }
 
-    async getUpcoming() {
-        const data = await this.get(`/movie/upcoming?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.results;
+    async getUpcoming(page) {
+        return await this.get(`/movie/upcoming?api_key=${API_KEY}&page=${page}&language=uk-UA`);
     }
 
-    async getNowPlaying() {
-        const data = await this.get(`/movie/now_playing?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.results;
-    }
-
-    async getGenres() {
-        const data = await this.get(`/genre/movie/list?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.genres;
+    async getNowPlaying(page) {
+        return await this.get(`/movie/now_playing?api_key=${API_KEY}&page=${page}&language=uk-UA`);
     }
 
     async getDiscoverMovies({ sortBy, genreId, page }) {
-        const data = await this.get(
+        return await this.get(
             `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&language=uk-UA`
         );
-
-        return data.results;
     }
 
     async getPerson(id) {
@@ -72,5 +66,9 @@ export class MovieAPI extends RESTDataSource {
         const data = await this.get(`/person/${personId}/combined_credits?api_key=${API_KEY}&language=uk-UA`);
 
         return data.cast;
+    }
+
+    async searchMovies({ query, page }) {
+        return await this.get(`/search/movie?api_key=${API_KEY}&language=uk-UA&query=${query}&page=${page}`);
     }
 }

@@ -1,3 +1,4 @@
+import { IPerson } from '../person/types';
 export interface IMovie {
     id: number;
     title: string;
@@ -16,8 +17,14 @@ export interface IMovie {
     videos: [IVideo];
 }
 
-export interface IMovieData {
-    movie: IMovie;
+interface IDataResponse {
+    page: number;
+    total_results: number;
+    total_pages: number;
+}
+
+export interface IMoviesData extends IDataResponse {
+    results: IMovie[];
 }
 
 export interface IVideo {
@@ -53,19 +60,13 @@ export interface ICrew {
     profile_path: string;
 }
 
-export interface IPerson {
-    id: number;
-    name: string;
-    profile_path: string;
-    biography: string;
-    birthday: string;
-    deathday: string;
-    place_of_birth: string;
-    cast: IMovie[];
+export interface IGenreData {
+    genres: [IGenre];
 }
 
-export interface IPersonData {
-    person: IPerson;
+export interface IGenre {
+    id: string;
+    name: string;
 }
 
 interface IReview {
@@ -78,17 +79,4 @@ interface IReview {
 interface ReviewAuthor {
     username: string;
     avatar_path: string;
-}
-
-export interface IGenreData {
-    genres: [IGenre];
-}
-
-export interface IGenre {
-    id: string;
-    name: string;
-}
-
-export interface IDiscoverData {
-    discoverMovies: [IMovie];
 }

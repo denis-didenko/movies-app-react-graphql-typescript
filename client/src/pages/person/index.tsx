@@ -2,13 +2,13 @@ import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { GET_PERSON } from '../../graphql/queries';
-import { IPersonData } from '../movies/types';
+import { GET_PERSON } from './queries';
+import { IPersonData } from './types';
+import { useApi } from '../../hooks/useApi';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
-import { useApi } from '../../hooks/useApi';
-import './person.css';
 import MoviesList from '../movies/components/MoviesList';
+import './person.css';
 
 const PersonDetails: FC = () => {
     const { id } = useParams();

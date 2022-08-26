@@ -1,10 +1,9 @@
 export const MovieTypes = `
     extend type Query {
         movie(id: ID!): Movie
-        genres: [Genre!]!
-        upcomingMovies: [Movie!]!
-        nowPlayingMovies: [Movie!]!
-        discoverMovies(sortBy: String!, genreId: ID!, page: Int!): [Movie!]!
+        upcomingMovies(page: Int): MoviesResponse!
+        nowPlayingMovies(page: Int): MoviesResponse!
+        discoverMovies(sortBy: String!, genreId: ID!, page: Int!): MoviesResponse!
     }
 
     extend type Mutation {
@@ -27,6 +26,13 @@ export const MovieTypes = `
         reviews: [Review]!
         recommendations: [Movie]!
         videos: [Video]!
+    }
+
+    type MoviesResponse {
+        page: Int!
+        total_results: Int!
+        total_pages: Int!
+        results: [Movie!]!
     }
 
     type Video {

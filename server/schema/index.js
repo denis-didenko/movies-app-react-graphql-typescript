@@ -4,6 +4,7 @@ import { PersonTypes } from './person/index.js';
 import { CreditsTypes } from './credits/index.js';
 import { GenreTypes } from './genre/index.js';
 import { ReviewTypes } from './review/index.js';
+import { SearchTypes } from './search/index.js';
 
 export const schema = gql`
     type Query
@@ -13,4 +14,5 @@ export const schema = gql`
     ${CreditsTypes}
     ${GenreTypes}
     ${ReviewTypes}
+    ${SearchTypes}
 `;
