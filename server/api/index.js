@@ -50,9 +50,9 @@ export class MovieAPI extends RESTDataSource {
         return await this.get(`/movie/now_playing?api_key=${API_KEY}&page=${page}&language=uk-UA`);
     }
 
-    async getDiscoverMovies({ sortBy, genreId, page }) {
+    async getDiscoverMovies({ sortBy, genreId, year, language, page }) {
         return await this.get(
-            `/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&language=uk-UA`
+            `/discover/movie?api_key=${API_KEY}&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&primary_release_year=${year}&with_original_language=${language}&language=uk-UA`
         );
     }
 
@@ -68,7 +68,7 @@ export class MovieAPI extends RESTDataSource {
         return data.cast;
     }
 
-    async searchMovies({ query, page }) {
+    async searchMovies(query, page) {
         return await this.get(`/search/movie?api_key=${API_KEY}&language=uk-UA&query=${query}&page=${page}`);
     }
 }

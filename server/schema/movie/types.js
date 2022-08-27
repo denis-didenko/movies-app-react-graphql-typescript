@@ -3,7 +3,7 @@ export const MovieTypes = `
         movie(id: ID!): Movie
         upcomingMovies(page: Int): MoviesResponse!
         nowPlayingMovies(page: Int): MoviesResponse!
-        discoverMovies(sortBy: String!, genreId: ID!, page: Int!): MoviesResponse!
+        discoverMovies(input: DiscoverMoviesInput): MoviesResponse!
     }
 
     extend type Mutation {
@@ -41,6 +41,14 @@ export const MovieTypes = `
         name: String
         site: String
         type: String
+    }
+
+    input DiscoverMoviesInput {
+        sortBy: String!
+        genreId: ID!
+        page: Int!
+        year: String!
+        language: String!
     }
 
     input MovieCreateInput {

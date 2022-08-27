@@ -2,8 +2,7 @@ import { FC, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_DISCOVER_MOVIES } from './queries';
 import { IMoviesData } from './types';
-import Genres from './components/Genres';
-import Sort from './components/Sort';
+import Filter from './components/filter';
 import MoviesList from './components/MoviesList';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
@@ -15,36 +14,37 @@ interface IDiscoverData {
 }
 
 const MoviesPage: FC = () => {
-    const [genreId, setGenreId] = useState<string[]>(['28']);
-    const [sortBy, setSortBy] = useState('popularity');
-    const [sortAscending, setSortAscending] = useState(false);
+    const [genreId, setGenreId] = useState('');
+    const [year, setYear] = useState('2022');
+    const [language, setLanguage] = useState('en');
+    const [sortBy, setSortBy] = useState('popularity.desc');
     const [page, setPage] = useState(1);
-
-    const sortType = `${sortBy}${sortAscending ? '.asc' : '.desc'}`;
 
     const { loading, error, data } = useQuery<IDiscoverData>(GET_DISCOVER_MOVIES, {
         variables: {
-            genreId: genreId.join(','),
-            sortBy: sortType,
-            page,
+            input: {
+                genreId,
+                year,
+                language,
+                sortBy,
+                page,
+            },
         },
     });
+    console.log('data: ', data);
 
     if (error) return <ErrorMessage error={error} />;
-    if (!data) return null;
-
-    const { results, total_pages } = data.discoverMovies;
 
     return (
         <>
-            <Genres genreId={genreId} setGenreId={setGenreId} />
-            <Sort sortBy={sortBy} setSortBy={setSortBy} sortAscending={sortAscending} setSortAscending={setSortAscending} />
+            <Filter setGenreId={setGenreId} setYear={setYear} setLanguage={setLanguage} setSortBy={setSortBy} />
+
             {loading ? (
                 <Loading />
             ) : (
                 <>
-                    <MoviesList movies={results} />
-                    <Pagination activePage={page} setActivePage={setPage} total={total_pages} />
+                    <MoviesList movies={data?.discoverMovies.results} />
+                    <Pagination activePage={page} setActivePage={setPage} total={data?.discoverMovies.total_pages} />
                 </>
             )}
         </>

@@ -19,5 +19,9 @@ export const useApi = () => {
             });
     };
 
-    return { getFullImgPath, getUniqueCrew, sortMoviesByReleaseDate };
+    const sortMoviesByPopularity = (movies: IMovie[]) => {
+        return movies.filter(movie => movie.popularity).sort((a, b) => b.popularity - a.popularity);
+    };
+
+    return { getFullImgPath, getUniqueCrew, sortMoviesByReleaseDate, sortMoviesByPopularity };
 };

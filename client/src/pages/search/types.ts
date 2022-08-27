@@ -1,5 +1,5 @@
-import { IMovie } from './../movies/types';
+import { IMoviesData } from './../movies/types';
 
 export interface ISearchMoviesData {
-    searchMovies: [IMovie];
+    searchMovies: IMoviesData;
 }

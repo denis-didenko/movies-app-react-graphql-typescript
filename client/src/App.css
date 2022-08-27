@@ -176,6 +176,10 @@ nav ul li a:hover {
     color: var(--text-color);
 }
 
+.lazy-load-image-background {
+    display: block !important;
+}
+
 .react-tabs {
     margin-bottom: 20px;
 }
@@ -205,6 +209,20 @@ nav ul li a:hover {
 .react-tabs__tab.react-tabs__tab--selected {
     color: var(--accent);
     border-bottom-color: var(--accent);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.form-select select option {
+    color: var(--surface);
+}
+
+.error-message {
+    color: var(--danger);
 }
 
 @media (min-width: 768px) {

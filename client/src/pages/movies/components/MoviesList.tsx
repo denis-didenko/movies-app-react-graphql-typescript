@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const MoviesList: FC<IProps> = ({ movies }) => {
-    if (!movies?.length) return <p>Movies not found</p>;
+    if (!movies || !movies.length) return <p>Movies not found</p>;
 
     return (
         <>

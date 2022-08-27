@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import './pagination.css';
 
 interface IPaginationProps {
-    total: number;
+    total: number | undefined;
     activePage: number;
     setActivePage: (active: number) => void;
 }
@@ -30,7 +30,10 @@ const preparePages = (total: number, activePage: number) => {
 };
 
 const Pagination: FC<IPaginationProps> = ({ total, activePage, setActivePage }) => {
-    const pages = useMemo(() => preparePages(total, activePage), [total, activePage]);
+    if (!total) return null;
+
+    //const pages = useMemo(() => preparePages(total, activePage), [total, activePage]);
+    const pages = preparePages(total, activePage);
 
     return (
         <div className='pagination'>

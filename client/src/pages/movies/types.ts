@@ -12,9 +12,9 @@ export interface IMovie {
     popularity: number;
     genres: IGenre[];
     credits: ICredits;
-    reviews: [IReview];
     recommendations: [IMovie];
     videos: [IVideo];
+    reviews: [IReview];
 }
 
 interface IDataResponse {
@@ -27,18 +27,23 @@ export interface IMoviesData extends IDataResponse {
     results: IMovie[];
 }
 
-export interface IVideo {
+export interface IGenre {
     id: string;
-    key: string;
     name: string;
-    site: string;
-    type: string;
 }
 
 export interface ICredits {
     id: number;
     cast: [ICast];
     crew: [ICrew];
+}
+
+export interface IVideo {
+    id: string;
+    key: string;
+    name: string;
+    site: string;
+    type: string;
 }
 
 export interface ICast {
@@ -58,15 +63,6 @@ export interface ICrew {
     department: string;
     job: string;
     profile_path: string;
-}
-
-export interface IGenreData {
-    genres: [IGenre];
-}
-
-export interface IGenre {
-    id: string;
-    name: string;
 }
 
 interface IReview {

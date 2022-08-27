@@ -9,7 +9,7 @@ const SearchForm: FC<IProps> = ({ query, setQuery }) => {
     return (
         <form action='/search' className='search-form'>
             <div className='form-field'>
-                <input type='text' name='query' placeholder='Search' value={query} onChange={e => setQuery(e.target.value)} />
+                <input type='text' name='query' placeholder='Search (eng)' value={query} onChange={e => setQuery(e.target.value)} />
             </div>
         </form>
     );
