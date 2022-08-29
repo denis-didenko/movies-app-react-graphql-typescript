@@ -35,13 +35,13 @@ const SearchPage: FC = () => {
             <h2>Пошук Фiльмiв</h2>
             <SearchForm query={query} setQuery={setQuery} />
 
-            {data && query.length ? (
+            {data ? (
                 <>
                     <MoviesList movies={sortMoviesByPopularity(data.searchMovies.results)} />
                     <Pagination activePage={page} setActivePage={setPage} total={data.searchMovies.total_pages} />
                 </>
             ) : (
-                <p className='error-message'>Please enter a search query</p>
+                <p>Немає результатів</p>
             )}
         </div>
     );

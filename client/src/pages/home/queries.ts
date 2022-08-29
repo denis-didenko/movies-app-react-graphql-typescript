@@ -29,6 +29,7 @@ export const GET_NOW_PLAYING_MOVIES = gql`
                 poster_path
                 popularity
                 release_date
+                vote_average
             }
         }
     }

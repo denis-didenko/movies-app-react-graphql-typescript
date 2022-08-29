@@ -1,18 +1,47 @@
 import { gql } from '@apollo/client';
 
-export const GET_MOVIE = gql`
-    query GetMovie($id: ID!) {
-        movie(id: $id) {
+export const GET_SERIES = gql`
+    query GetSeries($id: ID!) {
+        series(id: $id) {
             id
-            title
+            name
             overview
-            release_date
-            poster_path
             backdrop_path
             vote_average
-            runtime
-            homepage
+            created_by {
+                id
+                name
+                image {
+                    medium
+                }
+            }
+            first_air_date
+            in_production
+            languages
+            last_air_date
+            number_of_episodes
+            number_of_seasons
+            origin_country
             popularity
+            poster_path
+            seasons {
+                id
+                name
+                overview
+                poster_path
+                season_number
+                episodes {
+                    id
+                    name
+                    overview
+                    air_date
+                    episode_number
+                    season_number
+                    still_path
+                    vote_average
+                    vote_count
+                }
+            }
             genres {
                 id
                 name
@@ -73,24 +102,24 @@ export const GET_MOVIE = gql`
     }
 `;
 
-export const GET_GENRES = gql`
-    query GetGenres {
-        genres {
+export const GET_GENRES_SERIES = gql`
+    query GetGenresSeries {
+        genresSeries {
             id
             name
         }
     }
 `;
 
-export const GET_DISCOVER_MOVIES = gql`
-    query GetDiscoverMovies($input: DiscoverMoviesInput!) {
-        discoverMovies(input: $input) {
+export const GET_DISCOVER_SERIES = gql`
+    query GetDiscoverSeries($input: DiscoverSeriesInput!) {
+        discoverSeries(input: $input) {
             page
             total_results
             total_pages
             results {
                 id
-                title
+                name
                 poster_path
                 popularity
                 release_date

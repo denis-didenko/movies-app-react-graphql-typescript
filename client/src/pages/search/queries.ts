@@ -12,6 +12,7 @@ export const SEARCH_MOVIES = gql`
                 poster_path
                 release_date
                 popularity
+                vote_average
             }
         }
     }

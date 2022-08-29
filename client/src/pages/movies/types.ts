@@ -2,6 +2,7 @@ import { IPerson } from '../person/types';
 export interface IMovie {
     id: number;
     title: string;
+    name: string;
     overview: string;
     release_date: string;
     poster_path: string;

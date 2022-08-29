@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_DISCOVER_MOVIES } from './queries';
-import { IMoviesData } from './types';
+import { GET_DISCOVER_MOVIES, GET_GENRES } from './queries';
+import { IGenre, IMoviesData } from './types';
 import Filter from './components/filter';
 import MoviesList from './components/MoviesList';
 import Loading from '../../components/Loading';
@@ -13,6 +13,10 @@ interface IDiscoverData {
     discoverMovies: IMoviesData;
 }
 
+interface IGenreData {
+    genres: [IGenre];
+}
+
 const MoviesPage: FC = () => {
     const [genreId, setGenreId] = useState('');
     const [year, setYear] = useState('2022');
@@ -20,6 +24,8 @@ const MoviesPage: FC = () => {
     const [sortBy, setSortBy] = useState('popularity.desc');
     const [page, setPage] = useState(1);
 
+    const { data: genresData } = useQuery<IGenreData>(GET_GENRES);
+    console.log('genresData: ', genresData);
     const { loading, error, data } = useQuery<IDiscoverData>(GET_DISCOVER_MOVIES, {
         variables: {
             input: {
@@ -37,7 +43,7 @@ const MoviesPage: FC = () => {
 
     return (
         <>
-            <Filter setGenreId={setGenreId} setYear={setYear} setLanguage={setLanguage} setSortBy={setSortBy} />
+            <Filter genres={genresData?.genres} setGenreId={setGenreId} setYear={setYear} setLanguage={setLanguage} setSortBy={setSortBy} />
 
             {loading ? (
                 <Loading />

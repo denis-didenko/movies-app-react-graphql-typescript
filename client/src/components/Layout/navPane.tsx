@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { MdHome, MdSearch, MdOutlineOndemandVideo, MdCalendarToday, MdStars } from 'react-icons/md';
+import { MdHome, MdSearch, MdStars } from 'react-icons/md';
+import { BiCameraMovie } from 'react-icons/bi';
+import { TbMovie } from 'react-icons/tb';
 
 const Nav: FC = () => {
     return (
@@ -13,9 +15,15 @@ const Nav: FC = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to='/movie'>
-                        <MdOutlineOndemandVideo />
+                    <Link to='/movies'>
+                        <TbMovie />
                         <span>Фiльми</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/series'>
+                        <BiCameraMovie />
+                        <span>Серіали</span>
                     </Link>
                 </li>
                 <li>
@@ -28,12 +36,6 @@ const Nav: FC = () => {
                     <Link to='/toprated'>
                         <MdStars />
                         <span>Top rated</span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to='/latest'>
-                        <MdCalendarToday />
-                        <span>Latest</span>
                     </Link>
                 </li>
             </ul>

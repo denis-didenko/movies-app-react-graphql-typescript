@@ -19,9 +19,9 @@ const preparePages = (total: number, activePage: number) => {
 
             // visible 10 pages if active page greater than 5
             if (activePage > 5) {
-                return index >= activePage - 5 && index <= activePage + 3;
+                return index >= activePage - 3 && index <= activePage + 2;
             } else {
-                return index <= 9;
+                return index <= 6;
             }
         });
     }
