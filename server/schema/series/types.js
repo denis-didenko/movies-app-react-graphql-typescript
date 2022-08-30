@@ -31,7 +31,7 @@ export const SeriesTypes = `
         origin_country: [String!]
         popularity: Float
         poster_path: String
-        seasons: SeasonResponse
+        seasons: [Season!]
         genres: [Genre!]
         credits: CreditsTv
         reviews: [Review]!
@@ -55,12 +55,8 @@ export const SeriesTypes = `
         poster_path: String
         season_number: Int   
         episodes: [Episode]
+        seriesId: ID!
     }
-
-    type SeasonResponse {
-        seasonId: ID!
-        seasons: [Season]
-    } 
 
     type Creator {
         id: ID!

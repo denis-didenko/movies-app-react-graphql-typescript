@@ -12,7 +12,9 @@
     --success: #0acf83;
     --text-color: #ebe7fd;
     --text-color-muted: #605c71;
+    --border-color-muted: #605c71;
     --radius: 15px;
+    --transition: all 0.2s cubic-bezier(0.39, 0, 0.17, 0.99);
 }
 
 * {

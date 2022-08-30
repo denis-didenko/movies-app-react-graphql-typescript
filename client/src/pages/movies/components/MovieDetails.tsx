@@ -54,33 +54,35 @@ const MovieDetails: FC = () => {
             <p className='movie-details__rating'>TMDB: {vote_average.toFixed(1)}</p>
             <p className='movie-details__release-date'> {`${year} · ${runtime} хв · ${genresList.join(', ')}`} </p>
 
-            {trailerHash ? (
-                <a
-                    href={`https://www.youtube.com/watch?v=${trailerHash}`}
-                    className='movie-details__homepage btn'
-                    target='_blank'
-                    rel='noreferrer'
-                >
-                    <MdOutlinePlayCircleOutline />
-                    <span>Трейлер</span>
-                </a>
-            ) : null}
-            {teaserHash ? (
-                <a
-                    href={`https://www.youtube.com/watch?v=${teaserHash}`}
-                    className='movie-details__homepage btn'
-                    target='_blank'
-                    rel='noreferrer'
-                >
-                    <MdOutlinePlayCircleOutline />
-                    <span>Тизер</span>
-                </a>
-            ) : null}
+            <div className='movie-details__videos'>
+                {trailerHash ? (
+                    <a
+                        href={`https://www.youtube.com/watch?v=${trailerHash}`}
+                        className='movie-details__homepage btn'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <MdOutlinePlayCircleOutline />
+                        <span>Трейлер</span>
+                    </a>
+                ) : null}
+                {teaserHash ? (
+                    <a
+                        href={`https://www.youtube.com/watch?v=${teaserHash}`}
+                        className='movie-details__homepage btn'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <MdOutlinePlayCircleOutline />
+                        <span>Тизер</span>
+                    </a>
+                ) : null}
 
-            <button className='add-to-watchlist-btn'>
-                <MdFavoriteBorder />
-                <span>Додати до Улюбленного</span>
-            </button>
+                <button className='add-to-watchlist-btn'>
+                    <MdFavoriteBorder />
+                    <span>Додати до Улюбленного</span>
+                </button>
+            </div>
 
             <p className='movie-overview'>{overview}</p>
             <Tabs>

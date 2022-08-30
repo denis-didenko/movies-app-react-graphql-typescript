@@ -67,27 +67,25 @@ export const GET_SERIES = gql`
                 origin_country
             }
             seasons {
-                seasonId
-                seasons {
+                id
+                name
+                overview
+                poster_path
+                season_number
+                episode_count
+                air_date
+                seriesId
+                episodes {
+                    air_date
+                    episode_number
                     id
                     name
                     overview
-                    poster_path
+                    production_code
                     season_number
-                    episode_count
-                    air_date
-                    episodes {
-                        air_date
-                        episode_number
-                        id
-                        name
-                        overview
-                        production_code
-                        season_number
-                        still_path
-                        vote_average
-                        vote_count
-                    }
+                    still_path
+                    vote_average
+                    vote_count
                 }
             }
             genres {

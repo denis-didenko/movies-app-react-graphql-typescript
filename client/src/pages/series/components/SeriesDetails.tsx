@@ -12,6 +12,7 @@ import SeriesList from './SeriesList';
 import { MdOutlinePlayCircleOutline, MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Casts from '../../movies/components/Casts';
+import Seasons from './Seasons';
 
 interface ISeriesData {
     series: ISeries;
@@ -27,15 +28,30 @@ const SeriesDetails: FC = () => {
     if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
     if (!data) return null;
-    //console.log('data: ', data);
-    data.series.networks.forEach(({ name }) => {
-        console.log(name);
-    });
 
-    const { name, backdrop_path, vote_average, first_air_date, genres, overview, credits, recommendations, videos } = data.series;
+    console.log('data: ', data);
+
+    const {
+        name,
+        backdrop_path,
+        vote_average,
+        first_air_date,
+        genres,
+        overview,
+        credits,
+        recommendations,
+        videos,
+        seasons,
+        number_of_seasons,
+        original_name,
+        created_by,
+        networks,
+    } = data.series;
+    console.log('seasons: ', seasons);
 
     const year = first_air_date.split('-')[0];
     const genresList = genres.map(({ name }) => name);
+    const networksList = networks.map(({ name }) => name);
 
     const actors = credits.cast.filter(cast => cast.known_for_department === 'Acting');
     const directors = credits.crew.filter(crew => crew.jobs.find(({ job }) => job === 'Director'));
@@ -51,42 +67,51 @@ const SeriesDetails: FC = () => {
             <div className='movie-details__poster'>
                 <LazyLoadImage width={'100%'} height={'auto'} alt={name} src={getFullImgPath(backdrop_path)} effect='blur' />
             </div>
-            <h1 className='movie-details__name'>{name}</h1>
+
+            <h1 className='movie-details__name'>
+                {name} <span className='movie-details__original_name'>({original_name})</span>
+            </h1>
             <p className='movie-details__rating'>TMDB: {vote_average.toFixed(1)}</p>
-            <p className='movie-details__release-date'> {`${year} · ${genresList.join(', ')}`} </p>
+            <p className='movie-details__release-date'>
+                {`${year} · ${networksList.join(', ')} · ${number_of_seasons} сезонiв · ${genresList.join(', ')}`}
+            </p>
 
-            {trailerHash ? (
-                <a
-                    href={`https://www.youtube.com/watch?v=${trailerHash}`}
-                    className='movie-details__homepage btn'
-                    target='_blank'
-                    rel='noreferrer'
-                >
-                    <MdOutlinePlayCircleOutline />
-                    <span>Трейлер</span>
-                </a>
-            ) : null}
-            {teaserHash ? (
-                <a
-                    href={`https://www.youtube.com/watch?v=${teaserHash}`}
-                    className='movie-details__homepage btn'
-                    target='_blank'
-                    rel='noreferrer'
-                >
-                    <MdOutlinePlayCircleOutline />
-                    <span>Тизер</span>
-                </a>
-            ) : null}
+            <div className='movie-details__videos'>
+                {trailerHash ? (
+                    <a
+                        href={`https://www.youtube.com/watch?v=${trailerHash}`}
+                        className='movie-details__homepage btn'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <MdOutlinePlayCircleOutline />
+                        <span>Трейлер</span>
+                    </a>
+                ) : null}
+                {teaserHash ? (
+                    <a
+                        href={`https://www.youtube.com/watch?v=${teaserHash}`}
+                        className='movie-details__homepage btn'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <MdOutlinePlayCircleOutline />
+                        <span>Тизер</span>
+                    </a>
+                ) : null}
 
-            <button className='add-to-watchlist-btn'>
-                <MdFavoriteBorder />
-                <span>Додати до Улюбленного</span>
-            </button>
+                <button className='add-to-watchlist-btn'>
+                    <MdFavoriteBorder />
+                    <span>Додати до Улюбленного</span>
+                </button>
+            </div>
 
             <p className='movie-overview'>{overview}</p>
+
             <Tabs>
                 <TabList>
                     <Tab>Актори</Tab>
+                    <Tab>Автори</Tab>
                     <Tab>Режисери</Tab>
                     <Tab>Продюсери</Tab>
                     <Tab>Сценаристи</Tab>
@@ -95,6 +120,9 @@ const SeriesDetails: FC = () => {
 
                 <TabPanel>
                     <Casts casts={actors.slice(0, 10)} />
+                </TabPanel>
+                <TabPanel>
+                    <Casts casts={created_by} />
                 </TabPanel>
                 <TabPanel>
                     <Casts casts={getUniqueCrewAggregate(directors)} />
@@ -109,6 +137,9 @@ const SeriesDetails: FC = () => {
                     <Casts casts={getUniqueCrewAggregate(soundEditors)} />
                 </TabPanel>
             </Tabs>
+
+            <Seasons seasons={seasons} />
+
             <h2>Рекомендацii:</h2>
             <SeriesList series={sortSeriesByRating(recommendations).slice(0, 10)} />
         </div>

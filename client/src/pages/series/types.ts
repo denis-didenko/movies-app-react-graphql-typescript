@@ -27,10 +27,7 @@ export interface ISeries {
     popularity: number;
     poster_path: string;
     production_companies: [IProductionCompany];
-    seasons: {
-        seasonId: number;
-        seasons: ISeason[];
-    };
+    seasons: ISeason[];
     genres: IGenre[];
     credits: ICreditsTv;
     recommendations: ISeries[];
@@ -42,7 +39,7 @@ export interface ISeriesData extends IDataResponse {
     results: ISeries[];
 }
 
-interface ISeason {
+export interface ISeason {
     id: number;
     air_date: string;
     episode_count: number;
@@ -50,9 +47,10 @@ interface ISeason {
     overview: string;
     poster_path: string;
     season_number: number;
+    episodes: IEpisode[];
 }
 
-interface ICreator {
+export interface ICreator {
     id: number;
     credit_id: string;
     name: string;
@@ -67,7 +65,7 @@ interface INetwork {
     origin_country: string;
 }
 
-interface IEpisode {
+export interface IEpisode {
     air_date: string;
     episode_number: number;
     id: number;

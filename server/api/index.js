@@ -121,6 +121,6 @@ export class MovieAPI extends RESTDataSource {
     }
 
     async searchMovies(query, page) {
-        return await this.get(`/search/movie?api_key=${API_KEY}&language=uk-UA&query=${query}&page=${page}`);
+        return await this.get(`/search/movie?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
     }
 }
