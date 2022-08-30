@@ -3,16 +3,16 @@ import { IGenre } from '../../types';
 import FormSelect from '../../../../components/Form/select';
 
 interface IProps {
-    genres: IGenre[];
+    genres: IGenre[] | undefined;
     setGenreId: (genreId: string) => void;
 }
 
 const Genres: FC<IProps> = ({ genres, setGenreId }) => {
-    const mappedGenres = genres.map(genre => ({
+    const mappedGenres = genres?.map(genre => ({
         id: genre.id,
         value: genre.name,
     }));
-    mappedGenres.unshift({ id: '', value: 'Всi' });
+    mappedGenres?.unshift({ id: '', value: 'Всi' });
 
     return (
         <>

@@ -8,38 +8,86 @@ export const GET_SERIES = gql`
             overview
             backdrop_path
             vote_average
+            vote_count
             created_by {
                 id
+                credit_id
                 name
-                image {
-                    medium
-                }
+                gender
+                profile_path
             }
             first_air_date
+            next_episode_to_air {
+                air_date
+                episode_number
+                id
+                name
+                overview
+                production_code
+                season_number
+                still_path
+                vote_average
+                vote_count
+            }
+            last_episode_to_air {
+                air_date
+                episode_number
+                id
+                name
+                overview
+                production_code
+                season_number
+                still_path
+                vote_average
+                vote_count
+            }
+            original_language
+            original_name
             in_production
             languages
+            status
+            tagline
+            type
             last_air_date
+            networks {
+                name
+                id
+                logo_path
+                origin_country
+            }
             number_of_episodes
             number_of_seasons
             origin_country
             popularity
             poster_path
-            seasons {
-                id
+            production_companies {
                 name
-                overview
-                poster_path
-                season_number
-                episodes {
+                id
+                logo_path
+                origin_country
+            }
+            seasons {
+                seasonId
+                seasons {
                     id
                     name
                     overview
-                    air_date
-                    episode_number
+                    poster_path
                     season_number
-                    still_path
-                    vote_average
-                    vote_count
+                    episode_count
+                    air_date
+                    episodes {
+                        air_date
+                        episode_number
+                        id
+                        name
+                        overview
+                        production_code
+                        season_number
+                        still_path
+                        vote_average
+                        vote_count
+                    }
                 }
             }
             genres {
@@ -69,7 +117,11 @@ export const GET_SERIES = gql`
                     id
                     name
                     department
-                    job
+                    jobs {
+                        credit_id
+                        job
+                        episode_count
+                    }
                     profile_path
                 }
             }
@@ -84,12 +136,14 @@ export const GET_SERIES = gql`
             }
             recommendations {
                 id
-                title
+                name
                 overview
-                release_date
                 poster_path
                 backdrop_path
                 popularity
+                first_air_date
+                vote_average
+                vote_count
             }
             videos {
                 id
@@ -122,7 +176,6 @@ export const GET_DISCOVER_SERIES = gql`
                 name
                 poster_path
                 popularity
-                release_date
                 vote_average
             }
         }

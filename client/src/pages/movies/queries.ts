@@ -13,6 +13,12 @@ export const GET_MOVIE = gql`
             runtime
             homepage
             popularity
+            production_companies {
+                name
+                id
+                logo_path
+                origin_country
+            }
             genres {
                 id
                 name

@@ -213,6 +213,7 @@ nav ul li a:hover {
 
 .form-label {
     display: block;
+    font-size: smaller;
     margin-bottom: 5px;
     margin-left: 10px;
 }

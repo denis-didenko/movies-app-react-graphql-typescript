@@ -1,7 +1,7 @@
 export const SeriesTypes = `
     extend type Query {
         series(id: ID!): Series
-        discoverSeries(input: DiscoverSeriesInput): MoviesResponse!
+        discoverSeries(input: DiscoverSeriesInput): SeriesResponse!
     }
 
     type Series {
@@ -9,23 +9,41 @@ export const SeriesTypes = `
         name: String
         overview: String
         backdrop_path: String
+        homepage: String
         vote_average: Float
-        created_by: [Person!]
+        vote_count: Int
+        created_by: [Creator!]
         first_air_date: String
+        next_episode_to_air: Episode
+        last_episode_to_air: Episode
+        original_language: String
+        original_name: String
         in_production: Boolean
+        production_companies: [ProductionCompany!]
+        status: String
+        tagline: String
+        type: String
         languages: [String!]
+        networks: [Network]
         last_air_date: String
         number_of_episodes: Int
         number_of_seasons: Int
         origin_country: [String!]
         popularity: Float
         poster_path: String
-        seasons: [Season!]
+        seasons: SeasonResponse
         genres: [Genre!]
-        credits: Credits
+        credits: CreditsTv
         reviews: [Review]!
         recommendations: [Series]!
         videos: [Video]!
+    }
+
+    type SeriesResponse {
+        page: Int!
+        total_results: Int!
+        total_pages: Int!
+        results: [Series!]!
     }
 
     type Season {
@@ -35,7 +53,41 @@ export const SeriesTypes = `
         name: String
         overview: String
         poster_path: String
+        season_number: Int   
+        episodes: [Episode]
+    }
+
+    type SeasonResponse {
+        seasonId: ID!
+        seasons: [Season]
+    } 
+
+    type Creator {
+        id: ID!
+        credit_id: String
+        name: String
+        gender: Int
+        profile_path: String
+    }
+
+    type Network {
+        name: String
+        id: Int
+        logo_path: String
+        origin_country: String
+    }
+
+    type Episode {
+        air_date: String
+        episode_number: Int
+        id: Int
+        name: String
+        overview: String
+        production_code: String
         season_number: Int
+        still_path: String
+        vote_average: Float
+        vote_count: Int
     }
 
     input DiscoverSeriesInput {
@@ -43,6 +95,7 @@ export const SeriesTypes = `
         genreId: ID!
         page: Int!
         year: String!
+        network: String!
         language: String!
     }
 `;

@@ -6,6 +6,8 @@
 
 .movie-item {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .movie-pic {
@@ -14,11 +16,12 @@
     border-radius: 10px;
     margin-bottom: 5px;
     position: relative;
+    flex-grow: 1;
 }
 
 .movie-pic img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     border-radius: 10px;
     display: block;

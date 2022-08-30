@@ -1,3 +1,4 @@
+import { ICrewAggregate, ISeries } from './../pages/series/types';
 import { ICrew, IMovie } from './../pages/movies/types';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
@@ -8,6 +9,7 @@ export const useApi = () => {
     };
 
     const getUniqueCrew = (array: ICrew[]) => [...new Set(array.filter(({ name }) => name))];
+    const getUniqueCrewAggregate = (array: ICrewAggregate[]) => [...new Set(array.filter(({ name }) => name))];
 
     const sortMoviesByReleaseDate = (movies: IMovie[]) => {
         return movies
@@ -19,9 +21,25 @@ export const useApi = () => {
             });
     };
 
+    const sortSeriesByRating = (series: ISeries[]) => {
+        return series
+            .filter(serie => serie.vote_average)
+            .sort((a, b) => {
+                return b.vote_average - a.vote_average;
+            })
+            .slice(0, 10);
+    };
+
     const sortMoviesByPopularity = (movies: IMovie[]) => {
         return movies.filter(movie => movie.popularity).sort((a, b) => b.popularity - a.popularity);
     };
 
-    return { getFullImgPath, getUniqueCrew, sortMoviesByReleaseDate, sortMoviesByPopularity };
+    return {
+        getFullImgPath,
+        getUniqueCrew,
+        getUniqueCrewAggregate,
+        sortMoviesByReleaseDate,
+        sortSeriesByRating,
+        sortMoviesByPopularity,
+    };
 };

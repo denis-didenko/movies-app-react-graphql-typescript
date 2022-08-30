@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useApi } from '../../../hooks/useApi';
 import { ICast, ICrew } from '../types';
+import { ICrewAggregate } from '../../series/types';
 
 interface IProps {
-    casts: ICast[] | ICrew[];
+    casts: ICast[] | ICrew[] | ICrewAggregate[];
 }
 
 const Casts: FC<IProps> = ({ casts }) => {

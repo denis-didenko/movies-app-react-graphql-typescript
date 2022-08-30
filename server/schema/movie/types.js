@@ -22,6 +22,7 @@ export const MovieTypes = `
         runtime: Int
         homepage: String
         popularity: Float
+        production_companies: [ProductionCompany!]
         genres: [Genre!]
         credits: Credits
         reviews: [Review]!
@@ -34,6 +35,13 @@ export const MovieTypes = `
         total_results: Int!
         total_pages: Int!
         results: [Movie!]!
+    }
+
+    type ProductionCompany {
+        id: ID!
+        name: String!
+        logo_path: String
+        origin_country: String
     }
 
     type Video {
@@ -49,6 +57,8 @@ export const MovieTypes = `
         genreId: ID!
         page: Int!
         year: String!
+        company: String!
+        provider: String!
         language: String!
     }
 

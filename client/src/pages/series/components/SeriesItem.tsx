@@ -1,22 +1,22 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { IMovie } from '../types';
+import { ISeries } from '../types';
 import { useApi } from '../../../hooks/useApi';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const MovieItem: FC<IMovie> = ({ poster_path, title, id, vote_average }) => {
+const MovieItem: FC<ISeries> = ({ poster_path, name, id, vote_average }) => {
     const { getFullImgPath } = useApi();
     if (!poster_path) return null;
 
     return (
         <div className='movie-item'>
             <div className='movie-pic'>
-                <Link to={`/movies/${id}`}>
+                <Link to={`/series/${id}`}>
                     <LazyLoadImage
                         width={'100%'}
                         height={'100%'}
-                        alt={title}
+                        alt={name}
                         src={getFullImgPath(poster_path)}
                         effect='blur'
                         delayMethod='debounce'
@@ -24,7 +24,7 @@ const MovieItem: FC<IMovie> = ({ poster_path, title, id, vote_average }) => {
                 </Link>
                 <div className='movie-rating'>TMDB: {vote_average}</div>
             </div>
-            <div className='movie-title'>{title}</div>
+            <div className='movie-title'>{name}</div>
         </div>
     );
 };

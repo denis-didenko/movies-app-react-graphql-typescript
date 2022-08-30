@@ -2,6 +2,7 @@ import { FC } from 'react';
 import FormSelect from '../../../../components/Form/select';
 
 const countries = [
+    { id: '', value: 'Всi' },
     { id: 'en', value: 'США' },
     { id: 'tr', value: 'Туреччина' },
     { id: 'ru', value: 'Росiя' },

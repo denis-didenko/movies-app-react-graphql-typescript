@@ -18,24 +18,38 @@ export class MovieAPI extends RESTDataSource {
         return this.get(`/tv/${id}?api_key=${API_KEY}&language=uk-UA`);
     }
 
+    async getSeasons(id) {
+        const data = await this.get(`/tv/${id}?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.seasons;
+    }
+
+    async getEpisodes(id, season) {
+        const data = await this.get(`/tv/${id}/season/${season}?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.episodes;
+    }
+
     async getCredits(id) {
         return this.get(`/movie/${id}/credits?api_key=${API_KEY}&language=uk-UA`);
     }
 
     async getCreditsTv(id) {
-        return this.get(`/tv/${id}/credits?api_key=${API_KEY}&language=uk-UA`);
+        return this.get(`/tv/${id}/aggregate_credits?api_key=${API_KEY}&language=uk-UA`);
     }
 
     async getVideos(id) {
         const data = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+        const dataUS = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`);
 
-        return data.results;
+        return data.results.length > 0 ? data.results : dataUS.results;
     }
 
     async getVideosTv(id) {
         const data = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+        const dataUS = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=en-US`);
 
-        return data.results;
+        return data.results.length > 0 ? data.results : dataUS.results;
     }
 
     async getGenres() {
@@ -44,7 +58,7 @@ export class MovieAPI extends RESTDataSource {
         return data.genres;
     }
 
-    async getGenresSeries() {
+    async getGenresTv() {
         const data = await this.get(`/genre/tv/list?api_key=${API_KEY}&language=uk-UA`);
 
         return data.genres;
@@ -82,15 +96,15 @@ export class MovieAPI extends RESTDataSource {
         return await this.get(`/movie/now_playing?api_key=${API_KEY}&page=${page}&language=uk-UA`);
     }
 
-    async getDiscoverMovies({ sortBy, genreId, year, language, page }) {
+    async getDiscoverMovies({ sortBy, genreId, year, language, company, provider, page }) {
         return await this.get(
-            `/discover/movie?api_key=${API_KEY}&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&primary_release_year=${year}&with_original_language=${language}&language=uk-UA`
+            `/discover/movie?api_key=${API_KEY}&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&primary_release_year=${year}&with_companies=${company}&with_watch_providers=${provider}&watch_region=US&with_original_language=${language}&language=uk-UA`
         );
     }
 
-    async getDiscoverSeries({ sortBy, genreId, year, language, page }) {
+    async getDiscoverSeries({ sortBy, genreId, year, language, network, page }) {
         return await this.get(
-            `/discover/tv?api_key=${API_KEY}&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&first_air_date_year=${year}&with_original_language=${language}&language=uk-UA`
+            `/discover/tv?api_key=${API_KEY}&sort_by=${sortBy}&with_genres=${genreId}&page=${page}&first_air_date_year=${year}&with_networks=${network}&with_original_language=${language}&language=uk-UA`
         );
     }
 

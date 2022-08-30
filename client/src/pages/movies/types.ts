@@ -11,14 +11,15 @@ export interface IMovie {
     runtime: number;
     homepage: string;
     popularity: number;
+    production_companies: [IProductionCompany];
     genres: IGenre[];
     credits: ICredits;
-    recommendations: [IMovie];
-    videos: [IVideo];
-    reviews: [IReview];
+    recommendations: IMovie[];
+    videos: IVideo[];
+    reviews: IReview[];
 }
 
-interface IDataResponse {
+export interface IDataResponse {
     page: number;
     total_results: number;
     total_pages: number;
@@ -31,6 +32,13 @@ export interface IMoviesData extends IDataResponse {
 export interface IGenre {
     id: string;
     name: string;
+}
+
+export interface IProductionCompany {
+    name: string;
+    id: number;
+    logo_path: string;
+    origin_country: string;
 }
 
 export interface ICredits {
@@ -66,7 +74,7 @@ export interface ICrew {
     profile_path: string;
 }
 
-interface IReview {
+export interface IReview {
     id: number;
     author_details: ReviewAuthor;
     content: string;

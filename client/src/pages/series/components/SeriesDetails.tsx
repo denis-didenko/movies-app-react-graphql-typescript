@@ -1,9 +1,118 @@
 import { FC } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-interface IProps {}
+import { useApi } from '../../../hooks/useApi';
+import { GET_SERIES } from '../queries';
+import { ISeries } from '../types';
+import Loading from '../../../components/Loading';
+import ErrorMessage from '../../../components/ErrorMessage';
+import SeriesList from './SeriesList';
+import { MdOutlinePlayCircleOutline, MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Casts from '../../movies/components/Casts';
 
-const SeriesDetails: FC<IProps> = props => {
-    return <div>SeriesDetails</div>;
+interface ISeriesData {
+    series: ISeries;
+}
+
+const SeriesDetails: FC = () => {
+    const { id } = useParams();
+    const { getFullImgPath, getUniqueCrewAggregate, sortSeriesByRating } = useApi();
+    const { loading, error, data } = useQuery<ISeriesData>(GET_SERIES, {
+        variables: { id },
+    });
+
+    if (loading) return <Loading />;
+    if (error) return <ErrorMessage error={error} />;
+    if (!data) return null;
+    //console.log('data: ', data);
+    data.series.networks.forEach(({ name }) => {
+        console.log(name);
+    });
+
+    const { name, backdrop_path, vote_average, first_air_date, genres, overview, credits, recommendations, videos } = data.series;
+
+    const year = first_air_date.split('-')[0];
+    const genresList = genres.map(({ name }) => name);
+
+    const actors = credits.cast.filter(cast => cast.known_for_department === 'Acting');
+    const directors = credits.crew.filter(crew => crew.jobs.find(({ job }) => job === 'Director'));
+    const producers = credits.crew.filter(crew => crew.jobs.find(({ job }) => job.includes('Producer')));
+    const writers = credits.crew.filter(crew => crew.jobs.find(({ job }) => job.includes('Writer')));
+    const soundEditors = credits.crew.filter(crew => crew.jobs.find(({ job }) => job.includes('Music')));
+
+    const trailerHash = videos.find(video => video.type === 'Trailer')?.key;
+    const teaserHash = videos.find(video => video.type === 'Teaser')?.key;
+
+    return (
+        <div className='movie-details'>
+            <div className='movie-details__poster'>
+                <LazyLoadImage width={'100%'} height={'auto'} alt={name} src={getFullImgPath(backdrop_path)} effect='blur' />
+            </div>
+            <h1 className='movie-details__name'>{name}</h1>
+            <p className='movie-details__rating'>TMDB: {vote_average.toFixed(1)}</p>
+            <p className='movie-details__release-date'> {`${year} · ${genresList.join(', ')}`} </p>
+
+            {trailerHash ? (
+                <a
+                    href={`https://www.youtube.com/watch?v=${trailerHash}`}
+                    className='movie-details__homepage btn'
+                    target='_blank'
+                    rel='noreferrer'
+                >
+                    <MdOutlinePlayCircleOutline />
+                    <span>Трейлер</span>
+                </a>
+            ) : null}
+            {teaserHash ? (
+                <a
+                    href={`https://www.youtube.com/watch?v=${teaserHash}`}
+                    className='movie-details__homepage btn'
+                    target='_blank'
+                    rel='noreferrer'
+                >
+                    <MdOutlinePlayCircleOutline />
+                    <span>Тизер</span>
+                </a>
+            ) : null}
+
+            <button className='add-to-watchlist-btn'>
+                <MdFavoriteBorder />
+                <span>Додати до Улюбленного</span>
+            </button>
+
+            <p className='movie-overview'>{overview}</p>
+            <Tabs>
+                <TabList>
+                    <Tab>Актори</Tab>
+                    <Tab>Режисери</Tab>
+                    <Tab>Продюсери</Tab>
+                    <Tab>Сценаристи</Tab>
+                    <Tab>Звукорежисери</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <Casts casts={actors.slice(0, 10)} />
+                </TabPanel>
+                <TabPanel>
+                    <Casts casts={getUniqueCrewAggregate(directors)} />
+                </TabPanel>
+                <TabPanel>
+                    <Casts casts={getUniqueCrewAggregate(producers)} />
+                </TabPanel>
+                <TabPanel>
+                    <Casts casts={getUniqueCrewAggregate(writers)} />
+                </TabPanel>
+                <TabPanel>
+                    <Casts casts={getUniqueCrewAggregate(soundEditors)} />
+                </TabPanel>
+            </Tabs>
+            <h2>Рекомендацii:</h2>
+            <SeriesList series={sortSeriesByRating(recommendations).slice(0, 10)} />
+        </div>
+    );
 };
 
 export default SeriesDetails;

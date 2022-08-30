@@ -2,8 +2,9 @@ import { FC } from 'react';
 import FormSelect from '../../../../components/Form/select';
 
 const years = [
-    { id: '2022', value: '2022' },
+    { id: '', value: 'Всi' },
     { id: '2023', value: '2023' },
+    { id: '2022', value: '2022' },
     { id: '2021', value: '2021' },
     { id: '2020', value: '2020' },
     { id: '2019', value: '2019' },

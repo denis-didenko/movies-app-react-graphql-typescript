@@ -1,5 +1,5 @@
 import { MovieQuery, MovieMutation, MovieResolvers } from './movie/index.js';
-import { SeriesQuery, SeriesResolvers } from './series/index.js';
+import { SeriesQuery, SeriesResolvers, SeasonResolvers } from './series/index.js';
 import { PersonQuery, PersonResolvers } from './person/index.js';
 import { CreditsResolvers } from './credits/index.js';
 import { GenreQuery } from './genre/index.js';
@@ -20,6 +20,7 @@ export const resolvers = {
 
     Movie: MovieResolvers,
     Series: SeriesResolvers,
+    Season: SeasonResolvers,
     Cast: CreditsResolvers,
     Person: PersonResolvers,
 };

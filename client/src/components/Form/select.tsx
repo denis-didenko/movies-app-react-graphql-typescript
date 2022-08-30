@@ -12,8 +12,6 @@ interface IOption {
 }
 
 const FormSelect = <Opt extends IOption>({ options, onChangeHandler }: IProps<Opt>) => {
-    console.count('FormSelect: ');
-
     const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOption = event.target.selectedOptions[0];
         const id = selectedOption.dataset.optionId!;
