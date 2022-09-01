@@ -9,7 +9,7 @@ import SeriesList from '../series/components/SeriesList';
 import PersonList from '../person/components/PersonList';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
-import { useApi } from '../../hooks/useApi';
+// import { useApi } from '../../hooks/useApi';
 import './search.css';
 
 const SearchPage: FC = () => {
@@ -18,7 +18,7 @@ const SearchPage: FC = () => {
     const errorRef = useRef<ApolloError>();
     const loadingRef = useRef<boolean>();
 
-    const { sortMoviesByPopularity } = useApi();
+    // const { sortMoviesByPopularity } = useApi();
 
     const [searchMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] = useLazyQuery<ISearchMoviesData>(SEARCH_MOVIES);
     const [searchSeries, { data: seriesData, loading: seriesLoading, error: seriesError }] = useLazyQuery<ISearchSeriesData>(SEARCH_SERIES);

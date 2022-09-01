@@ -21,7 +21,7 @@ const SeasonsTable: FC<IProps> = ({ seasons }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {seasons.map(({ id, name, overview, poster_path, episodes }) =>
+                    {seasons.map(({ id, name, poster_path, episodes }) =>
                         name === 'Спеціальне' ? null : (
                             <tr key={id}>
                                 <td>

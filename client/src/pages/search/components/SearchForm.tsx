@@ -11,7 +11,7 @@ const defaultQueryState: ISearchQuery = {
     query: '',
 };
 
-const SearchForm: FC<IProps> = ({ searchQuery, setSearchQuery }) => {
+const SearchForm: FC<IProps> = ({ setSearchQuery }) => {
     const [queryMovies, setQueryMovies] = useState<ISearchQuery>(defaultQueryState);
     const [querySeries, setQuerySeries] = useState<ISearchQuery>(defaultQueryState);
     const [queryPerson, setQueryPerson] = useState<ISearchQuery>(defaultQueryState);
