@@ -9,7 +9,6 @@ import SeriesList from '../series/components/SeriesList';
 import PersonList from '../person/components/PersonList';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
-import Pagination from '../../components/Pagination';
 import { useApi } from '../../hooks/useApi';
 import './search.css';
 
@@ -18,7 +17,6 @@ const SearchPage: FC = () => {
     const dataRef = useRef<ISearchMoviesData | ISearchSeriesData | ISearchPersonsData>();
     const errorRef = useRef<ApolloError>();
     const loadingRef = useRef<boolean>();
-    const [page, setPage] = useState(1);
 
     const { sortMoviesByPopularity } = useApi();
 
@@ -27,9 +25,9 @@ const SearchPage: FC = () => {
     const [searchPersons, { data: personsData, loading: personsLoading, error: personsError }] =
         useLazyQuery<ISearchPersonsData>(SEARCH_PERSON);
 
-    let fetchQuery = searchQuery.query;
-    let fetchName = searchQuery.name;
-    let fetchVariables = { variables: { query: fetchQuery, page } };
+    const fetchQuery = searchQuery.query;
+    const fetchName = searchQuery.name;
+    const fetchVariables = { variables: { query: fetchQuery } };
     const [debouncedQuery] = useDebounce(fetchQuery, 1000);
 
     useEffect(() => {
@@ -57,7 +55,7 @@ const SearchPage: FC = () => {
                     break;
             }
         }
-    }, [debouncedQuery, page, moviesData, seriesData, personsData]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [debouncedQuery, moviesData, seriesData, personsData]); // eslint-disable-line react-hooks/exhaustive-deps
 
     if (errorRef.current) return <ErrorMessage error={errorRef.current} />;
     if (loadingRef.current) return <Loading />;

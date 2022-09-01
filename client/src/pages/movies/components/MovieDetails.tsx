@@ -9,7 +9,7 @@ import Casts from './Casts';
 import Loading from '../../../components/Loading';
 import ErrorMessage from '../../../components/ErrorMessage';
 import { useApi } from '../../../hooks/useApi';
-import { MdOutlinePlayCircleOutline, MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { MdOutlinePlayCircleOutline, MdFavoriteBorder } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 interface IMovieData {

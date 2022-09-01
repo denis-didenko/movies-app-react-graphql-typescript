@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import './pagination.css';
 
 interface IPaginationProps {

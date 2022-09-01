@@ -9,7 +9,7 @@ import { ISeries } from '../types';
 import Loading from '../../../components/Loading';
 import ErrorMessage from '../../../components/ErrorMessage';
 import SeriesList from './SeriesList';
-import { MdOutlinePlayCircleOutline, MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { MdOutlinePlayCircleOutline, MdFavoriteBorder } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Casts from '../../movies/components/Casts';
 import Seasons from './Seasons';
