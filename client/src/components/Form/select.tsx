@@ -8,13 +8,12 @@ interface IProps<T> {
 interface IOption {
     id: string;
     value: string;
-    [key: string]: any;
 }
 
 const FormSelect = <Opt extends IOption>({ options, onChangeHandler }: IProps<Opt>) => {
     const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOption = event.target.selectedOptions[0];
-        const id = selectedOption.dataset.optionId!;
+        const id = selectedOption.dataset.optionId as string;
 
         onChangeHandler(id);
     };
