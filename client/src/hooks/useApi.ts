@@ -15,9 +15,11 @@ export const useApi = () => {
         return movies
             .filter(movie => movie.release_date)
             .sort((a, b) => {
-                const aDate = new Date(a.release_date) as any;
-                const bDate = new Date(b.release_date) as any;
-                return bDate - aDate;
+                const aDate = new Date(a.release_date) as Date;
+                const bDate = new Date(b.release_date) as Date;
+
+                return aDate.getTime() - bDate.getTime();
+                //return bDate - aDate;
             });
     };
 
