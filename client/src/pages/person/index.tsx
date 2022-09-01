@@ -12,7 +12,7 @@ import './person.css';
 
 const PersonDetails: FC = () => {
     const { id } = useParams();
-    const { getFullImgPath, sortMoviesByReleaseDate } = useApi();
+    const { getFullImgPath, sortMoviesByReleaseDate, sortMoviesByPopularity } = useApi();
     const { loading, error, data } = useQuery<IPersonData>(GET_PERSON, {
         variables: { id },
     });
@@ -20,7 +20,6 @@ const PersonDetails: FC = () => {
     if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
     if (!data) return null;
-    console.log('data: ', data);
 
     const { name, birthday, biography, profile_path, place_of_birth, cast } = data.person;
 
@@ -42,8 +41,10 @@ const PersonDetails: FC = () => {
             <p>{place_of_birth}</p>
             <h3>Біографія:</h3>
             <p>{biography ? biography : 'Немає перекладу'}</p>
-            <h3>Роботи:</h3>
+            <h2>Останні роботи:</h2>
             <MoviesList movies={sortMoviesByReleaseDate(cast).slice(0, 10)} />
+            <h2>Популярні роботи:</h2>
+            <MoviesList movies={sortMoviesByPopularity(cast).slice(0, 10)} />
         </div>
     );
 };

@@ -1,10 +1,12 @@
-import { FC, useState, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import { FC, useState, useEffect, useRef } from 'react';
+import { ApolloError, useLazyQuery } from '@apollo/client';
 import { useDebounce } from 'use-debounce';
-import { SEARCH_MOVIES } from './queries';
-import { ISearchMoviesData } from './types';
+import { SEARCH_MOVIES, SEARCH_SERIES, SEARCH_PERSON } from './queries';
+import { ISearchMoviesData, ISearchSeriesData, ISearchPersonsData, ISearchQuery } from './types';
 import SearchForm from './components/SearchForm';
 import MoviesList from '../movies/components/MoviesList';
+import SeriesList from '../series/components/SeriesList';
+import PersonList from '../person/components/PersonList';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
 import Pagination from '../../components/Pagination';
@@ -12,34 +14,72 @@ import { useApi } from '../../hooks/useApi';
 import './search.css';
 
 const SearchPage: FC = () => {
-    const [query, setQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState<ISearchQuery>({ name: '', query: '' });
+    const dataRef = useRef<ISearchMoviesData | ISearchSeriesData | ISearchPersonsData>();
+    const errorRef = useRef<ApolloError>();
+    const loadingRef = useRef<boolean>();
     const [page, setPage] = useState(1);
-    const [debouncedQuery] = useDebounce(query, 1000);
 
-    const [search, { data, loading, error }] = useLazyQuery<ISearchMoviesData>(SEARCH_MOVIES);
     const { sortMoviesByPopularity } = useApi();
 
-    useEffect(() => {
-        if (query.length) {
-            search({
-                variables: { query, page },
-            });
-        }
-    }, [debouncedQuery, page]); // eslint-disable-line react-hooks/exhaustive-deps
+    const [searchMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] = useLazyQuery<ISearchMoviesData>(SEARCH_MOVIES);
+    const [searchSeries, { data: seriesData, loading: seriesLoading, error: seriesError }] = useLazyQuery<ISearchSeriesData>(SEARCH_SERIES);
+    const [searchPersons, { data: personsData, loading: personsLoading, error: personsError }] =
+        useLazyQuery<ISearchPersonsData>(SEARCH_PERSON);
 
-    if (error) return <ErrorMessage error={error} />;
-    if (loading) return <Loading />;
+    let fetchQuery = searchQuery.query;
+    let fetchName = searchQuery.name;
+    let fetchVariables = { variables: { query: fetchQuery, page } };
+    const [debouncedQuery] = useDebounce(fetchQuery, 1000);
+
+    useEffect(() => {
+        if (fetchQuery.length) {
+            switch (fetchName) {
+                case 'movies':
+                    searchMovies(fetchVariables);
+                    dataRef.current = moviesData;
+                    errorRef.current = moviesError;
+                    loadingRef.current = moviesLoading;
+                    break;
+                case 'series':
+                    searchSeries(fetchVariables);
+                    dataRef.current = seriesData;
+                    errorRef.current = seriesError;
+                    loadingRef.current = seriesLoading;
+                    break;
+                case 'persons':
+                    searchPersons(fetchVariables);
+                    dataRef.current = personsData;
+                    errorRef.current = personsError;
+                    loadingRef.current = personsLoading;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [debouncedQuery, page, moviesData, seriesData, personsData]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    if (errorRef.current) return <ErrorMessage error={errorRef.current} />;
+    if (loadingRef.current) return <Loading />;
 
     return (
         <div className='search-page'>
-            <h2>Пошук Фiльмiв</h2>
-            <SearchForm query={query} setQuery={setQuery} />
+            <SearchForm searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-            {data ? (
-                <>
-                    <MoviesList movies={sortMoviesByPopularity(data.searchMovies.results)} />
-                    <Pagination activePage={page} setActivePage={setPage} total={data.searchMovies.total_pages} />
-                </>
+            {dataRef.current ? (
+                'searchMovies' in dataRef.current ? (
+                    <>
+                        <MoviesList movies={dataRef.current.searchMovies.results} />
+                    </>
+                ) : 'searchSeries' in dataRef.current ? (
+                    <>
+                        <SeriesList series={dataRef.current.searchSeries.results} />
+                    </>
+                ) : 'searchPerson' in dataRef.current ? (
+                    <>
+                        <PersonList persons={dataRef.current.searchPerson.results} />
+                    </>
+                ) : null
             ) : (
                 <p>Немає результатів</p>
             )}

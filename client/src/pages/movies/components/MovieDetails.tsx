@@ -26,10 +26,6 @@ const MovieDetails: FC = () => {
     if (loading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
     if (!data) return null;
-    console.log('data: ', data);
-    data.movie.production_companies.forEach(({ name }) => {
-        console.log(name);
-    });
 
     const { title, backdrop_path, vote_average, release_date, runtime, genres, overview, credits, recommendations, videos } = data.movie;
 

@@ -6,7 +6,7 @@ export const SeriesTypes = `
 
     type Series {
         id: ID!
-        name: String
+        name: String!
         overview: String
         backdrop_path: String
         homepage: String
@@ -84,7 +84,21 @@ export const SeriesTypes = `
         still_path: String
         vote_average: Float
         vote_count: Int
+        videos: [EpisodeVideo]
     }
+
+    type EpisodeVideo {
+        id: ID
+        name: String
+        key: String
+        site: String
+        size: Int
+        type: String
+        official: Boolean
+        iso_639_1: String
+        iso_3166_1: String
+    }
+
 
     input DiscoverSeriesInput {
         sortBy: String!

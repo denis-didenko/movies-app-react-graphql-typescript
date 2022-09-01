@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { MdHome, MdSearch, MdStars } from 'react-icons/md';
+import { MdHome, MdSearch, MdFavoriteBorder } from 'react-icons/md';
 import { BiCameraMovie } from 'react-icons/bi';
 import { TbMovie } from 'react-icons/tb';
 
@@ -33,9 +33,9 @@ const Nav: FC = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to='/toprated'>
-                        <MdStars />
-                        <span>Top rated</span>
+                    <Link to='/favourites'>
+                        <MdFavoriteBorder />
+                        <span>Обране</span>
                     </Link>
                 </li>
             </ul>

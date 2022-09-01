@@ -45,8 +45,6 @@ const MoviesPage: FC = () => {
         },
     });
 
-    console.log('data: ', data);
-
     if (error) return <ErrorMessage error={error} />;
 
     return (

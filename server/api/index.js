@@ -30,6 +30,12 @@ export class MovieAPI extends RESTDataSource {
         return data.episodes;
     }
 
+    async getEpisodeVideos(id, season, episode) {
+        const data = await this.get(`/tv/${id}/season/${season}/episode/${episode}/videos?api_key=${API_KEY}`);
+
+        return data.results;
+    }
+
     async getCredits(id) {
         return this.get(`/movie/${id}/credits?api_key=${API_KEY}&language=uk-UA`);
     }
@@ -114,7 +120,7 @@ export class MovieAPI extends RESTDataSource {
         return data;
     }
 
-    async getCombinedCredits(personId) {
+    async getPersonCombinedCredits(personId) {
         const data = await this.get(`/person/${personId}/combined_credits?api_key=${API_KEY}&language=uk-UA`);
 
         return data.cast;
@@ -122,5 +128,19 @@ export class MovieAPI extends RESTDataSource {
 
     async searchMovies(query, page) {
         return await this.get(`/search/movie?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
+    }
+
+    async searchSeries(query, page) {
+        return await this.get(`/search/tv?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
+    }
+
+    async searchPerson(query, page) {
+        return await this.get(`/search/person?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
+    }
+
+    async searchMulti(query, page) {
+        const data = await this.get(`/search/multi?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
+
+        return data;
     }
 }

@@ -43,8 +43,6 @@ const SeriesPage: FC = () => {
         },
     });
 
-    console.log('data: ', data);
-
     if (error) return <ErrorMessage error={error} />;
 
     return (

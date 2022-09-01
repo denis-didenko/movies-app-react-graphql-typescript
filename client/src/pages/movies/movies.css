@@ -220,6 +220,10 @@
     border: 1px solid var(--border-color-muted);
 }
 
+.seasons-table table tr td:first-child {
+    width: 40%;
+}
+
 .season-name {
     font-size: medium;
     font-weight: bold;

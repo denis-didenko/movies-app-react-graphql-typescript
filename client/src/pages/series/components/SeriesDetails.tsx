@@ -29,8 +29,6 @@ const SeriesDetails: FC = () => {
     if (error) return <ErrorMessage error={error} />;
     if (!data) return null;
 
-    console.log('data: ', data);
-
     const {
         name,
         backdrop_path,
@@ -47,7 +45,6 @@ const SeriesDetails: FC = () => {
         created_by,
         networks,
     } = data.series;
-    console.log('seasons: ', seasons);
 
     const year = first_air_date.split('-')[0];
     const genresList = genres.map(({ name }) => name);

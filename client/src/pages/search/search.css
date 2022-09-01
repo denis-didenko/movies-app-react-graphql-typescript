@@ -1,3 +1,24 @@
 .search-form {
     margin-bottom: 20px;
 }
+
+.search-form .form-item {
+    margin-bottom: 10px;
+}
+
+.search-form .form-submit button {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .search-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-gap: 20px;
+        align-items: flex-end;
+    }
+
+    .search-form .form-item {
+        margin-bottom: 0;
+    }
+}

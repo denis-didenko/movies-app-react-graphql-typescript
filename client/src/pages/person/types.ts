@@ -1,4 +1,4 @@
-import { IMovie } from './../movies/types';
+import { IMovie, IDataResponse } from './../movies/types';
 
 export interface IPerson {
     id: number;
@@ -13,4 +13,8 @@ export interface IPerson {
 
 export interface IPersonData {
     person: IPerson;
+}
+
+export interface IPersonsData extends IDataResponse {
+    results: IPerson[];
 }

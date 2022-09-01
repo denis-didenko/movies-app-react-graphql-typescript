@@ -13,6 +13,7 @@ export const GET_PERSON = gql`
             cast {
                 id
                 title
+                name
                 overview
                 release_date
                 poster_path
@@ -20,6 +21,7 @@ export const GET_PERSON = gql`
                 vote_average
                 runtime
                 homepage
+                popularity
                 genres {
                     id
                     name

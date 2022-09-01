@@ -86,6 +86,17 @@ export const GET_SERIES = gql`
                     still_path
                     vote_average
                     vote_count
+                    videos {
+                        id
+                        key
+                        name
+                        site
+                        size
+                        type
+                        official
+                        iso_3166_1
+                        iso_639_1
+                    }
                 }
             }
             genres {
