@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { MdHome, MdSearch, MdFavoriteBorder } from 'react-icons/md';
 import { BiCameraMovie } from 'react-icons/bi';
 import { TbMovie } from 'react-icons/tb';
@@ -9,34 +9,34 @@ const Nav: FC = () => {
         <nav className='nav'>
             <ul>
                 <li>
-                    <Link to='/'>
+                    <NavLink to='/'>
                         <MdHome />
                         <span>Головна</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/movies'>
+                    <NavLink to='/movies'>
                         <TbMovie />
                         <span>Фiльми</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/series'>
+                    <NavLink to='/series'>
                         <BiCameraMovie />
                         <span>Серіали</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/search'>
+                    <NavLink to='/search'>
                         <MdSearch />
                         <span>Пошук</span>
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to='/favourites'>
+                    <NavLink to='/favourites'>
                         <MdFavoriteBorder />
                         <span>Обране</span>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
