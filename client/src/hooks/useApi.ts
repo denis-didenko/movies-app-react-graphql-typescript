@@ -12,14 +12,16 @@ export const useApi = () => {
     const getUniqueCrewAggregate = (array: ICrewAggregate[]) => [...new Set(array.filter(({ name }) => name))];
 
     const sortMoviesByReleaseDate = (movies: IMovie[]) => {
-        return movies
+        // remove movies with same id
+        const uniqueMovies = [...new Set(movies.filter(({ id }) => id))];
+
+        return uniqueMovies
             .filter(movie => movie.release_date)
             .sort((a, b) => {
                 const aDate = new Date(a.release_date) as Date;
                 const bDate = new Date(b.release_date) as Date;
 
-                return aDate.getTime() - bDate.getTime();
-                //return bDate - aDate;
+                return bDate.getTime() - aDate.getTime();
             });
     };
 
@@ -33,7 +35,9 @@ export const useApi = () => {
     };
 
     const sortMoviesByPopularity = (movies: IMovie[]) => {
-        return movies.filter(movie => movie.popularity).sort((a, b) => b.popularity - a.popularity);
+        const uniqueMovies = [...new Set(movies.filter(({ id }) => id))];
+
+        return uniqueMovies.filter(movie => movie.popularity).sort((a, b) => b.popularity - a.popularity);
     };
 
     return {
