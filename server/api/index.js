@@ -10,96 +10,12 @@ export class MovieAPI extends RESTDataSource {
         this.baseURL = 'https://api.themoviedb.org/3';
     }
 
-    async getMovie(id) {
-        return this.get(`/movie/${id}?api_key=${API_KEY}&language=uk-UA`);
-    }
-
-    async getSeries(id) {
-        return this.get(`/tv/${id}?api_key=${API_KEY}&language=uk-UA`);
-    }
-
-    async getSeasons(id) {
-        const data = await this.get(`/tv/${id}?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.seasons;
-    }
-
-    async getEpisodes(id, season) {
-        const data = await this.get(`/tv/${id}/season/${season}?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.episodes;
-    }
-
-    async getEpisodeVideos(id, season, episode) {
-        const data = await this.get(`/tv/${id}/season/${season}/episode/${episode}/videos?api_key=${API_KEY}`);
-
-        return data.results;
-    }
-
     async getCredits(id) {
         return this.get(`/movie/${id}/credits?api_key=${API_KEY}&language=uk-UA`);
     }
 
     async getCreditsTv(id) {
         return this.get(`/tv/${id}/aggregate_credits?api_key=${API_KEY}&language=uk-UA`);
-    }
-
-    async getVideos(id) {
-        const data = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
-        const dataUS = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`);
-
-        return data.results.length > 0 ? data.results : dataUS.results;
-    }
-
-    async getVideosTv(id) {
-        const data = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
-        const dataUS = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=en-US`);
-
-        return data.results.length > 0 ? data.results : dataUS.results;
-    }
-
-    async getGenres() {
-        const data = await this.get(`/genre/movie/list?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.genres;
-    }
-
-    async getGenresTv() {
-        const data = await this.get(`/genre/tv/list?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.genres;
-    }
-
-    async getReviews(id) {
-        const data = await this.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.results;
-    }
-
-    async getReviewsTv(id) {
-        const data = await this.get(`/tv/${id}/reviews?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.results;
-    }
-
-    async getRecommendations(id) {
-        const data = await this.get(`/movie/${id}/recommendations?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.results;
-    }
-
-    async getRecommendationsTv(id) {
-        const data = await this.get(`/tv/${id}/recommendations?api_key=${API_KEY}&language=uk-UA`);
-
-        return data.results;
-    }
-
-    async getUpcoming(page) {
-        return await this.get(`/movie/upcoming?api_key=${API_KEY}&page=${page}&language=uk-UA`);
-    }
-
-    async getNowPlaying(page) {
-        return await this.get(`/movie/now_playing?api_key=${API_KEY}&page=${page}&language=uk-UA`);
     }
 
     async getDiscoverMovies({ sortBy, genreId, year, language, company, provider, page }) {
@@ -114,6 +30,42 @@ export class MovieAPI extends RESTDataSource {
         );
     }
 
+    async getEpisodes(id, season) {
+        const data = await this.get(`/tv/${id}/season/${season}?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.episodes;
+    }
+
+    async getEpisodeVideos(id, season, episode) {
+        const data = await this.get(`/tv/${id}/season/${season}/episode/${episode}/videos?api_key=${API_KEY}`);
+
+        return data.results;
+    }
+
+    async getGenres() {
+        const data = await this.get(`/genre/movie/list?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.genres;
+    }
+
+    async getGenresTv() {
+        const data = await this.get(`/genre/tv/list?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.genres;
+    }
+
+    async getMovie(id) {
+        return this.get(`/movie/${id}?api_key=${API_KEY}&language=uk-UA`);
+    }
+
+    async getUpcoming(page) {
+        return await this.get(`/movie/upcoming?api_key=${API_KEY}&page=${page}&language=uk-UA`);
+    }
+
+    async getNowPlaying(page) {
+        return await this.get(`/movie/now_playing?api_key=${API_KEY}&page=${page}&language=uk-UA`);
+    }
+
     async getPerson(id) {
         const data = await this.get(`/person/${id}?api_key=${API_KEY}&language=uk-UA`);
 
@@ -124,6 +76,40 @@ export class MovieAPI extends RESTDataSource {
         const data = await this.get(`/person/${personId}/combined_credits?api_key=${API_KEY}&language=uk-UA`);
 
         return data.cast;
+    }
+
+    async getRecommendations(id) {
+        const data = await this.get(`/movie/${id}/recommendations?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.results;
+    }
+
+    async getRecommendationsTv(id) {
+        const data = await this.get(`/tv/${id}/recommendations?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.results;
+    }
+
+    async getReviews(id) {
+        const data = await this.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.results;
+    }
+
+    async getReviewsTv(id) {
+        const data = await this.get(`/tv/${id}/reviews?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.results;
+    }
+
+    async getSeries(id) {
+        return this.get(`/tv/${id}?api_key=${API_KEY}&language=uk-UA`);
+    }
+
+    async getSeasons(id) {
+        const data = await this.get(`/tv/${id}?api_key=${API_KEY}&language=uk-UA`);
+
+        return data.seasons;
     }
 
     async searchMovies(query, page) {
@@ -142,5 +128,19 @@ export class MovieAPI extends RESTDataSource {
         const data = await this.get(`/search/multi?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
 
         return data;
+    }
+
+    async getVideos(id) {
+        const data = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+        const dataUS = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`);
+
+        return data.results.length > 0 ? data.results : dataUS.results;
+    }
+
+    async getVideosTv(id) {
+        const data = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+        const dataUS = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=en-US`);
+
+        return data.results.length > 0 ? data.results : dataUS.results;
     }
 }
