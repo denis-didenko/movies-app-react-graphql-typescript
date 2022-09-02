@@ -1,13 +1,15 @@
 import { HTTPCache, RESTDataSource } from 'apollo-datasource-rest';
+import { config } from 'dotenv';
+config();
 
-const API_KEY = '9b04d7aad3c2ae56f965c2c9a5141ada';
+const API_KEY = process.env.API_KEY;
 
 export class MovieAPI extends RESTDataSource {
     constructor() {
         super();
         this.httpCache = new HTTPCache();
 
-        this.baseURL = 'https://api.themoviedb.org/3';
+        this.baseURL = process.env.API_BASE_URL;
     }
 
     async getCredits(id) {
