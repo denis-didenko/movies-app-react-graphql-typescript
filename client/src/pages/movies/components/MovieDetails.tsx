@@ -29,7 +29,11 @@ const MovieDetails: FC = () => {
 
     const { title, backdrop_path, vote_average, release_date, runtime, genres, overview, credits, recommendations, videos } = data.movie;
 
-    const year = release_date.split('-')[0];
+    const releaseDateUA = new Intl.DateTimeFormat('uk-UA', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    }).format(new Date(release_date));
     const genresList = genres.map(({ name }) => name);
 
     const actors = credits.cast.filter(cast => cast.known_for_department === 'Acting');
@@ -48,7 +52,7 @@ const MovieDetails: FC = () => {
             </div>
             <h1 className='movie-details__title'>{title}</h1>
             <p className='movie-details__rating'>TMDB: {vote_average.toFixed(1)}</p>
-            <p className='movie-details__release-date'> {`${year} · ${runtime} хв · ${genresList.join(', ')}`} </p>
+            <p className='movie-details__release-date'> {`${releaseDateUA} · ${runtime} хв · ${genresList.join(', ')}`} </p>
 
             <div className='movie-details__videos'>
                 {trailerHash ? (
