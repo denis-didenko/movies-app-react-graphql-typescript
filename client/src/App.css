@@ -120,7 +120,6 @@ h2 {
 }
 
 .wrapper {
-    max-width: 1000px;
     margin: 0 auto;
     min-height: 100%;
     display: flex;
@@ -242,9 +241,6 @@ nav ul li a.active {
     }
     main {
         padding-bottom: 90px;
-    }
-    .swiper-slide {
-        height: 450px;
     }
     .react-tabs__tab-list {
         overflow-x: inherit;

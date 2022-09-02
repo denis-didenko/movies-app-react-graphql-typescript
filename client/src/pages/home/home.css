@@ -36,6 +36,9 @@
 }
 
 @media (min-width: 768px) {
+    .swiper-slide {
+        height: 60vh;
+    }
     .slide-info {
         font-size: 22px;
     }

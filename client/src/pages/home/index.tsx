@@ -45,7 +45,7 @@ const HomePage: FC = () => {
             <h2 className='page-title'>Незабаром:</h2>
             <HomeSlider slides={sortMoviesByReleaseDate(upcoming).slice(0, 10)} />
             <h2>Дивляться зараз:</h2>
-            <MoviesList movies={sortMoviesByReleaseDate(nowPlaying).slice(0, 15)} />
+            <MoviesList movies={sortMoviesByReleaseDate(nowPlaying).slice(0, 20)} />
         </>
     );
 };
