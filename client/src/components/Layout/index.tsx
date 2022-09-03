@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import Nav from './navPane';
 
-const Layout: FC = () => {
+const Layout = () => {
     return (
         <div className='wrapper'>
             <main>

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_DISCOVER_MOVIES, GET_GENRES } from './queries';
 import { IGenre, IMoviesData } from './types';
@@ -21,7 +21,7 @@ interface IGenreData {
     genres: [IGenre];
 }
 
-const MoviesPage: FC = () => {
+const MoviesPage = () => {
     const [genreId, setGenreId] = useState('');
     const [year, setYear] = useState('');
     const [language, setLanguage] = useState('');

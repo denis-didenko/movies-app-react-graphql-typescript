@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { MdHome, MdSearch, MdFavoriteBorder } from 'react-icons/md';
 import { BiCameraMovie } from 'react-icons/bi';
 import { TbMovie } from 'react-icons/tb';
 
-const Nav: FC = () => {
+const Nav = () => {
     return (
         <nav className='nav'>
             <ul>
@@ -33,7 +32,7 @@ const Nav: FC = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/favourites'>
+                    <NavLink to='/favorites'>
                         <MdFavoriteBorder />
                         <span>Обране</span>
                     </NavLink>

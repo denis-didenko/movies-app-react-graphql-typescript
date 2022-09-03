@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -6,10 +5,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useApi } from '../../../hooks/useApi';
 import { GET_SERIES } from '../queries';
 import { ISeries } from '../types';
+import SeriesList from './SeriesList';
+import AddToFavouriteBtn from '../../favorites/components/AddToFavouriteBtn';
 import Loading from '../../../components/Loading';
 import ErrorMessage from '../../../components/ErrorMessage';
-import SeriesList from './SeriesList';
-import { MdOutlinePlayCircleOutline, MdFavoriteBorder } from 'react-icons/md';
+import { MdOutlinePlayCircleOutline } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Casts from '../../movies/components/Casts';
 import Seasons from './Seasons';
@@ -18,7 +18,7 @@ interface ISeriesData {
     series: ISeries;
 }
 
-const SeriesDetails: FC = () => {
+const SeriesDetails = () => {
     const { id } = useParams();
     const { getFullImgPath, getUniqueCrewAggregate, sortSeriesByRating } = useApi();
     const { loading, error, data } = useQuery<ISeriesData>(GET_SERIES, {
@@ -97,10 +97,7 @@ const SeriesDetails: FC = () => {
                     </a>
                 ) : null}
 
-                <button className='add-to-watchlist-btn'>
-                    <MdFavoriteBorder />
-                    <span>Додати до Улюбленного</span>
-                </button>
+                <AddToFavouriteBtn item={data.series} />
             </div>
 
             <p className='movie-overview'>{overview}</p>

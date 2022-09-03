@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/home';
@@ -6,12 +5,13 @@ import MoviesPage from './pages/movies';
 import MovieDetails from './pages/movies/components/MovieDetails';
 import SeriesPage from './pages/series';
 import SeriesDetails from './pages/series/components/SeriesDetails';
-import SearchPage from './pages/search';
 import PersonDetails from './pages/person';
+import SearchPage from './pages/search';
+import FavoritesPage from './pages/favorites';
 
 import './App.css';
 
-const App: FC = () => {
+const App = () => {
     return (
         <Routes>
             <Route element={<Layout />}>
@@ -26,6 +26,7 @@ const App: FC = () => {
                 </Route>
                 <Route path='person/:id' element={<PersonDetails />} />
                 <Route path='search' element={<SearchPage />} />
+                <Route path='favorites' element={<FavoritesPage />} />
             </Route>
 
             <Route path='*' element={<Navigate to='/' />} />

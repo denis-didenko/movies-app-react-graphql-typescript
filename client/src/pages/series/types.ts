@@ -1,6 +1,7 @@
 import { IGenre, IVideo, IReview, IDataResponse, ICast, IProductionCompany } from './../movies/types';
 
 export interface ISeries {
+    __typename: string;
     id: number;
     name: string;
     overview: string;
@@ -14,7 +15,7 @@ export interface ISeries {
     last_episode_to_air: IEpisode;
     original_language: string;
     original_name: string;
-    in_production: Boolean;
+    in_production: boolean;
     status: string;
     tagline: string;
     type: string;

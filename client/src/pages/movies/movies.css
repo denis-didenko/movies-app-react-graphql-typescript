@@ -90,8 +90,10 @@
 }
 
 .movie-details__poster {
+    max-height: 75vh;
     margin: -10px -10px 10px;
     position: relative;
+    display: flex;
 }
 
 .movie-details__poster::after {
@@ -106,7 +108,7 @@
 
 .movie-details__poster img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     display: block;
 }
@@ -142,6 +144,12 @@
 .add-to-watchlist-btn:hover {
     color: var(--accent);
     border-color: var(--accent);
+}
+
+.add-to-watchlist-btn.is-active {
+    color: var(--accent);
+    border-color: var(--accent);
+    opacity: 0.2;
 }
 
 .movie-overview {

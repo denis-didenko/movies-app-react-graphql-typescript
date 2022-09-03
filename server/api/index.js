@@ -114,6 +114,20 @@ export class MovieAPI extends RESTDataSource {
         return data.seasons;
     }
 
+    async getVideos(id) {
+        const data = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+        const dataUS = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`);
+
+        return data.results.length > 0 ? data.results : dataUS.results;
+    }
+
+    async getVideosTv(id) {
+        const data = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
+        const dataUS = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=en-US`);
+
+        return data.results.length > 0 ? data.results : dataUS.results;
+    }
+
     async searchMovies(query, page) {
         return await this.get(`/search/movie?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
     }
@@ -130,19 +144,5 @@ export class MovieAPI extends RESTDataSource {
         const data = await this.get(`/search/multi?api_key=${API_KEY}&query=${query}&page=${page}&language=uk-UA`);
 
         return data;
-    }
-
-    async getVideos(id) {
-        const data = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
-        const dataUS = await this.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`);
-
-        return data.results.length > 0 ? data.results : dataUS.results;
-    }
-
-    async getVideosTv(id) {
-        const data = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=uk-UA`);
-        const dataUS = await this.get(`/tv/${id}/videos?api_key=${API_KEY}&language=en-US`);
-
-        return data.results.length > 0 ? data.results : dataUS.results;
     }
 }

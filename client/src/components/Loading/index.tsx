@@ -1,7 +1,6 @@
-import { FC } from 'react';
 import './loading.css';
 
-const Loading: FC = () => {
+const Loading = () => {
     return (
         <div className='loading-container'>
             <div className='loading'>

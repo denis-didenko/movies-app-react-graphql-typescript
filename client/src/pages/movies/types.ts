@@ -1,5 +1,6 @@
 import { IPerson } from '../person/types';
 export interface IMovie {
+    __typename: string;
     id: number;
     title: string;
     name: string;

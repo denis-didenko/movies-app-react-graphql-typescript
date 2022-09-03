@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ApolloError, useLazyQuery } from '@apollo/client';
 import { useDebounce } from 'use-debounce';
 import { SEARCH_MOVIES, SEARCH_SERIES, SEARCH_PERSON } from './queries';
@@ -13,7 +13,7 @@ import Pagination from '../../components/Pagination';
 // import { useApi } from '../../hooks/useApi';
 import './search.css';
 
-const SearchPage: FC = () => {
+const SearchPage = () => {
     const [searchQuery, setSearchQuery] = useState<ISearchQuery>({ name: '', query: '' });
     const dataRef = useRef<ISearchMoviesData | ISearchSeriesData | ISearchPersonsData>();
     const errorRef = useRef<ApolloError>();

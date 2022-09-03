@@ -1,22 +1,22 @@
-import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { GET_MOVIE } from '../queries';
 import { IMovie } from '../types';
 import MoviesList from './MoviesList';
+import AddToFavouriteBtn from '../../favorites/components/AddToFavouriteBtn';
 import Casts from './Casts';
 import Loading from '../../../components/Loading';
 import ErrorMessage from '../../../components/ErrorMessage';
 import { useApi } from '../../../hooks/useApi';
-import { MdOutlinePlayCircleOutline, MdFavoriteBorder } from 'react-icons/md';
+import { MdOutlinePlayCircleOutline } from 'react-icons/md';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 interface IMovieData {
     movie: IMovie;
 }
 
-const MovieDetails: FC = () => {
+const MovieDetails = () => {
     const { id } = useParams();
     const { getFullImgPath, getUniqueCrew, sortMoviesByReleaseDate } = useApi();
     const { loading, error, data } = useQuery<IMovieData>(GET_MOVIE, {
@@ -78,10 +78,7 @@ const MovieDetails: FC = () => {
                     </a>
                 ) : null}
 
-                <button className='add-to-watchlist-btn'>
-                    <MdFavoriteBorder />
-                    <span>Додати до Улюбленного</span>
-                </button>
+                <AddToFavouriteBtn item={data.movie} />
             </div>
 
             <p className='movie-overview'>{overview}</p>

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { IGenre } from '../movies/types';
 import { ISeriesData } from './types';
@@ -21,7 +21,7 @@ interface IGenreTvData {
     genresSeries: [IGenre];
 }
 
-const SeriesPage: FC = () => {
+const SeriesPage = () => {
     const [genreId, setGenreId] = useState('');
     const [year, setYear] = useState('');
     const [language, setLanguage] = useState('');

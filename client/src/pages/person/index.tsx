@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -10,7 +9,7 @@ import ErrorMessage from '../../components/ErrorMessage';
 import MoviesList from '../movies/components/MoviesList';
 import './person.css';
 
-const PersonDetails: FC = () => {
+const PersonDetails = () => {
     const { id } = useParams();
     const { getFullImgPath, sortMoviesByReleaseDate, sortMoviesByPopularity } = useApi();
     const { loading, error, data } = useQuery<IPersonData>(GET_PERSON, {
