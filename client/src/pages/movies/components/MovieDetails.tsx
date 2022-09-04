@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { MdOutlinePlayCircleOutline } from 'react-icons/md';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { GET_MOVIE } from '../queries';
 import { IMovie } from '../types';
 import MoviesList from './MoviesList';
@@ -9,8 +11,6 @@ import Casts from './Casts';
 import Loading from '../../../components/Loading';
 import ErrorMessage from '../../../components/ErrorMessage';
 import { useApi } from '../../../hooks/useApi';
-import { MdOutlinePlayCircleOutline } from 'react-icons/md';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 interface IMovieData {
   movie: IMovie;
@@ -60,8 +60,8 @@ const MovieDetails = () => {
     <div className='movie-details'>
       <div className='movie-details__poster'>
         <LazyLoadImage
-          width={'100%'}
-          height={'auto'}
+          width='100%'
+          height='auto'
           alt={title}
           src={getFullImgPath(backdrop_path)}
           effect='blur'
