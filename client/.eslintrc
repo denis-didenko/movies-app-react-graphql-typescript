@@ -23,6 +23,6 @@
     "@typescript-eslint/no-unused-vars": ["error"]
   },
   "parserOptions": {
-    "project": "./client/tsconfig.json"
+    "project": "./tsconfig.json"
   }
 }
