@@ -18,7 +18,7 @@ const PersonDetails = () => {
   if (error) return <ErrorMessage error={error} />;
   if (!data) return null;
 
-  const { name, birthday, biography, profile_path, place_of_birth, cast } = data.person;
+  const { name, birthday, biography, profile_path, place_of_birth, cast } = data.person; // eslint-disable-line
 
   const birthdayDate = new Intl.DateTimeFormat('uk-UA', {
     year: 'numeric',

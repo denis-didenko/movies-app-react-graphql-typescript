@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Episode: FC<IProps> = ({ episode }) => {
-  const { name, overview, episode_number, videos } = episode;
+  const { name, overview, episode_number, videos } = episode; // eslint-disable-line
 
   return (
     <div className='episode'>
