@@ -21,29 +21,27 @@ const SeasonsTable: FC<IProps> = ({ seasons }) => {
           </tr>
         </thead>
         <tbody>
-          {seasons.map(({ id, name, poster_path, episodes }) =>
-            name === 'Спеціальне' ? null : (
-              <tr key={id}>
-                <td>
-                  <LazyLoadImage
-                    width='100%'
-                    height='auto'
-                    alt={name}
-                    src={getFullImgPath(poster_path)}
-                    effect='blur'
-                  />
-                  <div className='season-name'>{name}</div>
-                </td>
-                <td>
-                  <div className='episodes-list'>
-                    {episodes.map(episode => (
-                      <Episode key={episode.id} episode={episode} />
-                    ))}
-                  </div>
-                </td>
-              </tr>
-            ),
-          )}
+          {seasons.map(({ id, name, poster_path, episodes }) => (
+            <tr key={id}>
+              <td>
+                <LazyLoadImage
+                  width='100%'
+                  height='auto'
+                  alt={name}
+                  src={getFullImgPath(poster_path)}
+                  effect='blur'
+                />
+                <div className='season-name'>{name}</div>
+              </td>
+              <td>
+                <div className='episodes-list'>
+                  {episodes.map(episode => (
+                    <Episode key={episode.id} episode={episode} />
+                  ))}
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

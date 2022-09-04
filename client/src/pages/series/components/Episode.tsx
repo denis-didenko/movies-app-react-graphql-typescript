@@ -13,7 +13,7 @@ const Episode: FC<IProps> = ({ episode }) => {
       <div className='episode-details'>
         {videos.length > 0 ? (
           <div className='episode-name'>
-            <span>{episode_number}</span>
+            <span>{episode_number}. </span>
             <a
               href={`https://www.youtube.com/watch?v=${videos[0].key}`}
               target='_blank'
@@ -24,8 +24,7 @@ const Episode: FC<IProps> = ({ episode }) => {
           </div>
         ) : (
           <div className='episode-name'>
-            {episode_number}
-            {name}
+            {episode_number}. {name}
           </div>
         )}
 
