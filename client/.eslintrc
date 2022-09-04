@@ -1,9 +1,28 @@
 {
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["react", "react-hooks", "@typescript-eslint"],
-    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-    "rules": {
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": ["error"]
-    }
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "linebreak-style": "off",
+    "jsx-quotes": [2, "prefer-single"],
+    "comma-dangle": [2, "always-multiline"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
+  },
+  "parserOptions": {
+    "project": "./client/tsconfig.json"
+  }
 }

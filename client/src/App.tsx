@@ -11,27 +11,25 @@ import FavoritesPage from './pages/favorites';
 
 import './App.css';
 
-const App = () => {
-    return (
-        <Routes>
-            <Route element={<Layout />}>
-                <Route path='/' element={<HomePage />} />
-                <Route path='movies'>
-                    <Route index element={<MoviesPage />} />
-                    <Route path=':id' element={<MovieDetails />} />
-                </Route>
-                <Route path='series'>
-                    <Route index element={<SeriesPage />} />
-                    <Route path=':id' element={<SeriesDetails />} />
-                </Route>
-                <Route path='person/:id' element={<PersonDetails />} />
-                <Route path='search' element={<SearchPage />} />
-                <Route path='favorites' element={<FavoritesPage />} />
-            </Route>
+const App = () => (
+  <Routes>
+    <Route element={<Layout />}>
+      <Route path='/' element={<HomePage />} />
+      <Route path='movies'>
+        <Route index element={<MoviesPage />} />
+        <Route path=':id' element={<MovieDetails />} />
+      </Route>
+      <Route path='series'>
+        <Route index element={<SeriesPage />} />
+        <Route path=':id' element={<SeriesDetails />} />
+      </Route>
+      <Route path='person/:id' element={<PersonDetails />} />
+      <Route path='search' element={<SearchPage />} />
+      <Route path='favorites' element={<FavoritesPage />} />
+    </Route>
 
-            <Route path='*' element={<Navigate to='/' />} />
-        </Routes>
-    );
-};
+    <Route path='*' element={<Navigate to='/' />} />
+  </Routes>
+);
 
 export default App;

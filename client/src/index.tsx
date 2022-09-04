@@ -8,9 +8,9 @@ const appEl = document.getElementById('app') as HTMLDivElement;
 const root = ReactDOM.createRoot(appEl);
 
 root.render(
-    <ApolloProvider client={client}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </ApolloProvider>
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ApolloProvider>,
 );
