@@ -1,19 +1,19 @@
 .pagination {
-    margin: 30px 0;
-    display: flex;
-    justify-content: center;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
 }
 
 .page-item {
-    line-height: 1;
-    padding: 4px 8px;
-    margin: 2px;
-    cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  margin: 2px;
+  cursor: pointer;
 }
 
 .page-item.is-active,
 .page-item:hover {
-    background-color: var(--primary);
-    border-radius: 50px;
-    color: var(--text-color);
+  background-color: var(--primary);
+  border-radius: 50px;
+  color: var(--text-color);
 }

@@ -8,7 +8,11 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
     "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-one-expression-per-line": "off",
     "react/function-component-definition": [
       "error",
       {
@@ -16,11 +20,30 @@
         "unnamedComponents": "arrow-function"
       }
     ],
+    "function-paren-newline": "off",
+    "implicit-arrow-linebreak": "off",
     "linebreak-style": "off",
+    "arrow-parens": ["error", "as-needed"],
     "jsx-quotes": [2, "prefer-single"],
     "comma-dangle": [2, "always-multiline"],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectPattern": { "multiline": true }
+      }
+    ],
+    "operator-linebreak": ["error", "after"],
+    "no-underscore-dangle": "off",
+    "no-nested-ternary": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      {
+        "selector": "parameter",
+        "format": ["snake_case"]
+      }
+    ]
   },
   "parserOptions": {
     "project": "./tsconfig.json"

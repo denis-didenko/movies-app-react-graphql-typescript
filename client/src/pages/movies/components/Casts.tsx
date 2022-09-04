@@ -6,31 +6,33 @@ import { ICast, ICrew } from '../types';
 import { ICrewAggregate, ICreator } from '../../series/types';
 
 interface IProps {
-    casts: ICast[] | ICrew[] | ICrewAggregate[] | ICreator[];
+  casts: ICast[] | ICrew[] | ICrewAggregate[] | ICreator[];
 }
 
 const Casts: FC<IProps> = ({ casts }) => {
-    const { getFullImgPath } = useApi();
+  const { getFullImgPath } = useApi();
 
-    if (!casts.length) return <p>Не знайдено</p>;
+  if (!casts.length) return <p>Не знайдено</p>;
 
-    return (
-        <div className='cast-list'>
-            {casts.map(({ id, name, profile_path }) => {
-                //if (!profile_path) return null;
+  return (
+    <div className='cast-list'>
+      {casts.map(({ id, name, profile_path }) => (
+        <Link to={`/person/${id}`} key={id} className='cast-list__item'>
+          <div className='cast-list__item-img'>
+            <LazyLoadImage
+              width='100%'
+              height='100%'
+              alt={name}
+              src={getFullImgPath(profile_path)}
+              effect='blur'
+            />
+          </div>
 
-                return (
-                    <Link to={`/person/${id}`} key={id} className='cast-list__item'>
-                        <div className='cast-list__item-img'>
-                            <LazyLoadImage width={'100%'} height={'100%'} alt={name} src={getFullImgPath(profile_path)} effect='blur' />
-                        </div>
-
-                        <p>{name}</p>
-                    </Link>
-                );
-            })}
-        </div>
-    );
+          <p>{name}</p>
+        </Link>
+      ))}
+    </div>
+  );
 };
 
 export default Casts;

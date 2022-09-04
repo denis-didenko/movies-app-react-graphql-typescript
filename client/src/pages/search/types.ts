@@ -1,28 +1,28 @@
-import { IMoviesData, IMovie, IDataResponse } from './../movies/types';
-import { ISeriesData, ISeries } from './../series/types';
-import { IPersonsData, IPerson } from './../person/types';
+import { IMoviesData, IMovie, IDataResponse } from '../movies/types';
+import { ISeriesData, ISeries } from '../series/types';
+import { IPersonsData, IPerson } from '../person/types';
 
 export interface ISearchQuery {
-    name: string;
-    query: string;
+  name: string;
+  query: string;
 }
 
 export interface ISearchMoviesData {
-    searchMovies: IMoviesData;
+  searchMovies: IMoviesData;
 }
 
 export interface ISearchSeriesData {
-    searchSeries: ISeriesData;
+  searchSeries: ISeriesData;
 }
 
 export interface ISearchPersonsData {
-    searchPerson: IPersonsData;
+  searchPerson: IPersonsData;
 }
 
 export interface ISearchMultiData {
-    searchMulti: IMultiData;
+  searchMulti: IMultiData;
 }
 
 export interface IMultiData extends IDataResponse {
-    results: IMovie[] | ISeries[] | IPerson[];
+  results: IMovie[] | ISeries[] | IPerson[];
 }
