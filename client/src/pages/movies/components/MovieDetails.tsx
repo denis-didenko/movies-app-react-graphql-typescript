@@ -27,6 +27,7 @@ const MovieDetails = () => {
   if (error) return <ErrorMessage error={error} />;
   if (!data) return null;
 
+  /* eslint-disable */
   const {
     title,
     backdrop_path,
@@ -39,6 +40,7 @@ const MovieDetails = () => {
     recommendations,
     videos,
   } = data.movie;
+  /* eslint-enable */
 
   const releaseDateUA = new Intl.DateTimeFormat('uk-UA', {
     year: 'numeric',

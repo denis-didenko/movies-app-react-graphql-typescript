@@ -29,6 +29,7 @@ const SeriesDetails = () => {
   if (error) return <ErrorMessage error={error} />;
   if (!data) return null;
 
+  /* eslint-disable */
   const {
     name,
     backdrop_path,
@@ -45,6 +46,7 @@ const SeriesDetails = () => {
     created_by,
     networks,
   } = data.series;
+  /* eslint-enable */
 
   const year = first_air_date.split('-')[0];
   const genresList = genres.map(genre => genre.name);

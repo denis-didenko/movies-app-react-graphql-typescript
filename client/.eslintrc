@@ -36,14 +36,7 @@
     "no-underscore-dangle": "off",
     "no-nested-ternary": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
-    "@typescript-eslint/naming-convention": [
-      "warn",
-      {
-        "selector": "parameter",
-        "format": ["snake_case"]
-      }
-    ]
+    "@typescript-eslint/no-unused-vars": ["error"]
   },
   "parserOptions": {
     "project": "./tsconfig.json"
