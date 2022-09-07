@@ -3,6 +3,8 @@ import FormSelect from '../../../../components/Form/select';
 
 const companies = [
   { id: '', value: 'Всi' },
+  { id: '114676', value: 'Start' },
+  { id: '42877', value: 'Yellow, Black & White' },
   { id: '420', value: 'Marvel Studios' },
   { id: '7505', value: 'Marvel Entertainment' },
   { id: '5374', value: 'Marv Films' },
