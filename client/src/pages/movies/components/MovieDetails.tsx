@@ -16,10 +16,14 @@ interface IMovieData {
   movie: IMovie;
 }
 
+interface IMovieVariables {
+  id: string;
+}
+
 const MovieDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const { getFullImgPath, getUniqueCrew, sortMoviesByReleaseDate } = useApi();
-  const { loading, error, data } = useQuery<IMovieData>(GET_MOVIE, {
+  const { loading, error, data } = useQuery<IMovieData, IMovieVariables>(GET_MOVIE, {
     variables: { id },
   });
 
@@ -30,6 +34,7 @@ const MovieDetails = () => {
   /* eslint-disable */
   const {
     title,
+    original_title,
     backdrop_path,
     vote_average,
     release_date,
@@ -69,7 +74,10 @@ const MovieDetails = () => {
           effect='blur'
         />
       </div>
-      <h1 className='movie-details__title'>{title}</h1>
+      <h1 className='movie-details__title'>
+        {title}
+        <span className='movie-details__original_name'>{original_title}</span>
+      </h1>
       <p className='movie-details__rating'>TMDB: {vote_average.toFixed(1)}</p>
       <p className='movie-details__release-date'>
         {' '}

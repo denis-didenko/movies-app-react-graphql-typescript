@@ -11,7 +11,7 @@ interface IOption {
 }
 
 const FormSelect = <Opt extends IOption>({ options, onChangeHandler }: IProps<Opt>) => {
-  const changeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = event.target.selectedOptions[0];
     const id = selectedOption.dataset.optionId as string;
 
@@ -20,7 +20,7 @@ const FormSelect = <Opt extends IOption>({ options, onChangeHandler }: IProps<Op
 
   return (
     <div className='form-select'>
-      <select onChange={changeSelectHandler}>
+      <select onChange={handleChange}>
         {options?.map(({ id, value }) => (
           <option key={id} value={value} data-option-id={id}>
             {value}

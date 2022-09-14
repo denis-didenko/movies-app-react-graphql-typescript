@@ -114,6 +114,7 @@
 }
 
 .movie-details__original_name {
+  display: block;
   font-size: small;
   font-weight: normal;
 }

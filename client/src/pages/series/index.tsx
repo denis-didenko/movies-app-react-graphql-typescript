@@ -17,6 +17,17 @@ interface IDiscoverTvData {
   discoverSeries: ISeriesData;
 }
 
+interface IDiscoverTvVariables {
+  input: {
+    genreId: string;
+    year: string;
+    language: string;
+    sortBy: string;
+    network: string;
+    page: number;
+  };
+}
+
 interface IGenreTvData {
   genresSeries: [IGenre];
 }
@@ -30,18 +41,21 @@ const SeriesPage = () => {
   const [page, setPage] = useState(1);
 
   const { data: genresData } = useQuery<IGenreTvData>(GET_GENRES_SERIES);
-  const { loading, error, data } = useQuery<IDiscoverTvData>(GET_DISCOVER_SERIES, {
-    variables: {
-      input: {
-        genreId,
-        year,
-        language,
-        sortBy,
-        network,
-        page,
+  const { loading, error, data } = useQuery<IDiscoverTvData, IDiscoverTvVariables>(
+    GET_DISCOVER_SERIES,
+    {
+      variables: {
+        input: {
+          genreId,
+          year,
+          language,
+          sortBy,
+          network,
+          page,
+        },
       },
     },
-  });
+  );
 
   if (error) return <ErrorMessage error={error} />;
 

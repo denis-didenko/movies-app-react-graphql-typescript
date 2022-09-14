@@ -17,6 +17,18 @@ interface IDiscoverData {
   discoverMovies: IMoviesData;
 }
 
+interface IDiscoverVariables {
+  input: {
+    genreId: string;
+    year: string;
+    language: string;
+    sortBy: string;
+    company: string;
+    provider: string;
+    page: number;
+  };
+}
+
 interface IGenreData {
   genres: [IGenre];
 }
@@ -31,19 +43,22 @@ const MoviesPage = () => {
   const [page, setPage] = useState(1);
 
   const { data: genresData } = useQuery<IGenreData>(GET_GENRES);
-  const { loading, error, data } = useQuery<IDiscoverData>(GET_DISCOVER_MOVIES, {
-    variables: {
-      input: {
-        genreId,
-        year,
-        language,
-        sortBy,
-        company,
-        provider,
-        page,
+  const { loading, error, data } = useQuery<IDiscoverData, IDiscoverVariables>(
+    GET_DISCOVER_MOVIES,
+    {
+      variables: {
+        input: {
+          genreId,
+          year,
+          language,
+          sortBy,
+          company,
+          provider,
+          page,
+        },
       },
     },
-  });
+  );
 
   if (error) return <ErrorMessage error={error} />;
 

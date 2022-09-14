@@ -6,6 +6,7 @@ export const GET_MOVIE = gql`
       __typename
       id
       title
+      original_title
       overview
       release_date
       poster_path

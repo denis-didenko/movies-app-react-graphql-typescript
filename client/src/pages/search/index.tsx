@@ -12,6 +12,11 @@ import ErrorMessage from '../../components/ErrorMessage';
 import Pagination from '../../components/Pagination';
 import './search.css';
 
+interface ISearchVariables {
+  query: string;
+  page: number;
+}
+
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState<ISearchQuery>({ name: '', query: '' });
   const dataRef = useRef<ISearchMoviesData | ISearchSeriesData | ISearchPersonsData>();
@@ -20,11 +25,11 @@ const SearchPage = () => {
   const [page, setPage] = useState(1);
 
   const [searchMovies, { data: moviesData, loading: moviesLoading, error: moviesError }] =
-    useLazyQuery<ISearchMoviesData>(SEARCH_MOVIES);
+    useLazyQuery<ISearchMoviesData, ISearchVariables>(SEARCH_MOVIES);
   const [searchSeries, { data: seriesData, loading: seriesLoading, error: seriesError }] =
-    useLazyQuery<ISearchSeriesData>(SEARCH_SERIES);
+    useLazyQuery<ISearchSeriesData, ISearchVariables>(SEARCH_SERIES);
   const [searchPersons, { data: personsData, loading: personsLoading, error: personsError }] =
-    useLazyQuery<ISearchPersonsData>(SEARCH_PERSON);
+    useLazyQuery<ISearchPersonsData, ISearchVariables>(SEARCH_PERSON);
 
   const fetchQuery = searchQuery.query;
   const fetchName = searchQuery.name;

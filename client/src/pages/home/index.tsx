@@ -8,6 +8,10 @@ import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
 import './home.css';
 
+interface IHomeVariables {
+  page: number;
+}
+
 const HomePage = () => {
   const { sortMoviesByReleaseDate } = useApi();
 
@@ -15,7 +19,7 @@ const HomePage = () => {
     loading: upcomingLoading,
     error: upcomingErrorMessage,
     data: upcomingData,
-  } = useQuery<IUpcomingMoviesData>(GET_UPCOMING_MOVIES, {
+  } = useQuery<IUpcomingMoviesData, IHomeVariables>(GET_UPCOMING_MOVIES, {
     variables: {
       page: 1,
     },
@@ -25,7 +29,7 @@ const HomePage = () => {
     loading: nowPlayingLoading,
     error: nowPlayingErrorMessage,
     data: nowPlayingData,
-  } = useQuery<INowPlayingMoviesData>(GET_NOW_PLAYING_MOVIES, {
+  } = useQuery<INowPlayingMoviesData, IHomeVariables>(GET_NOW_PLAYING_MOVIES, {
     variables: {
       page: 1,
     },

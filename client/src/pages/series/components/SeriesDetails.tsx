@@ -18,10 +18,14 @@ interface ISeriesData {
   series: ISeries;
 }
 
+interface ISeriesVariables {
+  id: string;
+}
+
 const SeriesDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const { getFullImgPath, getUniqueCrewAggregate, sortSeriesByRating } = useApi();
-  const { loading, error, data } = useQuery<ISeriesData>(GET_SERIES, {
+  const { loading, error, data } = useQuery<ISeriesData, ISeriesVariables>(GET_SERIES, {
     variables: { id },
   });
 
@@ -79,7 +83,7 @@ const SeriesDetails = () => {
 
       <h1 className='movie-details__name'>
         {name}
-        <span className='movie-details__original_name'>({original_name})</span>
+        <span className='movie-details__original_name'>{original_name}</span>
       </h1>
       <p className='movie-details__rating'>
         TMDB:

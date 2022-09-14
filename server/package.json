@@ -1,22 +1,22 @@
 {
-    "name": "movies-app-react-graphql-server",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "type": "module",
-    "scripts": {
-        "start": "nodemon index.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "nodemon": "^2.0.19"
-    },
-    "dependencies": {
-        "apollo-datasource-rest": "^3.6.1",
-        "apollo-server": "^3.10.1",
-        "dotenv": "^16.0.1",
-        "graphql": "^16.5.0"
-    }
+  "name": "movies-app-react-graphql-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "apollo-datasource-rest": "^3.6.1",
+    "apollo-server": "^3.10.1",
+    "dotenv": "^16.0.1",
+    "graphql": "^16.5.0"
+  }
 }

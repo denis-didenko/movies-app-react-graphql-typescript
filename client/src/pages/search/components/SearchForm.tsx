@@ -15,7 +15,7 @@ const SearchForm: FC<IProps> = ({ setSearchQuery }) => {
   const [querySeries, setQuerySeries] = useState<ISearchQuery>(defaultQueryState);
   const [queryPerson, setQueryPerson] = useState<ISearchQuery>(defaultQueryState);
 
-  const submitFilterHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitFilter = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (queryMovies.query.length) {
@@ -32,7 +32,7 @@ const SearchForm: FC<IProps> = ({ setSearchQuery }) => {
   };
 
   return (
-    <form action='/search' className='search-form' onSubmit={submitFilterHandler}>
+    <form action='/search' className='search-form' onSubmit={handleSubmitFilter}>
       <div className='form-item'>
         <div className='form-label'>Фiльми:</div>
         <div className='form-field'>

@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { GET_PERSON } from './queries';
-import { IPersonData } from './types';
+import { IPersonData, IPersonVariables } from './types';
 import { useApi } from '../../hooks/useApi';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
@@ -10,9 +10,11 @@ import MoviesList from '../movies/components/MoviesList';
 import './person.css';
 
 const PersonDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams() as { id: string };
   const { getFullImgPath, sortMoviesByReleaseDate, sortMoviesByPopularity } = useApi();
-  const { loading, error, data } = useQuery<IPersonData>(GET_PERSON, { variables: { id } });
+  const { loading, error, data } = useQuery<IPersonData, IPersonVariables>(GET_PERSON, {
+    variables: { id },
+  });
 
   if (loading) return <Loading />;
   if (error) return <ErrorMessage error={error} />;

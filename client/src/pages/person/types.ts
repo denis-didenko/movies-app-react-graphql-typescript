@@ -15,6 +15,10 @@ export interface IPersonData {
   person: IPerson;
 }
 
+export interface IPersonVariables {
+  id: string;
+}
+
 export interface IPersonsData extends IDataResponse {
   results: IPerson[];
 }

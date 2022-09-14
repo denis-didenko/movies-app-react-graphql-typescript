@@ -13,6 +13,7 @@ export const MovieTypes = `
     type Movie {
         id: ID!
         title: String
+        original_title: String
         name: String
         overview: String
         release_date: String

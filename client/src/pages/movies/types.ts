@@ -4,6 +4,7 @@ export interface IMovie {
   __typename: string;
   id: number;
   title: string;
+  original_title: string;
   name: string;
   overview: string;
   release_date: string;
