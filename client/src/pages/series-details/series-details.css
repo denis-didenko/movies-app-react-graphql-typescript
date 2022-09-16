@@ -1,0 +1,61 @@
+.seasons-table {
+  margin-bottom: 40px;
+}
+
+.seasons-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: var(--radius);
+
+  border: 1px solid var(--border-color-muted);
+}
+
+.seasons-table table thead {
+  background: var(--primary);
+}
+
+.seasons-table table thead th {
+  font-size: medium;
+  font-weight: normal;
+  text-align: center;
+  padding: 10px;
+  border-left: 1px solid var(--border-color-muted);
+}
+
+.seasons-table table thead th:first-child {
+  border-left: none;
+}
+
+.seasons-table table td {
+  font-size: small;
+  padding: 10px;
+  border: 1px solid var(--border-color-muted);
+}
+
+.seasons-table table tr td:first-child {
+  width: 40%;
+}
+
+.season-name {
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+}
+
+.episodes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 5px 10px;
+}
+
+.episode-name {
+  color: var(--accent);
+}
+
+@media (min-width: 768px) {
+  .episodes-list {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}

@@ -1,5 +1,6 @@
-import { ICrewAggregate, ISeries } from '../pages/series/types';
-import { ICrew, IMovie } from '../pages/movies/types';
+import { ICrew, ICrewAggregate } from '../features/credits/types';
+import { IMovie } from '../features/movies/types';
+import { ISeries } from '../features/series/types';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 

@@ -235,6 +235,24 @@ nav ul li a.active {
   color: var(--danger);
 }
 
+.add-to-watchlist-btn {
+  background: transparent;
+  border-color: var(--border-color-muted);
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.add-to-watchlist-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.add-to-watchlist-btn.is-active {
+  color: var(--accent);
+  border-color: var(--accent);
+  opacity: 0.2;
+}
+
 @media (min-width: 768px) {
   :root {
     --font-size: 16px;

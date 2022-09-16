@@ -1,0 +1,12 @@
+.filter-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 10px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .filter-form {
+    grid-gap: 20px;
+  }
+}

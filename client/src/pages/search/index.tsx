@@ -1,12 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { ApolloError, useLazyQuery } from '@apollo/client';
 import { useDebounce } from 'use-debounce';
-import { SEARCH_MOVIES, SEARCH_SERIES, SEARCH_PERSON } from './queries';
-import { ISearchMoviesData, ISearchSeriesData, ISearchPersonsData, ISearchQuery } from './types';
-import SearchForm from './components/SearchForm';
-import MoviesList from '../movies/components/MoviesList';
-import SeriesList from '../series/components/SeriesList';
-import PersonList from '../person/components/PersonList';
+import { SEARCH_MOVIES, SEARCH_SERIES, SEARCH_PERSON } from '../../features/search/queries';
+import {
+  ISearchMoviesData,
+  ISearchSeriesData,
+  ISearchPersonsData,
+  ISearchQuery,
+} from '../../features/search/types';
+import SearchForm from '../../features/search/components/SearchForm';
+import MoviesList from '../../features/movies';
+import SeriesList from '../../features/series';
+import PersonList from '../../features/person';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
 import Pagination from '../../components/Pagination';

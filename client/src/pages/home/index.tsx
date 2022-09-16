@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client';
-import { GET_UPCOMING_MOVIES, GET_NOW_PLAYING_MOVIES } from './queries';
-import { IUpcomingMoviesData, INowPlayingMoviesData } from './types';
+import { GET_UPCOMING_MOVIES, GET_NOW_PLAYING_MOVIES } from '../../features/movies/queries';
+import { IUpcomingMoviesData, INowPlayingMoviesData } from '../../features/movies/types';
 import { useApi } from '../../hooks/useApi';
-import HomeSlider from './components/HomeSlider';
-import MoviesList from '../movies/components/MoviesList';
+import HomeSlider from '../../features/slider/components/HomeSlider';
+import MoviesList from '../../features/movies';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
 import './home.css';

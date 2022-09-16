@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import MoviesList from '../movies/components/MoviesList';
-import SeriesList from '../series/components/SeriesList';
-import { IMovie } from '../movies/types';
-import { ISeries } from '../series/types';
-import { TFavoriteItems } from './types';
+import MoviesList from '../../features/movies';
+import SeriesList from '../../features/series';
+import { IMovie } from '../../features/movies/types';
+import { ISeries } from '../../features/series/types';
+import { TFavoriteItems } from '../../features/favorites/types';
+import './favorites.css';
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState<TFavoriteItems>([]);

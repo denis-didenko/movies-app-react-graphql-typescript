@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { GET_PERSON } from './queries';
-import { IPersonData, IPersonVariables } from './types';
+import { GET_PERSON } from '../../features/person/queries';
+import { IPersonData, IPersonVariables } from '../../features/person/types';
 import { useApi } from '../../hooks/useApi';
 import Loading from '../../components/Loading';
 import ErrorMessage from '../../components/ErrorMessage';
-import MoviesList from '../movies/components/MoviesList';
+import MoviesList from '../../features/movies';
 import './person.css';
 
 const PersonDetails = () => {
