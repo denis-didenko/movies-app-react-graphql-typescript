@@ -1,10 +1,11 @@
-import { FC } from 'react';
 import { useQuery } from '@apollo/client';
+import { FC } from 'react';
+
 import FormSelect from '../../../components/Form/select';
-import { IGenreMoviesData, IGenreSeriesData } from '../types';
-import { GET_GENRES_MOVIES, GET_GENRES_SERIES } from '../queries';
-import { useFilter } from '../../filter-form/useFilter';
 import { FilterType } from '../../filter-form/types';
+import { useFilter } from '../../filter-form/useFilter';
+import { GET_GENRES_MOVIES, GET_GENRES_SERIES } from '../queries';
+import { IGenreMoviesData, IGenreSeriesData } from '../types';
 
 interface IProps {
   filterType: FilterType;

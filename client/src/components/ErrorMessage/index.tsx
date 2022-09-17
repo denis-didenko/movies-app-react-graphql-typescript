@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { ApolloError } from '@apollo/client';
+import { FC } from 'react';
 
 interface IProps {
   error: ApolloError;

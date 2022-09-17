@@ -1,7 +1,7 @@
-import { IMoviesData, IMovie } from '../movies/types';
-import { ISeriesData, ISeries } from '../series/types';
-import { IPersonsData, IPerson } from '../person/types';
 import { IDataResponse } from '../../types/data-response';
+import { IMoviesData, IMovie } from '../movies/types';
+import { IPersonsData, IPerson } from '../person/types';
+import { ISeriesData, ISeries } from '../series/types';
 
 export interface ISearchQuery {
   name: string;

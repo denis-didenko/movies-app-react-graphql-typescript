@@ -1,13 +1,15 @@
 import { FC } from 'react';
+
 import Genres from '../genres/components/GenresDropdown';
-import ProductionCompanies from '../production-companies/components/ProductionCompaniesDropdown';
-import Countries from './components/Countries';
 import Networks from '../networks/components/NetworksDropdown';
+import ProductionCompanies from '../production-companies/components/ProductionCompaniesDropdown';
+
+import Countries from './components/Countries';
 import Providers from './components/Providers';
 import Sort from './components/Sort';
 import Years from './components/Years';
 import { FilterType } from './types';
-import './filter-form.css';
+import './filter-form.css'; // eslint-disable-line
 
 interface IProps {
   filterType: FilterType;

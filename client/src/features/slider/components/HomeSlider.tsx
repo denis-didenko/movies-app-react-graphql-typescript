@@ -1,12 +1,14 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { useApi } from '../../../hooks/useApi';
 import { IMovie } from '../../movies/types';
-import 'swiper/css';
-import 'swiper/css/pagination';
+
+import 'swiper/css'; // eslint-disable-line
+import 'swiper/css/pagination'; // eslint-disable-line
 
 interface IProps {
   slides: IMovie[] | undefined;

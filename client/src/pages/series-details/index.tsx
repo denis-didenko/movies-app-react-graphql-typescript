@@ -1,17 +1,19 @@
-import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { MdOutlinePlayCircleOutline } from 'react-icons/md';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useParams } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { useApi } from '../../hooks/useApi';
+
+import ErrorMessage from '../../components/ErrorMessage';
+import Loading from '../../components/Loading';
+import Casts from '../../features/credits/components/Casts';
+import AddToFavoriteBtn from '../../features/favorites/components/AddToFavoriteBtn';
+import SeriesList from '../../features/series';
+import Seasons from '../../features/series/components/Seasons';
 import { GET_SERIES } from '../../features/series/queries';
 import { ISeries } from '../../features/series/types';
-import SeriesList from '../../features/series';
-import AddToFavoriteBtn from '../../features/favorites/components/AddToFavoriteBtn';
-import Loading from '../../components/Loading';
-import ErrorMessage from '../../components/ErrorMessage';
-import Casts from '../../features/credits/components/Casts';
-import Seasons from '../../features/series/components/Seasons';
+import { useApi } from '../../hooks/useApi';
+
 import './series-details.css';
 
 interface ISeriesData {

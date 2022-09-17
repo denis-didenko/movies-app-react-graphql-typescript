@@ -1,6 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
 import { ApolloError, useLazyQuery } from '@apollo/client';
+import { useState, useEffect, useRef } from 'react';
 import { useDebounce } from 'use-debounce';
+
+import ErrorMessage from '../../components/ErrorMessage';
+import Loading from '../../components/Loading';
+import Pagination from '../../components/Pagination';
+import MoviesList from '../../features/movies';
+import PersonList from '../../features/person';
+import SearchForm from '../../features/search/components/SearchForm';
 import { SEARCH_MOVIES, SEARCH_SERIES, SEARCH_PERSON } from '../../features/search/queries';
 import {
   ISearchMoviesData,
@@ -8,13 +15,8 @@ import {
   ISearchPersonsData,
   ISearchQuery,
 } from '../../features/search/types';
-import SearchForm from '../../features/search/components/SearchForm';
-import MoviesList from '../../features/movies';
 import SeriesList from '../../features/series';
-import PersonList from '../../features/person';
-import Loading from '../../components/Loading';
-import ErrorMessage from '../../components/ErrorMessage';
-import Pagination from '../../components/Pagination';
+
 import './search.css';
 
 interface ISearchVariables {

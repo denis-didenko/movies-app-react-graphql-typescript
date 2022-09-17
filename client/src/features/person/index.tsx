@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { IPerson } from './types';
+
 import PersonItem from './components/PersonItem';
-// import '../../movies/movies.css';
+import { IPerson } from './types';
 
 interface IProps {
   persons: IPerson[] | undefined;

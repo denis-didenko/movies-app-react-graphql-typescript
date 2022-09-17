@@ -1,5 +1,5 @@
-import { useFilter } from '../useFilter';
 import FormSelect from '../../../components/Form/select';
+import { useFilter } from '../useFilter';
 
 const sortTypes = [
   { id: 'popularity.desc', value: 'Популярність ↓' },

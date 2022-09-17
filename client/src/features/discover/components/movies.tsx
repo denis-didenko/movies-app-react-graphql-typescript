@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import MoviesList from '../../movies';
+import { useState } from 'react';
+
 import ErrorMessage from '../../../components/ErrorMessage';
 import Loading from '../../../components/Loading';
 import Pagination from '../../../components/Pagination';
+import { useFilter } from '../../filter-form/useFilter';
+import MoviesList from '../../movies';
 import { GET_DISCOVER_MOVIES } from '../queries';
 import { IDiscoverData, IDiscoverVariables } from '../types';
-import { useFilter } from '../../filter-form/useFilter';
 
 const MoviesDiscover = () => {
   const [page, setPage] = useState(1);

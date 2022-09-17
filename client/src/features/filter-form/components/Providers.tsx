@@ -1,5 +1,5 @@
-import { useFilter } from '../useFilter';
 import FormSelect from '../../../components/Form/select';
+import { useFilter } from '../useFilter';
 
 const providers = [
   { id: '', value: 'Всi' },

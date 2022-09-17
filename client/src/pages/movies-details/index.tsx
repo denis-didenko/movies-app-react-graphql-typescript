@@ -1,16 +1,18 @@
-import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { MdOutlinePlayCircleOutline } from 'react-icons/md';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useParams } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+import ErrorMessage from '../../components/ErrorMessage';
+import Loading from '../../components/Loading';
+import Casts from '../../features/credits/components/Casts';
+import AddToFavoriteBtn from '../../features/favorites/components/AddToFavoriteBtn';
+import MoviesList from '../../features/movies';
 import { GET_MOVIE } from '../../features/movies/queries';
 import { IMovie } from '../../features/movies/types';
-import MoviesList from '../../features/movies';
-import AddToFavoriteBtn from '../../features/favorites/components/AddToFavoriteBtn';
-import Casts from '../../features/credits/components/Casts';
-import Loading from '../../components/Loading';
-import ErrorMessage from '../../components/ErrorMessage';
 import { useApi } from '../../hooks/useApi';
+
 import './movies-details.css';
 
 interface IMovieData {

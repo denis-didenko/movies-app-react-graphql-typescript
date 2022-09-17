@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import { useApi } from '../../../hooks/useApi';
 import { ISeason } from '../types';
+
 import Episode from './Episode';
 
 interface IProps {

@@ -1,5 +1,5 @@
-import FilterForm from '../../features/filter-form';
 import MoviesDiscover from '../../features/discover/components/movies';
+import FilterForm from '../../features/filter-form';
 
 const MoviesPage = () => (
   <>

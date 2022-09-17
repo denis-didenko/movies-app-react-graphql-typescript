@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import { MdHome, MdSearch, MdFavoriteBorder } from 'react-icons/md';
 import { BiCameraMovie } from 'react-icons/bi';
+import { MdHome, MdSearch, MdFavoriteBorder } from 'react-icons/md';
 import { TbMovie } from 'react-icons/tb';
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => (
   <nav className='nav'>

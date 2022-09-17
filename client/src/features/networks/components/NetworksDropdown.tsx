@@ -1,5 +1,5 @@
-import { useFilter } from '../../filter-form/useFilter';
 import FormSelect from '../../../components/Form/select';
+import { useFilter } from '../../filter-form/useFilter';
 
 const networks = [
   { id: '', value: 'Всi' },

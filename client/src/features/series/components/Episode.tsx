@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { IEpisode } from '../types';
 
 interface IProps {

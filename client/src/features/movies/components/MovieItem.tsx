@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { IMovie } from '../types';
+import { Link } from 'react-router-dom';
+
 import { useApi } from '../../../hooks/useApi';
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import { IMovie } from '../types';
+
+import 'react-lazy-load-image-component/src/effects/blur.css'; // eslint-disable-line
 
 const MovieItem: FC<IMovie> = ({ poster_path, title, name, id, vote_average }) => {
   const { getFullImgPath } = useApi();

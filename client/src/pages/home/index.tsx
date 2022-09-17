@@ -1,11 +1,13 @@
 import { useQuery } from '@apollo/client';
+
+import ErrorMessage from '../../components/ErrorMessage';
+import Loading from '../../components/Loading';
+import MoviesList from '../../features/movies';
 import { GET_UPCOMING_MOVIES, GET_NOW_PLAYING_MOVIES } from '../../features/movies/queries';
 import { IUpcomingMoviesData, INowPlayingMoviesData } from '../../features/movies/types';
-import { useApi } from '../../hooks/useApi';
 import HomeSlider from '../../features/slider/components/HomeSlider';
-import MoviesList from '../../features/movies';
-import Loading from '../../components/Loading';
-import ErrorMessage from '../../components/ErrorMessage';
+import { useApi } from '../../hooks/useApi';
+
 import './home.css';
 
 interface IHomeVariables {

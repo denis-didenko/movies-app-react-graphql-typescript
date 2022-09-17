@@ -1,7 +1,9 @@
 import { FC } from 'react';
-import { IMovie } from './types';
+
 import MovieItem from './components/MovieItem';
-import './movies.css';
+import { IMovie } from './types'; // eslint-disable-line
+
+import './movies.css'; // eslint-disable-line
 
 interface IProps {
   movies: IMovie[] | undefined;

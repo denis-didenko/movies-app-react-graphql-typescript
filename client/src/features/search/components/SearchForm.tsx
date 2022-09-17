@@ -1,4 +1,5 @@
-import { FC, useState } from 'react';
+import { FC, useState, FormEvent } from 'react';
+
 import { ISearchQuery } from '../types';
 
 interface IProps {
@@ -15,7 +16,7 @@ const SearchForm: FC<IProps> = ({ setSearchQuery }) => {
   const [querySeries, setQuerySeries] = useState<ISearchQuery>(defaultQueryState);
   const [queryPerson, setQueryPerson] = useState<ISearchQuery>(defaultQueryState);
 
-  const handleSubmitFilter = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitFilter = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (queryMovies.query.length) {

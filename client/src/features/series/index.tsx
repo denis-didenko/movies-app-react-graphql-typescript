@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { ISeries } from './types';
+
 import SeriesItem from './components/SeriesItem';
-// import '../../movies/movies.css';
+import { ISeries } from './types';
 
 interface IProps {
   series: ISeries[] | undefined;

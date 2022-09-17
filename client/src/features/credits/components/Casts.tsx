@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
+
 import { useApi } from '../../../hooks/useApi';
-import { ICast, ICrew, ICrewAggregate } from '../types';
 import { ICreator } from '../../series/types';
-import '../credits.css';
+import { ICast, ICrew, ICrewAggregate } from '../types';
+import '../credits.css'; // eslint-disable-line
 
 interface IProps {
   casts: ICast[] | ICrew[] | ICrewAggregate[] | ICreator[];

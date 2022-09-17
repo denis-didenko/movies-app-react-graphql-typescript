@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, ChangeEvent } from 'react';
 
 interface IProps<T> {
   options: T[] | undefined;
@@ -11,7 +11,7 @@ interface IOption {
 }
 
 const FormSelect = <Opt extends IOption>({ options, onChangeHandler }: IProps<Opt>) => {
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = event.target.selectedOptions[0];
     const id = selectedOption.dataset.optionId as string;
 

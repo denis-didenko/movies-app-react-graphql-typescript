@@ -1,15 +1,15 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
+
 import Layout from './components/Layout';
+import FavoritesPage from './pages/favorites';
 import HomePage from './pages/home';
 import MoviesPage from './pages/movies';
 import MovieDetails from './pages/movies-details';
-import SeriesPage from './pages/series/index';
-import SeriesDetails from './pages/series-details';
 import PersonDetails from './pages/person';
 import SearchPage from './pages/search';
-import FavoritesPage from './pages/favorites';
-
-import './App.css';
+import SeriesDetails from './pages/series-details';
+import SeriesPage from './pages/series/index';
+import './App.css'; // eslint-disable-line
 
 const App = () => (
   <Routes>

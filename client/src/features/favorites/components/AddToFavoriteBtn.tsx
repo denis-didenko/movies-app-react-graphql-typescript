@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { MdFavoriteBorder, MdOutlineFavorite } from 'react-icons/md';
+
 import { TFavoriteItem, TFavoriteItems } from '../types';
 
 interface IProps {
