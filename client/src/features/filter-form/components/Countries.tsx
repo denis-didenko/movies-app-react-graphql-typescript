@@ -1,5 +1,5 @@
 import FormSelect from '../../../components/Form/select';
-import { useFilter } from '../useFilter';
+import { useFilterSetState } from '../useFilter';
 
 const countries = [
   { id: '', value: 'Всi' },
@@ -24,7 +24,7 @@ const countries = [
 ];
 
 const Countries = () => {
-  const { setLanguage } = useFilter();
+  const { setLanguage } = useFilterSetState();
 
   return <FormSelect options={countries} onChangeHandler={setLanguage} />;
 };

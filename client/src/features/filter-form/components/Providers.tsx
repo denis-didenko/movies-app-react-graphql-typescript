@@ -1,5 +1,5 @@
 import FormSelect from '../../../components/Form/select';
-import { useFilter } from '../useFilter';
+import { useFilterSetState } from '../useFilter';
 
 const providers = [
   { id: '', value: 'Всi' },
@@ -8,7 +8,7 @@ const providers = [
 ];
 
 const Providers = () => {
-  const { setProvider } = useFilter();
+  const { setProvider } = useFilterSetState();
 
   return <FormSelect options={providers} onChangeHandler={setProvider} />;
 };

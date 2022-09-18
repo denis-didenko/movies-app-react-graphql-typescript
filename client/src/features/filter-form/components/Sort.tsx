@@ -1,5 +1,5 @@
 import FormSelect from '../../../components/Form/select';
-import { useFilter } from '../useFilter';
+import { useFilterSetState } from '../useFilter';
 
 const sortTypes = [
   { id: 'popularity.desc', value: 'Популярність ↓' },
@@ -13,7 +13,7 @@ const sortTypes = [
 ];
 
 const Sort = () => {
-  const { setSortBy } = useFilter();
+  const { setSortBy } = useFilterSetState();
 
   return <FormSelect options={sortTypes} onChangeHandler={setSortBy} />;
 };

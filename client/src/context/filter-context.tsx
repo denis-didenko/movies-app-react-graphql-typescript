@@ -1,23 +1,30 @@
 import { createContext, useState, useMemo, ReactNode } from 'react';
 
-interface FilterContextProps {
+interface FilterStateContextProps {
   genreId: string;
-  setGenreId: (genreId: string) => void;
   year: string;
-  setYear: (year: string) => void;
   language: string;
-  setLanguage: (language: string) => void;
   sortBy: string;
-  setSortBy: (sortBy: string) => void;
   company: string;
-  setCompany: (company: string) => void;
   provider: string;
-  setProvider: (provider: string) => void;
   network: string;
+}
+interface FilterSetStateContextProps {
+  setGenreId: (genreId: string) => void;
+  setYear: (year: string) => void;
+  setLanguage: (language: string) => void;
+  setSortBy: (sortBy: string) => void;
+  setCompany: (company: string) => void;
+  setProvider: (provider: string) => void;
   setNetwork: (network: string) => void;
 }
 
-const FilterContext = createContext<FilterContextProps>({} as FilterContextProps);
+export const FilterStateContext = createContext<FilterStateContextProps>(
+  {} as FilterStateContextProps,
+);
+export const FilterSetStateContext = createContext<FilterSetStateContextProps>(
+  {} as FilterSetStateContextProps,
+);
 
 interface FilterProviderProps {
   children: ReactNode;
@@ -51,8 +58,22 @@ export const FilterContextProvider = ({ children }: FilterProviderProps) => {
     }),
     [genreId, year, language, sortBy, company, provider, network],
   );
+  const setters = useMemo(
+    () => ({
+      setGenreId,
+      setYear,
+      setLanguage,
+      setSortBy,
+      setCompany,
+      setProvider,
+      setNetwork,
+    }),
+    [],
+  );
 
-  return <FilterContext.Provider value={store}>{children}</FilterContext.Provider>;
+  return (
+    <FilterStateContext.Provider value={store}>
+      <FilterSetStateContext.Provider value={setters}>{children}</FilterSetStateContext.Provider>
+    </FilterStateContext.Provider>
+  );
 };
-
-export default FilterContext;

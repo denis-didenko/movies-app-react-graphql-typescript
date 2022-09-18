@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import FormSelect from '../../../components/Form/select';
 import { FilterType } from '../../filter-form/types';
-import { useFilter } from '../../filter-form/useFilter';
+import { useFilterSetState } from '../../filter-form/useFilter';
 import { GET_GENRES_MOVIES, GET_GENRES_SERIES } from '../queries';
 import { IGenreMoviesData, IGenreSeriesData } from '../types';
 
@@ -14,7 +14,7 @@ interface IProps {
 const Genres: FC<IProps> = ({ filterType }) => {
   const { data: genresMovies } = useQuery<IGenreMoviesData>(GET_GENRES_MOVIES);
   const { data: genresSeries } = useQuery<IGenreSeriesData>(GET_GENRES_SERIES);
-  const { setGenreId } = useFilter();
+  const { setGenreId } = useFilterSetState();
 
   const genres = filterType === 'movies' ? genresMovies?.genres : genresSeries?.genresSeries;
 
@@ -27,4 +27,4 @@ const Genres: FC<IProps> = ({ filterType }) => {
   return <FormSelect options={mappedGenres} onChangeHandler={setGenreId} />;
 };
 
-export default Genres;
+export default memo(Genres);

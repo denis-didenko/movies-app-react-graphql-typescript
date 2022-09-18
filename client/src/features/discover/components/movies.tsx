@@ -4,14 +4,14 @@ import { useState } from 'react';
 import ErrorMessage from '../../../components/ErrorMessage';
 import Loading from '../../../components/Loading';
 import Pagination from '../../../components/Pagination';
-import { useFilter } from '../../filter-form/useFilter';
+import { useFilterState } from '../../filter-form/useFilter';
 import MoviesList from '../../movies';
 import { GET_DISCOVER_MOVIES } from '../queries';
 import { IDiscoverData, IDiscoverVariables } from '../types';
 
 const MoviesDiscover = () => {
   const [page, setPage] = useState(1);
-  const { genreId, year, language, company, provider, sortBy } = useFilter();
+  const { genreId, year, language, company, provider, sortBy } = useFilterState();
 
   const { loading, error, data } = useQuery<IDiscoverData, IDiscoverVariables>(
     GET_DISCOVER_MOVIES,
