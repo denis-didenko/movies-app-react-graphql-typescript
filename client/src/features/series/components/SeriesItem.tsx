@@ -8,7 +8,7 @@ import { ISeries } from '../types';
 import 'react-lazy-load-image-component/src/effects/blur.css'; // eslint-disable-line
 
 const MovieItem: FC<ISeries> = ({ poster_path, name, id, vote_average }) => {
-  const { getFullImgPath } = useApi();
+  const { getCropImgPath } = useApi();
   if (!poster_path) return null;
 
   return (
@@ -19,7 +19,7 @@ const MovieItem: FC<ISeries> = ({ poster_path, name, id, vote_average }) => {
             width='100%'
             height='100%'
             alt={name}
-            src={getFullImgPath(poster_path)}
+            src={getCropImgPath(poster_path)}
             effect='blur'
             delayMethod='debounce'
           />

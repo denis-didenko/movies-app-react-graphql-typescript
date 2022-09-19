@@ -13,7 +13,7 @@ import './person.css';
 
 const PersonDetails = () => {
   const { id } = useParams() as { id: string };
-  const { getFullImgPath, sortMoviesByReleaseDate, sortMoviesByPopularity } = useApi();
+  const { getCropImgPath, sortMoviesByReleaseDate, sortMoviesByPopularity } = useApi();
   const { loading, error, data } = useQuery<IPersonData, IPersonVariables>(GET_PERSON, {
     variables: { id },
   });
@@ -37,7 +37,7 @@ const PersonDetails = () => {
           width='100%'
           height='auto'
           alt={name}
-          src={getFullImgPath(profile_path)}
+          src={getCropImgPath(profile_path)}
           effect='blur'
         />
       </div>

@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const Casts: FC<IProps> = ({ casts }) => {
-  const { getFullImgPath } = useApi();
+  const { getCropImgPath } = useApi();
 
   if (!casts.length) return <p>Не знайдено</p>;
 
@@ -25,7 +25,7 @@ const Casts: FC<IProps> = ({ casts }) => {
               width='100%'
               height='100%'
               alt={name}
-              src={getFullImgPath(profile_path)}
+              src={getCropImgPath(profile_path)}
               effect='blur'
             />
           </div>

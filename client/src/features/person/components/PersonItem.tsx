@@ -8,7 +8,7 @@ import { IPerson } from '../types';
 import 'react-lazy-load-image-component/src/effects/blur.css'; // eslint-disable-line
 
 const PersonItem: FC<IPerson> = ({ id, name, profile_path }) => {
-  const { getFullImgPath } = useApi();
+  const { getCropImgPath } = useApi();
   if (!profile_path) return null;
 
   return (
@@ -19,7 +19,7 @@ const PersonItem: FC<IPerson> = ({ id, name, profile_path }) => {
             width='100%'
             height='100%'
             alt={name}
-            src={getFullImgPath(profile_path)}
+            src={getCropImgPath(profile_path)}
             effect='blur'
             delayMethod='debounce'
           />

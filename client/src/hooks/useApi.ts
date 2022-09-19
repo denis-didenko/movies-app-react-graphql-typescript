@@ -3,9 +3,11 @@ import { IMovie } from '../features/movies/types';
 import { ISeries } from '../features/series/types';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
+const IMG_URL_CROPPED = 'https://image.tmdb.org/t/p/w500';
 
 export const useApi = () => {
   const getFullImgPath = (path: string) => `${IMG_URL}${path}`;
+  const getCropImgPath = (path: string) => `${IMG_URL_CROPPED}${path}`;
 
   const getUniqueCrew = (array: ICrew[]) => [...new Set(array.filter(({ name }) => name))];
   const getUniqueCrewAggregate = (array: ICrewAggregate[]) => [
@@ -42,6 +44,7 @@ export const useApi = () => {
 
   return {
     getFullImgPath,
+    getCropImgPath,
     getUniqueCrew,
     getUniqueCrewAggregate,
     sortMoviesByReleaseDate,

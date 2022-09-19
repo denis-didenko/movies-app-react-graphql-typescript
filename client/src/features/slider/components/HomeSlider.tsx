@@ -15,7 +15,7 @@ interface IProps {
 }
 
 const HomeSlider: FC<IProps> = ({ slides }) => {
-  const { getFullImgPath } = useApi();
+  const { getCropImgPath } = useApi();
 
   return (
     <Swiper modules={[Pagination]} pagination={{ clickable: true }} slidesPerView={1}>
@@ -26,7 +26,7 @@ const HomeSlider: FC<IProps> = ({ slides }) => {
               width='100%'
               height='100%'
               alt={title}
-              src={getFullImgPath(backdrop_path)}
+              src={getCropImgPath(backdrop_path)}
               effect='blur'
             />
             <div className='slide-info'>

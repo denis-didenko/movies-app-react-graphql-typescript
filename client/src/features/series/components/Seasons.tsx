@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const SeasonsTable: FC<IProps> = ({ seasons }) => {
-  const { getFullImgPath } = useApi();
+  const { getCropImgPath } = useApi();
 
   return (
     <div className='seasons-table'>
@@ -30,7 +30,7 @@ const SeasonsTable: FC<IProps> = ({ seasons }) => {
                   width='100%'
                   height='auto'
                   alt={name}
-                  src={getFullImgPath(poster_path)}
+                  src={getCropImgPath(poster_path)}
                   effect='blur'
                 />
                 <div className='season-name'>{name}</div>
