@@ -55,7 +55,7 @@ const MovieDetails = () => {
     month: 'long',
     day: 'numeric',
   }).format(new Date(release_date));
-  const genresList = genres.map(({ name }) => name);
+  const genresList = genres?.map(({ name }) => name);
 
   const actors = credits.cast.filter(cast => cast.known_for_department === 'Acting');
   const directors = credits.crew.filter(crew => crew.job === 'Director');
@@ -82,10 +82,12 @@ const MovieDetails = () => {
         <span className='movie-details__original_name'>{original_title}</span>
       </h1>
       <p className='movie-details__rating'>TMDB: {vote_average.toFixed(1)}</p>
-      <p className='movie-details__release-date'>
-        {' '}
-        {`${releaseDateUA} · ${runtime} хв · ${genresList.join(', ')}`}{' '}
-      </p>
+
+      {genresList && runtime && (
+        <p className='movie-details__release-date'>
+          {`${releaseDateUA} · ${runtime} хв · ${genresList.join(', ')}`}
+        </p>
+      )}
 
       <div className='movie-details__videos'>
         {trailerHash ? (
