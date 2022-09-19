@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import MovieItem from './components/MovieItem';
 import { IMovie } from './types'; // eslint-disable-line
@@ -21,4 +21,4 @@ const MoviesList: FC<IProps> = ({ movies }) => {
   );
 };
 
-export default MoviesList;
+export default memo(MoviesList);

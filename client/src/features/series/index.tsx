@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import SeriesItem from './components/SeriesItem';
 import { ISeries } from './types';
@@ -19,4 +19,4 @@ const SeriesList: FC<IProps> = ({ series }) => {
   );
 };
 
-export default SeriesList;
+export default memo(SeriesList);
