@@ -1,7 +1,11 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
 export const client = new ApolloClient({
-  // uri: 'http://localhost:5000/graphql',
-  uri: 'https://movies-app-react-graphql.herokuapp.com/graphql',
+  link: new HttpLink({
+    // uri: 'http://localhost:5000/graphql',
+    uri: 'https://movies-app-react-graphql.herokuapp.com/graphql',
+
+    credentials: 'omit',
+  }),
   cache: new InMemoryCache(),
 });
