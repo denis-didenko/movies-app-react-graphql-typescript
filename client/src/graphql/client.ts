@@ -6,6 +6,9 @@ export const client = new ApolloClient({
     uri: 'https://movies-app-react-graphql.herokuapp.com/graphql',
 
     credentials: 'omit',
+    fetchOptions: {
+      mode: 'no-cors',
+    },
   }),
   cache: new InMemoryCache(),
 });
