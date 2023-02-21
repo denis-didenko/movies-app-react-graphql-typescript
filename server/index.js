@@ -4,15 +4,19 @@ import { resolvers } from './schema/resolvers.js';
 import { MovieAPI } from './api/index.js';
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    csrfPrevention: true,
-    cache: 'bounded',
-    dataSources: () => ({
-        movieAPI: new MovieAPI(),
-    }),
+  typeDefs,
+  resolvers,
+  csrfPrevention: true,
+  cache: 'bounded',
+  cors: {
+    origin: '*',
+    credentials: true,
+  },
+  dataSources: () => ({
+    movieAPI: new MovieAPI(),
+  }),
 });
 
 server.listen(process.env.PORT || 5000).then(({ url, port }) => {
-    console.log(`🚀  Server ready at ${url} and port ${port}`);
+  console.log(`🚀  Server ready at ${url} and port ${port}`);
 });
