@@ -1,13 +1,10 @@
-import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 export const client = new ApolloClient({
-  link: new HttpLink({
-    // uri: 'http://localhost:5000/graphql',
-    uri: 'https://movies-app-react-graphql.herokuapp.com/graphql',
-
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-  }),
+  // uri: 'http://localhost:5000/graphql',
+  uri: 'https://movies-app-react-graphql-typescript.vercel.app/',
   cache: new InMemoryCache(),
+  headers: {
+    'Access-Control-Allow-Origin': '*', // this is required for CORS
+  },
 });
