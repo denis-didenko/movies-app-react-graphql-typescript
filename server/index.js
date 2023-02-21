@@ -9,7 +9,7 @@ const server = new ApolloServer({
   csrfPrevention: true,
   cache: 'bounded',
   cors: {
-    origin: '*',
+    origin: 'http://localhost:3000',
     credentials: true,
   },
   dataSources: () => ({
