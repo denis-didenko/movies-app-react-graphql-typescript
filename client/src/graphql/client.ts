@@ -7,7 +7,7 @@ export const client = new ApolloClient({
 
     credentials: 'omit',
     fetchOptions: {
-      mode: 'no-cors',
+      mode: 'cors',
     },
   }),
   cache: new InMemoryCache(),
