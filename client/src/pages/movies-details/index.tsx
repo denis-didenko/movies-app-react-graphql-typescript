@@ -1,17 +1,15 @@
-import { useQuery } from '@apollo/client';
 import { MdOutlinePlayCircleOutline } from 'react-icons/md';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import ErrorMessage from '../../components/ErrorMessage';
-import Loading from '../../components/Loading';
-import Casts from '../../features/credits/components/Casts';
-import AddToFavoriteBtn from '../../features/favorites/components/AddToFavoriteBtn';
-import MoviesList from '../../features/movies';
-import { GET_MOVIE } from '../../features/movies/queries';
-import { IMovie } from '../../features/movies/types';
-import { useApi } from '../../hooks/useApi';
+import { useQuery } from '@apollo/client';
+import { Casts } from '@entities/credits';
+import { MovieList, IMovie, GET_MOVIE } from '@entities/movies';
+import { AddToFavoriteBtn } from '@features/favorites';
+import { getImgUrl, getUniqueCrew, sortMoviesByReleaseDate } from '@shared/api/tmdb';
+import ErrorMessage from '@shared/components/ErrorMessage';
+import Loading from '@shared/components/Loading';
 
 import './movies-details.css';
 
@@ -25,7 +23,6 @@ interface IMovieVariables {
 
 const MovieDetails = () => {
   const { id } = useParams() as { id: string };
-  const { getFullImgPath, getUniqueCrew, sortMoviesByReleaseDate } = useApi();
   const { loading, error, data } = useQuery<IMovieData, IMovieVariables>(GET_MOVIE, {
     variables: { id },
   });
@@ -34,7 +31,6 @@ const MovieDetails = () => {
   if (error) return <ErrorMessage error={error} />;
   if (!data) return null;
 
-  /* eslint-disable */
   const {
     title,
     original_title,
@@ -48,7 +44,6 @@ const MovieDetails = () => {
     recommendations,
     videos,
   } = data.movie;
-  /* eslint-enable */
 
   const releaseDateUA = new Intl.DateTimeFormat('uk-UA', {
     year: 'numeric',
@@ -73,7 +68,7 @@ const MovieDetails = () => {
           width='100%'
           height='auto'
           alt={title}
-          src={getFullImgPath(backdrop_path)}
+          src={getImgUrl(backdrop_path)}
           effect='blur'
         />
       </div>
@@ -143,7 +138,7 @@ const MovieDetails = () => {
         </TabPanel>
       </Tabs>
       <h2>Рекомендацii:</h2>
-      <MoviesList movies={sortMoviesByReleaseDate(recommendations).slice(0, 10)} />
+      <MovieList movies={sortMoviesByReleaseDate(recommendations).slice(0, 10)} />
     </div>
   );
 };

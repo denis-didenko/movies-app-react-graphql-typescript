@@ -1,12 +1,15 @@
 import { useQuery } from '@apollo/client';
-
-import ErrorMessage from '../../components/ErrorMessage';
-import Loading from '../../components/Loading';
-import MoviesList from '../../features/movies';
-import { GET_UPCOMING_MOVIES, GET_NOW_PLAYING_MOVIES } from '../../features/movies/queries';
-import { IUpcomingMoviesData, INowPlayingMoviesData } from '../../features/movies/types';
-import HomeSlider from '../../features/slider/components/HomeSlider';
-import { useApi } from '../../hooks/useApi';
+import {
+  MovieList,
+  GET_UPCOMING_MOVIES,
+  GET_NOW_PLAYING_MOVIES,
+  IUpcomingMoviesData,
+  INowPlayingMoviesData,
+} from '@entities/movies';
+import { sortMoviesByReleaseDate } from '@shared/api/tmdb';
+import ErrorMessage from '@shared/components/ErrorMessage';
+import Loading from '@shared/components/Loading';
+import { HomeSlider } from '@widgets/home-slider';
 
 import './home.css';
 
@@ -15,8 +18,6 @@ interface IHomeVariables {
 }
 
 const HomePage = () => {
-  const { sortMoviesByReleaseDate } = useApi();
-
   const {
     loading: upcomingLoading,
     error: upcomingErrorMessage,
@@ -50,7 +51,7 @@ const HomePage = () => {
       <h2 className='page-title'>Незабаром:</h2>
       <HomeSlider slides={sortMoviesByReleaseDate(upcoming).slice(0, 10)} />
       <h2>Дивляться зараз:</h2>
-      <MoviesList movies={sortMoviesByReleaseDate(nowPlaying).slice(0, 20)} />
+      <MovieList movies={sortMoviesByReleaseDate(nowPlaying).slice(0, 20)} />
     </>
   );
 };

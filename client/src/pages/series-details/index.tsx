@@ -1,18 +1,15 @@
-import { useQuery } from '@apollo/client';
 import { MdOutlinePlayCircleOutline } from 'react-icons/md';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import ErrorMessage from '../../components/ErrorMessage';
-import Loading from '../../components/Loading';
-import Casts from '../../features/credits/components/Casts';
-import AddToFavoriteBtn from '../../features/favorites/components/AddToFavoriteBtn';
-import SeriesList from '../../features/series';
-import Seasons from '../../features/series/components/Seasons';
-import { GET_SERIES } from '../../features/series/queries';
-import { ISeries } from '../../features/series/types';
-import { useApi } from '../../hooks/useApi';
+import { useQuery } from '@apollo/client';
+import { Casts } from '@entities/credits';
+import { SeriesList, Seasons, GET_SERIES, ISeries } from '@entities/series';
+import { AddToFavoriteBtn } from '@features/favorites';
+import { getImgUrl, getUniqueCrewAggregate, sortSeriesByRating } from '@shared/api/tmdb';
+import ErrorMessage from '@shared/components/ErrorMessage';
+import Loading from '@shared/components/Loading';
 
 import './series-details.css';
 
@@ -26,7 +23,6 @@ interface ISeriesVariables {
 
 const SeriesDetails = () => {
   const { id } = useParams() as { id: string };
-  const { getFullImgPath, getUniqueCrewAggregate, sortSeriesByRating } = useApi();
   const { loading, error, data } = useQuery<ISeriesData, ISeriesVariables>(GET_SERIES, {
     variables: { id },
   });
@@ -78,7 +74,7 @@ const SeriesDetails = () => {
           width='100%'
           height='auto'
           alt={name}
-          src={getFullImgPath(backdrop_path)}
+          src={getImgUrl(backdrop_path)}
           effect='blur'
         />
       </div>

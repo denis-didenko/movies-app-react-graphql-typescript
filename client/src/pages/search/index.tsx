@@ -1,21 +1,24 @@
-import { ApolloError, useLazyQuery } from '@apollo/client';
 import { useState, useEffect, useRef } from 'react';
+
 import { useDebounce } from 'use-debounce';
 
-import ErrorMessage from '../../components/ErrorMessage';
-import Loading from '../../components/Loading';
-import Pagination from '../../components/Pagination';
-import MoviesList from '../../features/movies';
-import PersonList from '../../features/person';
-import SearchForm from '../../features/search/components/SearchForm';
-import { SEARCH_MOVIES, SEARCH_SERIES, SEARCH_PERSON } from '../../features/search/queries';
+import { ApolloError, useLazyQuery } from '@apollo/client';
+import { MovieList } from '@entities/movies';
+import { PersonList } from '@entities/person';
 import {
+  SearchForm,
+  SEARCH_MOVIES,
+  SEARCH_SERIES,
+  SEARCH_PERSON,
   ISearchMoviesData,
   ISearchSeriesData,
   ISearchPersonsData,
   ISearchQuery,
-} from '../../features/search/types';
-import SeriesList from '../../features/series';
+} from '@entities/search';
+import { SeriesList } from '@entities/series';
+import Pagination from '@features/pagination';
+import ErrorMessage from '@shared/components/ErrorMessage';
+import Loading from '@shared/components/Loading';
 
 import './search.css';
 
@@ -80,7 +83,7 @@ const SearchPage = () => {
       {dataRef.current ? (
         'searchMovies' in dataRef.current ? (
           <>
-            <MoviesList movies={dataRef.current.searchMovies.results} />
+            <MovieList movies={dataRef.current.searchMovies.results} />
             <Pagination
               activePage={page}
               setActivePage={setPage}

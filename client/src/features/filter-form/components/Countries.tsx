@@ -1,5 +1,5 @@
-import FormSelect from '../../../components/Form/select';
-import { useFilterSetState } from '../useFilter';
+import FormSelect from '@shared/components/Form/select';
+import { useFilterSetState } from '@shared/hooks/useFilter';
 
 const countries = [
   { id: '', value: 'Всi' },

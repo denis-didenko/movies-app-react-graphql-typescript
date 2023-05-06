@@ -1,19 +1,17 @@
-import { useQuery } from '@apollo/client';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 
-import ErrorMessage from '../../components/ErrorMessage';
-import Loading from '../../components/Loading';
-import MoviesList from '../../features/movies';
-import { GET_PERSON } from '../../features/person/queries';
-import { IPersonData, IPersonVariables } from '../../features/person/types';
-import { useApi } from '../../hooks/useApi';
+import { useQuery } from '@apollo/client';
+import { MovieList } from '@entities/movies';
+import { GET_PERSON, IPersonData, IPersonVariables } from '@entities/person';
+import { getImgUrl, sortMoviesByReleaseDate, sortMoviesByPopularity } from '@shared/api/tmdb';
+import ErrorMessage from '@shared/components/ErrorMessage';
+import Loading from '@shared/components/Loading';
 
 import './person.css';
 
 const PersonDetails = () => {
   const { id } = useParams() as { id: string };
-  const { getCropImgPath, sortMoviesByReleaseDate, sortMoviesByPopularity } = useApi();
   const { loading, error, data } = useQuery<IPersonData, IPersonVariables>(GET_PERSON, {
     variables: { id },
   });
@@ -22,7 +20,7 @@ const PersonDetails = () => {
   if (error) return <ErrorMessage error={error} />;
   if (!data) return null;
 
-  const { name, birthday, biography, profile_path, place_of_birth, cast } = data.person; // eslint-disable-line
+  const { name, birthday, biography, profile_path, place_of_birth, cast } = data.person;
 
   const birthdayDate = new Intl.DateTimeFormat('uk-UA', {
     year: 'numeric',
@@ -37,7 +35,7 @@ const PersonDetails = () => {
           width='100%'
           height='auto'
           alt={name}
-          src={getCropImgPath(profile_path)}
+          src={getImgUrl(profile_path)}
           effect='blur'
         />
       </div>
@@ -49,9 +47,9 @@ const PersonDetails = () => {
       <h3>Біографія:</h3>
       <p>{biography || 'Немає перекладу'}</p>
       <h2>Останні роботи:</h2>
-      <MoviesList movies={sortMoviesByReleaseDate(cast).slice(0, 10)} />
+      <MovieList movies={sortMoviesByReleaseDate(cast).slice(0, 10)} />
       <h2>Популярні роботи:</h2>
-      <MoviesList movies={sortMoviesByPopularity(cast).slice(0, 10)} />
+      <MovieList movies={sortMoviesByPopularity(cast).slice(0, 10)} />
     </div>
   );
 };

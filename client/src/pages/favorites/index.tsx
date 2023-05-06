@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { TFavoriteItems } from '../../features/favorites/types';
-import MoviesList from '../../features/movies';
-import { IMovie } from '../../features/movies/types';
-import SeriesList from '../../features/series';
-import { ISeries } from '../../features/series/types';
+import { MovieList, IMovie } from '@entities/movies';
+import { SeriesList, ISeries } from '@entities/series';
+import { TFavoriteItems } from '@features/favorites';
 
 import './favorites.css';
 
@@ -22,7 +20,7 @@ const FavoritesPage = () => {
   return (
     <div className='favorites-page'>
       <h2>Фiльми:</h2>
-      <MoviesList movies={movies} />
+      <MovieList movies={movies} />
       <h2>Серіали:</h2>
       <SeriesList series={series} />
     </div>

@@ -1,13 +1,14 @@
 import { FC, useEffect, useState } from 'react';
+
 import { MdFavoriteBorder, MdOutlineFavorite } from 'react-icons/md';
 
-import { TFavoriteItem, TFavoriteItems } from '../types';
+import { TFavoriteItem, TFavoriteItems } from '../model/types';
 
 interface IProps {
   favoriteItem: TFavoriteItem;
 }
 
-const AddToFavoriteBtn: FC<IProps> = ({ favoriteItem }) => {
+export const AddToFavoriteBtn: FC<IProps> = ({ favoriteItem }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [items, setItems] = useState<TFavoriteItems>([]);
 
@@ -37,7 +38,7 @@ const AddToFavoriteBtn: FC<IProps> = ({ favoriteItem }) => {
     if (hasMountedItem) {
       setIsFavorite(true);
     }
-  }, []);
+  }, []); // eslint-disable-line
 
   useEffect(() => {
     if (isFavorite && !hasItem(String(favoriteItem.id))) {
@@ -46,7 +47,7 @@ const AddToFavoriteBtn: FC<IProps> = ({ favoriteItem }) => {
     if (!isFavorite && hasItem(String(favoriteItem.id))) {
       removeItem(String(favoriteItem.id));
     }
-  }, [isFavorite]);
+  }, [isFavorite]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <button
@@ -61,5 +62,3 @@ const AddToFavoriteBtn: FC<IProps> = ({ favoriteItem }) => {
     </button>
   );
 };
-
-export default AddToFavoriteBtn;

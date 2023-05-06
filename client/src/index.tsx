@@ -1,20 +1,18 @@
-import { ApolloProvider } from '@apollo/client';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 
-import App from './App';
-import { FilterContextProvider } from './context/filter-context';
-import { client } from './graphql/client';
+import { ApolloProvider } from '@apollo/client';
+
+import App from './app';
+import { FilterContextProvider } from './app/context/filter';
+import client from './app/store/apolloClient';
 
 const appEl = document.getElementById('app') as HTMLDivElement;
-const root = ReactDOM.createRoot(appEl);
+const root = createRoot(appEl);
 
 root.render(
   <ApolloProvider client={client}>
-    <BrowserRouter>
-      <FilterContextProvider>
-        <App />
-      </FilterContextProvider>
-    </BrowserRouter>
+    <FilterContextProvider>
+      <App />
+    </FilterContextProvider>
   </ApolloProvider>,
 );

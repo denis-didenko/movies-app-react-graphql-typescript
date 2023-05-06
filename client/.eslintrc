@@ -1,68 +1,54 @@
-/*eslint-env browser*/
 {
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "react-hooks", "@typescript-eslint"],
-  "extends": ["airbnb", "airbnb-typescript"],
-  "env": {
-    "browser": true
-  },
+  "extends": [
+    "react-app",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["import", "jsx-a11y"],
   "rules": {
-    "import/prefer-default-export": "off",
-    "import/no-cycle": "off",
-    "import/no-unresolved": "error",
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type"
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"]],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@*/**",
+            "group": "internal"
+          }
         ],
-
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "always",
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
-        },
-        "newlines-between": "always",
-        "warnOnUnassignedImports": true
+        }
       }
     ],
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/jsx-one-expression-per-line": "off",
-    "react/function-component-definition": [
-      "error",
-      {
-        "namedComponents": "arrow-function",
-        "unnamedComponents": "arrow-function"
-      }
-    ],
-    "function-paren-newline": "off",
-    "implicit-arrow-linebreak": "off",
-    "linebreak-style": "off",
-    "arrow-parens": ["error", "as-needed"],
-    "jsx-quotes": ["error", "prefer-single"],
-    "comma-dangle": ["error", "always-multiline"],
-    "object-curly-newline": [
-      "error",
-      {
-        "ObjectPattern": { "multiline": true }
-      }
-    ],
-    "operator-linebreak": ["error", "after"],
-    "no-underscore-dangle": "off",
-    "no-nested-ternary": "off",
-
-    "prefer-const": "error",
-    "no-unused-vars": "error",
-    "@typescript-eslint/no-unused-vars": ["error"]
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
-  "parserOptions": {
-    "project": "./tsconfig.json"
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
   }
 }
