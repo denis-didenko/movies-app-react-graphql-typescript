@@ -1,15 +1,9 @@
 import { useContext } from 'react';
 
-import { FilterStateContext, FilterSetStateContext } from '../../app/context/filter';
+import { FilterContext } from '@app/context/filter';
 
-export const useFilterSetState = () => {
-  const filterSetState = useContext(FilterSetStateContext);
+export const useFilter = () => {
+  const filter = useContext(FilterContext);
 
-  return filterSetState;
-};
-
-export const useFilterState = () => {
-  const filterState = useContext(FilterStateContext);
-
-  return filterState;
+  return filter;
 };

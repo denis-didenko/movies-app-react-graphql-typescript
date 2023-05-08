@@ -1,5 +1,5 @@
 import FormSelect from '@shared/components/Form/select';
-import { useFilterSetState } from '@shared/hooks/useFilter';
+import { useFilter } from '@shared/hooks/useFilter';
 
 const years = [
   { id: '', value: 'Всi' },
@@ -20,7 +20,7 @@ const years = [
 ];
 
 const Years = () => {
-  const { setYear } = useFilterSetState();
+  const { setYear } = useFilter();
 
   return <FormSelect options={years} onChangeHandler={setYear} />;
 };

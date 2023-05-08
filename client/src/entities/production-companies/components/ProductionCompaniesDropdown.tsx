@@ -1,5 +1,5 @@
 import FormSelect from '@shared/components/Form/select';
-import { useFilterSetState } from '@shared/hooks/useFilter';
+import { useFilter } from '@shared/hooks/useFilter';
 
 const companies = [
   { id: '', value: 'Всi' },
@@ -29,7 +29,7 @@ const companies = [
 ];
 
 export const ProductionCompanies = () => {
-  const { setCompany } = useFilterSetState();
+  const { setCompany } = useFilter();
 
   return <FormSelect options={companies} onChangeHandler={setCompany} />;
 };

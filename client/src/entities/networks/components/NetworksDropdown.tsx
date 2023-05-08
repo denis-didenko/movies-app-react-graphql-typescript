@@ -1,5 +1,5 @@
 import FormSelect from '@shared/components/Form/select';
-import { useFilterSetState } from '@shared/hooks/useFilter';
+import { useFilter } from '@shared/hooks/useFilter';
 
 const networks = [
   { id: '', value: 'Всi' },
@@ -23,7 +23,7 @@ const networks = [
 ];
 
 export const Networks = () => {
-  const { setNetwork } = useFilterSetState();
+  const { setNetwork } = useFilter();
 
   return <FormSelect options={networks} onChangeHandler={setNetwork} />;
 };

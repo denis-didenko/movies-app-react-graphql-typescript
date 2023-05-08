@@ -5,14 +5,14 @@ import { SeriesList } from '@entities/series';
 import Pagination from '@features/pagination';
 import ErrorMessage from '@shared/components/ErrorMessage';
 import Loading from '@shared/components/Loading';
-import { useFilterState } from '@shared/hooks/useFilter';
+import { useFilter } from '@shared/hooks/useFilter';
 
 import { GET_DISCOVER_SERIES } from '../api/queries';
 import { IDiscoverTvData, IDiscoverTvVariables } from '../model/types';
 
 export const SeriesDiscover = () => {
   const [page, setPage] = useState(1);
-  const { genreId, year, language, network, sortBy } = useFilterState();
+  const { genreId, year, language, network, sortBy } = useFilter();
 
   const { loading, error, data } = useQuery<IDiscoverTvData, IDiscoverTvVariables>(
     GET_DISCOVER_SERIES,
